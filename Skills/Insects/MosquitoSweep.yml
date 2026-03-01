@@ -1,0 +1,6 @@
+MosquitoSweep:
+  Cooldown: 6
+  Skills:
+  - potion{type=DAMAGE_RESISTANCE;duration=300;level=1;hasParticles=false} @self
+  - pull{velocity=3;repeat=50;repeatInterval=2}
+  - propel{v=0.2;repeat=10;repeatInterval=10} @Forward{f=1;yo=10}

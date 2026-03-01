@@ -1,0 +1,4 @@
+ColdTouch:
+  Skills:
+  - freeze{ticks=100;repeat=2;repeatInterval=20}
+  - potion{type=SLOW;duration=50;level=4;p=false}

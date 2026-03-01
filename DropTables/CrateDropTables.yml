@@ -1,0 +1,75 @@
+# For more information, check out the plugin manual or join us on Discord:
+# http://www.mythicmobs.net
+#  
+
+CommonCrateDrops:
+  MinItems: 1
+  MaxItems: 2
+  Drops:
+  - mmoitems{type=GEM_STONE;id=HEALTHGEM1} 1 1
+  - mmoitems{type=GEM_STONE;id=HEALTHGEM2} 1 0.5
+  - mmoitems{type=GEM_STONE;id=HEALTHGEM3} 1 0.5
+  - mmoitems{type=GEM_STONE;id=HEALTHGEM4} 1 0.5
+  - mmoitems{type=GEM_STONE;id=HEALTHGEM5} 1 0.5
+  - mmoitems{type=GEM_STONE;id=HEALTHGEM6} 1 0.5
+  - mmoitems{type=GEM_STONE;id=HEALTHGEM7} 1 0.5
+  - mmoitems{type=GEM_STONE;id=HEALTHGEM8} 1 0.5
+  - mmoitems{type=GEM_STONE;id=HEALTHGEM9} 1 0.5
+  - mmoitems{type=GEM_STONE;id=STRENGTHGEM1} 1 1
+  - mmoitems{type=GEM_STONE;id=STRENGTHGEM2} 1 0.5
+  - mmoitems{type=GEM_STONE;id=STRENGTHGEM3} 1 0.5
+  - mmoitems{type=GEM_STONE;id=STRENGTHGEM4} 1 0.5
+  - mmoitems{type=GEM_STONE;id=STRENGTHGEM5} 1 0.5
+  - mmoitems{type=GEM_STONE;id=STRENGTHGEM6} 1 0.5
+  - mmoitems{type=GEM_STONE;id=STRENGTHGEM7} 1 0.5
+  - mmoitems{type=GEM_STONE;id=STRENGTHGEM8} 1 0.5
+  - mmoitems{type=GEM_STONE;id=STRENGTHGEM9} 1 0.5
+  - mmoitems{type=GEM_STONE;id=DEFENSEGEM1} 1 1
+  - mmoitems{type=GEM_STONE;id=DEFENSEGEM2} 1 0.5
+  - mmoitems{type=GEM_STONE;id=DEFENSEGEM3} 1 0.5
+  - mmoitems{type=GEM_STONE;id=DEFENSEGEM4} 1 0.5
+  - mmoitems{type=GEM_STONE;id=DEFENSEGEM5} 1 0.5
+  - mmoitems{type=GEM_STONE;id=DEFENSEGEM6} 1 0.5
+  - mmoitems{type=GEM_STONE;id=DEFENSEGEM7} 1 0.5
+  - mmoitems{type=GEM_STONE;id=DEFENSEGEM8} 1 0.5
+  - mmoitems{type=GEM_STONE;id=DEFENSEGEM9} 1 0.5
+
+StencilCrateDrops:
+  MinItems: 1
+  MaxItems: 1
+  Drops:
+  - mmoitems{type=STENCIL;id=AXEHEAD_STENCIL} 1 1
+  - mmoitems{type=STENCIL;id=BOWBODY_STENCIL} 1 0.8
+  - mmoitems{type=STENCIL;id=BOWSTRING_STENCIL} 1 0.9
+  - mmoitems{type=STENCIL;id=BUCKSHIELDBODY_STENCIL} 1 0.6
+  - mmoitems{type=STENCIL;id=CANNONBODY_STENCIL} 1 0.4
+  - mmoitems{type=STENCIL;id=CANNONIGNITION_STENCIL} 1 0.4
+  - mmoitems{type=STENCIL;id=CROSSBOWBODY_STENCIL} 1 0.6
+  - mmoitems{type=STENCIL;id=FLINTPISTBODY_STENCIL} 1 0.6
+  - mmoitems{type=STENCIL;id=GAUNTFING_STENCIL} 1 0.5
+  - mmoitems{type=STENCIL;id=GAUNTPALMBODY_STENCIL} 1 0.5
+  - mmoitems{type=STENCIL;id=GRIP_STENCIL} 1 1
+  - mmoitems{type=STENCIL;id=GUARD_STENCIL} 1 1
+  - mmoitems{type=STENCIL;id=GUNBARREL_STENCIL} 1 0.5
+  - mmoitems{type=STENCIL;id=GUNGRIP_STENCIL} 1 0.5
+  - mmoitems{type=STENCIL;id=HATCHHEAD_STENCIL} 1 0.9
+  - mmoitems{type=STENCIL;id=HEATSHIELDBODY_STENCIL} 1 0.4
+  - mmoitems{type=STENCIL;id=HOEHEAD_STENCIL} 1 1
+  - mmoitems{type=STENCIL;id=HUNTKNIFE_STENCIL} 1 0.8
+  - mmoitems{type=STENCIL;id=LONGSWORDHEAD_STENCIL} 1 0.8
+  - mmoitems{type=STENCIL;id=MUSKBODY_STENCIL} 1 0.7
+  - mmoitems{type=STENCIL;id=PARRYDAGGERHEAD_STENCIL} 1 0.7
+  - mmoitems{type=STENCIL;id=PICKHEAD_STENCIL} 1 1
+  - mmoitems{type=STENCIL;id=POMMEL_STENCIL} 1 0.8
+  - mmoitems{type=STENCIL;id=RAPIERHEAD_STENCIL} 1 0.7
+  - mmoitems{type=STENCIL;id=RELOADMECHTRIG_STENCIL} 1 0.4
+  - mmoitems{type=STENCIL;id=ROUNDSHIELDBODY_STENCIL} 1 0.5
+  - mmoitems{type=STENCIL;id=SHAFT_STENCIL} 1 0.7
+  - mmoitems{type=STENCIL;id=SHIELDSTRAP_STENCIL} 1 0.8
+  - mmoitems{type=STENCIL;id=SHOTBODY_STENCIL} 1 0.5
+  - mmoitems{type=STENCIL;id=SHOVHEAD_STENCIL} 1 1
+  - mmoitems{type=STENCIL;id=SPEARHEAD_STENCIL} 1 0.9
+  - mmoitems{type=STENCIL;id=STAFFBODY_STENCIL} 1 0.7
+  - mmoitems{type=STENCIL;id=SWORDHEAD_STENCIL} 1 1
+  - mmoitems{type=STENCIL;id=WANDBODY_STENCIL} 1 0.7
+  - mmoitems{type=STENCIL;id=WARMACEHEAD_STENCIL} 1 0.6

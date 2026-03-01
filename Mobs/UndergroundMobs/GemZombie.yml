@@ -1,0 +1,14 @@
+GemZombie:
+  Type: ZOMBIE
+  Display: gem
+  Armor: 6.5
+  Equipment:
+  - mmoitems{type=SWORD;id=GOLD_SWORD} HAND
+  Options:
+    MovementSpeed: 0.23
+    PreventOtherDrops: true
+    PreventTransformation: true
+    PreventRandomEquipment: true
+    KnockbackResistance: 0.75
+  Skills:
+  - dismount ~onTimer:10

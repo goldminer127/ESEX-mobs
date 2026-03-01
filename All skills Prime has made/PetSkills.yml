@@ -1,0 +1,69 @@
+TamePet:
+  Conditions:
+  - hasowner false
+  Skills:
+  - setowner
+  - speak{m="<target.name> you're my master!"} @owner{r=10}
+  
+DespawnPetNoInv:
+  TriggerConditions:
+  - owner true
+  - hasinventoryspace{} false
+  Skills:
+  - speak{m="You don't have inventory space master!"} @owner{r=10}
+
+TeleportBackToOwner:
+  Conditions:
+  - hasowner true
+  - playernotwithin{d=8} true
+  Skills:
+  - teleport{spreadh=2;spreadv=0} @owner
+
+DespawnPiglinPet:
+  TriggerConditions:
+  - owner true
+  - hasinventoryspace{} true
+  Skills:
+  - speak{m='Good bye master <target.name>!'} @owner{r=10}
+  - command{c="mm egg give <target.name> PiglinPet 1"} @owner{r=10}
+  - remove @self
+
+DropGold:
+  Conditions:
+  - hasowner true
+  Skills:
+  - dropitem{i=gold_nugget}
+  
+DespawnChickenPet:
+  TriggerConditions:
+  - owner true
+  - hasinventoryspace{} true
+  Skills:
+  - potionclear{speed} @owner
+  - speak{m='Good bye master <target.name>!'} @owner{r=10}
+  - command{c="mm egg give <target.name> ChickenPet 1"} @owner{r=10}
+  - remove @self
+  
+ChickenPetSpeed:
+  Conditions:
+  - hasowner true
+  Skills:
+  - potion{type=speed;level=0;duration=9999999} @owner
+  
+DespawnWolfPet:
+  TriggerConditions:
+  - owner true
+  - hasinventoryspace{} true
+  Skills:
+  - speak{m='Good bye master <target.name>!'} @owner{r=10}
+  - command{c="mm egg give <target.name> WolfPet 1"} @owner{r=10}
+  - remove @self
+
+DespawnCatPet:
+  TriggerConditions:
+  - owner true
+  - hasinventoryspace{} true
+  Skills:
+  - speak{m='Good bye master <target.name>!'} @owner{r=10}
+  - command{c="mm egg give <target.name> CatPet 1"} @owner{r=10}
+  - remove @self

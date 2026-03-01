@@ -1,0 +1,26 @@
+WitheringLeech:
+  Type: Wither
+  Health: 1050
+  Display: '&6Withering Leech'
+  Options:
+    AlwaysShowName: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    KnockbackResistance: .95
+    MovementSpeed: .325
+    Silent: true
+  BossBar:
+    Enabled: true
+    Title: '&6Leech'
+    Color: YELLOW
+  Disguise: Wither
+  Skills:
+  - damage{a=12} @self ~onTimer:10
+  - heal{a=100;oh=true} @self ~onAttack
+  - skill{s=deathField} @self ~onTimer:5 =70%-90%
+  - skill{s=deathField2} @self ~onTimer:5 =50%-70%
+  - skill{s=deathField} @self ~onTimer:5 =30%-50%
+  - skill{s=deathGrasp} @PIR{r=32} ~onTimer:30
+  - skill{s=leechConsume} @self ~onTimer:200 <45%
+  - skill{s=summonSkull} @self ~onTimer:600

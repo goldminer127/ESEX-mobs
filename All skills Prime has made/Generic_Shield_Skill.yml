@@ -1,0 +1,72 @@
+spawnShieldStartup:
+  Skills:
+  - delay 100-300
+  - sound{s=item.armor.equip_iron;v=1;p=2}
+  - setstance{stance=shieldReady} @self
+  
+shieldSkillReady:
+  Conditions:
+  - stance{s=shieldReady;str=true} true
+  - damagecause{cause=ENTITY_ATTACK} true #need to add in orElseCast shieldSkillReady2 --- with cause=PROJ 
+                                                        # - offgcd
+  Skills:
+  - potion{type=DAMAGE_RESISTANCE;duration=100;level=255;p=false} #cd=10
+  - setstance{stance=shieldOnCooldown} @self
+  - delay 200-400
+  - sound{s=item.armor.equip_iron;v=1;p=2}
+  - setstance{stance=shieldReady} @self
+#  
+#
+#  These are the skills the mob uses.
+  - skill{s=spawnShieldStartup} @self ~onSpawn
+  - skill{s=shieldSkillReady} ~onDamaged <85%
+  
+
+  
+#Tame skill: onInterect
+#Check if has owner
+# if yes do nothing
+# else check if holding right item
+# if no do nothing
+#   if yes consume item and randomskill
+# rskill1 null particles
+# rskill2 heart patricles and setOwner
+  
+#castinstead #orElseCast
+  
+#Other useful thingss:
+  
+#- closeinventory{forcesync=true} @pir{r=32} ~onTimer:1
+#https://git.mythiccraft.io/mythiccraft/MythicMobs/-/wikis/skills/mechanics/stopusingitem
+
+#LModeActivate:  --- hidden among armor stands in an arena
+#  Type: ARMOR_STAND
+#  Health: 1
+#  Display: 'Force Close Inventory'
+#  Options:
+#    PreventRandomEquipment: true
+#    PreventOtherDrops: true
+#    PreventSunburn: true
+#    Silent: true
+#    NoAI: true
+#    #Invincible: true
+#    AlwaysShowName: true
+#  Skills:
+#  - closeinventory{forcesync=true;targetcreative=true} @pir{r=1} ~onTimer:1
+
+# combo closeinventory with potion{hasIcon=flase}
+
+# - actionmessage{m="&6HP &c&l<mob.hp> &f/ &c&l<mob.mhp>"} @PIR{r=20} ~onTimer:10
+
+#  - actionmessage{m="&6HP &c&l<mob.hp> &f/ &c&l<mob.mhp> &f/ &6<mob.level>"} @PIR{r=20} ~onTimer:10
+#  - actionmessage{m="&6HP &c&l<mob.hp> &f/ &c&l<mob.mhp> &f/ &6<mob.name>"} @PIR{r=20} ~onDamaged
+#- actionmessage{m="                                                                                                            &k&o&n&l&cfuck you"} @PIR{r=20} ~onTimer:10
+
+
+
+
+#  - effect:sound{s=block.fire.extinguish;v=1;p=0.5} @PIR{r=6}
+#  - effect:particles{p=explode;a=8;vs=0.5;hs=0.5;s=0;y=1;repeat=5;repeatInterval=20} @PIR{r=6}
+#  - effect:particles{p=drip_water;a=10;vs=0.5;hs=0.5;s=0;y=1;repeat=5;repeatInterval=20} @PIR{r=6}
+#  - potion{t=SLOW;d=120;l=6} @PIR{r=6}
+#  - damage{a=1;pkb=true} @PIR{r=6}

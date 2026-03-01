@@ -1,0 +1,26 @@
+BabyHind:
+  Health: 10
+  Type: COW
+  Display: Baby Hind
+  Options:
+    PreventOtherDrops: true
+    Baby: true
+    Despawn: false
+  Variables:
+    Age: baby
+    Aggression: peaceful
+    Sex: female
+    Species: deer
+  Skills:
+  - model{mid=deer;n=false} @self ~onSpawn
+  #30 mins assumed before this mob is considered an adult
+  - skill:AdultBehaviour{AdultName=Hind;sync=true} @self ~onTimer:100 ?!isbaby ?varEquals{var=caster.Age;value=baby}
+  #20 min delay before breeding starts Cannot birth another child for 100 minutes, births 1 baby per cycle
+  - skill:AnimalBirth{sound=item.ink_sac.use;delay=36000;cooldown=120000} @self ~onSignal:BREED
+  - skill{s=AnimalFollowMale;delay=36000} ~onTimer:100
+  #Dies after 300 * 3 + 10 + 300 + 30 = 1240 mins of existance
+  - skill{s=EndOfLife;delay="1240*60*20";sync=true} ~onSpawn
+  # Calls male if attacked
+  - signal{s=HERDUNDERATTACK} @MIR{r=25;types=Stag,BabyStag;limit=1;conditions=[   - varEquals{var=target.Age;value=adult} true ]} ~onDamaged
+  #Drops carcass
+  - skill{s=DropDeerCarcass} ~onDeath

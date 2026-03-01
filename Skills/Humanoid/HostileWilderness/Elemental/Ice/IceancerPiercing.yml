@@ -1,0 +1,44 @@
+IceancerPiercing:
+  Conditions:
+  - stance{s=brainfreeze} castinstead IceancerPiercingFrenzy
+  - skillOnCooldown{skill=IceancerDoublePiercing} orElseCast IceancerDoublePiercing
+  - stance{s=brainfreezefrenzy} false
+  TargetConditions:
+  - distance{d=<2.5} true
+  Skills:
+  - variableadd{var=caster.PiercingStrikes;amount=1} @self
+  - skill{s=DisableShield;duration=200} @target ?varEquals{var=caster.PiercingStrikes;value=2} ?stance{s=doubleStrike}
+  - damage{amount=2.5;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=2;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=0.5;element=ICE;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - skill{s=Bleed;cooldown=0;amount=0.5;repeatAmount=10;interval=10} 0.15
+  
+IceancerDoublePiercing:
+  Cooldown: 5
+  Skills:
+  - setVariable{var=caster.PiercingStrikes;value=0;sync=true} @self
+  - setstance{stance=doubleStrike} @self
+  - sound{s=item.trident.throw;v=1;p=1.75;delay=5} @self
+  - skill{s=IceancerPiercing;repeat=1;repeatInterval=5} @target
+  - setstance{stance=default;delay=10} @self
+  - setVariable{var=caster.PiercingStrikes;value=0;delay=10;sync=true} @self
+  
+IceancerPiercingFrenzy:
+  Cooldown: 4
+  Skills:
+  - setstance{stance=brainfreezefrenzy} @self
+  - setVariable{var=caster.PiercingStrikes;value=0;sync=true} @self
+  - skill{s=IceancerPiercingFrenzyStrike;repeat=4;repeatInterval=5}
+  - setVariable{var=caster.PiercingStrikes;value=0;delay=50;sync=true} @self
+  - setstance{stance=default;delay=20} @self
+  
+IceancerPiercingFrenzyStrike:
+  TargetConditions:
+  - distance{d=<2.5} true
+  Skills:
+  - variableadd{var=caster.PiercingStrikes;amount=1} @self
+  - skill{s=DisableShield;duration=400} @target ?varEquals{var=caster.PiercingStrikes;value=2}
+  - damage{amount=2.5;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=2;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=0.5;element=ICE;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - skill{s=Bleed;cooldown=0;amount=0.5;repeatAmount=10;interval=10} 0.15

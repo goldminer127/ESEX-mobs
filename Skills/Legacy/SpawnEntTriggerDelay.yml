@@ -1,0 +1,6 @@
+SpawnEntTriggerDelay:
+  Skills:
+  - delay 18000
+  - skill{s=SpawnEntTrigger} @Location{c=-473,82,-1052}
+  - delay 40
+  - suicide

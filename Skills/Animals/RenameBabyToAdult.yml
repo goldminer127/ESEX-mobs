@@ -1,0 +1,5 @@
+RenameBabyToAdult:
+  Conditions:
+  - varEquals{var=caster.Age;value=baby} true
+  Skills:
+  - setname{name=<skill.NewName>}

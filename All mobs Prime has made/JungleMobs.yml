@@ -1,0 +1,226 @@
+Alligator: ###---------------------- Needs a leash to the water it spawns at ------------------------###
+  Type: Drowned
+  Health: 15
+  Armor: 4
+  Damage: 5
+  Display: '&2Alligator'
+  Faction: Gator
+  Options:
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    #NoAI: true
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  #- setVariable{var=caster.1;value=@SelfLocation} @self ~onSpawn
+  #- m{m=<caster.var.1>} @PIR{r=34} ~onTimer:20
+  #- skill{s=biteAndGo} @self ~onInteract
+  #- skill{s=biteAndGo} @self ~onSpawn
+  
+  - skill{s=deathRoll} @self ~onSpawn
+  - skill{s=deathRoll} @self ~onInteract
+  
+  
+  - skill{s=biteAndGo} @target ~onAttack .175
+  #- skill{s=deathRoll} @target -options:
+  #                                    - run often incase it goes in water naturally
+  #                                    - only have it run after the biteAndGo skill
+  #                                    - yea thats about it
+
+greatGaterBoris: 
+  Type: Drowned
+  Health: 200
+  Armor: 10
+  Damage: 12
+  Display: '&2Great Gator Boris'
+  Faction: Gator
+  Options:
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    NoAI: true
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  #- skill{s=tailWhip} @target ~onTimer:100
+  #- skill{s=wavePool} @target ~onTimer:100
+  - skill{s=gobble} @target ~onInteract
+  #- skill{s=borisCall} @self ~onSpawn
+  
+  
+thornKnight:
+  Type: Iron_Golem
+  Health: 40
+  Armor: 8
+  Damage: 10
+  Display: '&2Thorn Knight'
+  Faction: ThornKnights
+  Options:
+    #Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=thornKnightBasicSlash} ~onTimer:100
+  - skill{s=thornKnightEntangled} @target ~onTimer:100
+  - skill{s=thornBurst} @target ~onDeath
+
+blackJaguar:
+  Type: Wolf
+  Health: 40
+  Armor: 5
+  Damage: 6.5
+  Display: '&8Black Jaguar'
+  Faction: JungleMobs
+  Options:
+    #Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=backJagPounce} ~onTimer:100
+  - skill{s=blackJagBite} @target ~onTimer:100
+  - skill{s=blackJagStealth} @target ~onTimer:100  
+  #- skill{s=blackJagBackslash} @target ~onTimer:100  - no idea how to do this
+  
+nightWidowSpider:
+  Type: Spider
+  Health: 20
+  Armor: 5
+  Damage: 3.5
+  Display: '&8Night Widow Spider'
+  Faction: JungleMobs
+  Options:
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    #NoAI: true
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=NWSvenomBite} @target ~onAttack
+  - skill{s=NWSWebShot} @PIR{r=64} ~onTimer:200
+  
+NWSCobweb:
+  Type: cod
+  Options:
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    NoAI: true
+    Invincible: true
+  Disguise: FALLING_BLOCK COBWEB
+  Skills:
+  - skill{s=NWSCobwebSkill} @self ~onSpawn
+
+nightMosquitoes:
+  Type: Phantom
+  Health: 15
+  Armor: 2
+  Damage: 6
+  Display: '&8Night Mosquito'
+  Faction: JungleMobs
+  Options:
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    #NoAI: true
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=nightMosqSweep} ~onAttack
+
+miraSister: #i dont wanna code this imma do it later idk
+  Type: Spider
+  Health: 800
+  Armor: 15
+  Damage: 25
+  Display: '&8Sister of Mira'
+  Faction: JungleMobs
+  Options:
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    #NoAI: true
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  #- skill{s=msisterPoisonSpit} ~onAttack
+  #- skill{s=msisterWebBarrage} ~onAttack
+  #- skill{s=msisterLunge} ~onAttack
+  #- skill{s=msisterDeepFangs} ~onAttack
+  #- skill{s=msisterSisterScreech} ~onAttack
+  #- skill{s=msisterTantrum} ~onAttack
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  

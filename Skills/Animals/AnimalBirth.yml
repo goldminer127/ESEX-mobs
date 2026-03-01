@@ -1,0 +1,51 @@
+AnimalBirth:
+  Conditions:
+  - variableEquals{var=caster.Species;value="cow"} cast CowBirth
+  - variableEquals{var=caster.Species;value="pig"} cast PigBirth
+  - variableEquals{var=caster.Species;value="sheep"} cast SheepBirth
+  - variableEquals{var=caster.Species;value="deer"} cast DeerBirth
+  - variableEquals{var=caster.Species;value="goat"} cast GoatBirth
+  Skills:
+  - sound{s=<skill.sound>;v=1;p=0.1} @self
+
+#Mammals 
+CowBirth:
+  Skills:
+  - sound{s=block.beehive.exit;v=1;p=0.1} @self
+  - randomskill{skills=[ - summon{type=BabyHeifer;amount=1;r=1} ] 8,
+                       [ - summon{type=BabyBull;amount=1;r=1} ] 2} @self
+
+PigBirth:
+  Skills:
+  - skill{s=PigBirthSpawn;repeat=0to5;repeatInterval=5}
+PigBirthSpawn:
+  Skills:
+  - sound{s=block.beehive.exit;v=1;p=0.1} @self
+  - randomskill{skills=[ - summon{type=BabySow;amount=1;r=1} ] 9,
+                       [ - summon{type=BabyBoar;amount=1;r=1} ] 1} @self
+
+SheepBirth:
+  Skills:
+  - skill{s=SheepBirthSpawn;repeat=0to2;repeatInterval=5}
+SheepBirthSpawn:
+  Skills:
+  - sound{s=block.beehive.exit;v=1;p=0.1} @self
+  - randomskill{skills=[ - summon{type=BabySheep;amount=1;r=1} ] 7,
+                       [ - summon{type=BabyRam;amount=1;r=1} ] 3} @self
+
+DeerBirth:
+  Skills:
+  - sound{s=block.beehive.exit;v=1;p=0.1} @self
+  - randomskill{skills=[ - summon{type=BabyHind;amount=1;r=1} ] 5,
+                       [ - summon{type=BabyStag;amount=1;r=1} ] 5} @self
+
+GoatBirth:
+  Skills:
+  - skill{s=GoatBirthSpawn;repeat=0to3;repeatInterval=5}
+GoatBirthSpawn:
+  Skills:
+  - sound{s=block.beehive.exit;v=1;p=0.1} @self
+  - randomskill{skills=[ - summon{type=BabyDoe;amount=1;r=1} ] 8,
+                       [ - summon{type=BabyBuck;amount=1;r=1} ] 2} @self
+
+#Birds

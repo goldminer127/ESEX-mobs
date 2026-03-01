@@ -1,0 +1,13 @@
+LushZombie:
+  Type: ZOMBIE
+  Display: leaf
+  Health: 35
+  Damage: 5
+  Options:
+    MovementSpeed: 0.3
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventTransformation: true
+    PreventRandomEquipment: true
+  Skills:
+  - dismount ~onTimer:10

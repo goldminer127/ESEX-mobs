@@ -1,0 +1,5 @@
+DoubleClawPinch:
+  Cooldown: 6
+  Skills:
+  - damage{amount=5;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=5;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}

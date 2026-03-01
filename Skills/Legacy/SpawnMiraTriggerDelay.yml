@@ -1,0 +1,6 @@
+SpawnMiraTriggerDelay:
+  Skills:
+  - delay 18000
+  - skill{s=SpawnMiraTrigger} @Location{c=-1259,27,-472}
+  - delay 40
+  - suicide

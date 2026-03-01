@@ -1,0 +1,32 @@
+testCowSkills:
+  Conditions:
+  - variableEquals{var=caster.testVar;value="10"} cancel
+  Skills:
+  - message{m="<caster.var.testVar>"} @PlayersInRadius{r=30}
+  - variableadd{var=caster.testVar;amount=1}
+  
+  #test sudoskill
+  
+  
+mob1skill:
+  Skills:
+  - gcd{ticks=200}
+mob1skill2:
+  Conditions:
+  - offgcd orElseCast mob1skill3
+  Skills:
+  - message{m="offgcd"} @PlayersInRadius{r=30}
+mob1skill3:
+  Skills:
+  - message{m="on gcd"} @PlayersInRadius{r=30}
+
+#----------------------------------------
+
+mob2skill:
+  TargetConditions:
+  - offgcd orElseCast mobFail
+  Skills:
+  - message{m="mob 1 is off gcd"} @PlayersInRadius{r=30}  
+mobFail:
+  Skills:
+  - message{m="mob 1 is on gcd"} @PlayersInRadius{r=30}

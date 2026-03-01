@@ -1,0 +1,7 @@
+DropPigCarcass:
+  Conditions:
+  - varEquals{var=caster.Age;value=adult} true
+  Skills:
+  - dropitem{i=mmoitems{type=miscellaneous;id=PIGCARCASS}} @self
+  - dropitem{i=mmoitems{type=miscellaneous;id=PIGCARD}} 1 0.01 @self
+  - dropitem{i=mmoitems{type=miscellaneous;id=PIGCARDSHNY}} 1 0.005 @self

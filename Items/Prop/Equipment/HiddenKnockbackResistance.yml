@@ -1,0 +1,5 @@
+KnockbackResistantItem:
+  Id: BARRIER
+  Attributes:
+    All:
+      KnockbackResistance: 2 ADD

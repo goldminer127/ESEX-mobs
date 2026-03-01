@@ -1,0 +1,66 @@
+hmm:
+  Type: husk
+  Health: 10
+  Skills:
+  - skill{s=[
+    - cancelevent
+    - d{a=1;ia=true} @self
+    ];sync=true} ~ondamaged ?~isplayer
+  - actionmessage{m="&6HP &c&l<mob.hp> &f/ &c&l<mob.mhp>"} @PIR{r=20} ~onTimer:10
+  
+Fish:
+  Type: wither_skeleton
+  Display: '&b&lPoisson Boss - &c&l<mob.hp> &f/ &4&l<mob.mhp>'
+  Skills:
+  - setname{name=&b&lPoisson Boss - &c&l<mob.hp> &f/ &4&l<mob.mhp>} @self ~onDamaged
+  
+TestCow:
+  Type: Cow
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=testCowSkills} @self ~onTimer:100
+  - setVariable{var=caster.testVar;value="0";type=INTEGER} @self ~onSpawn
+  
+mob1:
+  Type: Cow
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=mob1skill} @self ~onSpawn
+  - skill{s=mob1skill2} @self ~onInteract
+  
+mob2:
+  Type: Cow
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=mob2skill} @mir{r=32;t=mob1} ~onInteract
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

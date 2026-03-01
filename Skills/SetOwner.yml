@@ -1,0 +1,5 @@
+SetOwner:
+  Conditions:
+  - hasowner false
+  Skills:
+  - setowner @trigger

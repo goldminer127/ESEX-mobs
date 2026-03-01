@@ -1,0 +1,12 @@
+SalamanderTailWhip:
+  Cooldown: 5
+  Conditions:
+  - targetwithin{d=6}
+  Skills:
+  - spin{duration=7;velocity=100} @self
+  - slash{foffset=4;d=5;w=2;h=-2;r=6;mpd=true;onHitEntity=SalamanderTailWhip-Hit;a=180;oP=[ - particlesphere{p=CRIT;amount=4;radius=0.5} ];roll=-10to10;Pitch=180} @self
+  
+SalamanderTailWhip-Hit:
+  Skills:
+  - damage{amount=4;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=4;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}

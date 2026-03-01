@@ -1,0 +1,340 @@
+DesertScorpion:
+  Type: Spider
+  Health: 50
+  Damage: 6
+  Display: 'Desert Scorpion'
+  Faction: DesertScorpions
+  Options:
+    AlwaysShowName: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    Silent: true
+    #NoAI: true
+  AIGoalsSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 SpecificFaction DesertWolves
+  - 2 players
+  Skills:
+  #- potion{type=poison;duration=100;level=0} @target ~onAttack
+  #- skill{s=dScorpClawPinch} @target ~onAttack
+  #- skill{s=dScorpStinger} @pir{r=32} ~onTimer:20
+  - skill{s=dScorpGrabAndSting} @target ~onTimer:200
+  
+DesertWolf:
+  Type: Wolf
+  Health: 15
+  Damage: 5
+  Display: 'Desert Wolf'
+  Faction: DesertWolves
+  Options:
+    AlwaysShowName: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+  AIGoalsSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - clear
+  - SpecificFaction DesertScorpions
+  - players
+  Skills:
+  - skill{s=nightWolfBite} @target ~onAttack
+  - skill{s=desertWolfIgnite} @target ~onAttack 0.15
+  - skill{s=frostDodge} @trigger ~onDamaged
+  Drops:
+  - Sandstone
+
+GiantSandSalamander:
+  Type: Wolf
+  Display: 'Giant Sand Salamander'
+  Health: 100
+  Damage: 8
+  Faction: GiantSandSalamander
+  Options:
+    AlwaysShowName: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 6
+  AIGoalsSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  #- blockwave{duration=100;material=stone;radius=5;radiusY=5;velocity=10;shape=sphere} @selflocation ~onSpawn
+  #- skill{s=salamanderSandSpit} @pir{r=10;limit=2} ~onTimer:100
+  #- skill{s=attackAnimation} @Self ~onAttack
+  #- skill{s=sandWave} @Self ~onAttack
+  
+DesertSnake:
+  Type: Wolf
+  Display: 'Desert Snake'
+  Faction: DesertSnake
+  Options:
+    AlwaysShowName: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+  AIGoalsSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - clear
+  - hurtbytarget
+  Skills:
+  - potion{type=poison;duration=160;level=1} @target ~onAttack
+  
+Roadrunner:
+  Type: Chicken
+  Display: 'Roadrunner'
+  Faction: Roadrunner
+  AIGoalsSelectors:
+  - 0 clear
+  - 1 randomstroll
+  Options:
+    AlwaysShowName: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    MovementSpeed: .45
+  
+nightBeastHounds:
+  Type: Wolf
+  Health: 80
+  Damage: 5
+  Display: 'Night Beast Hounds'
+  Options:
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    NoAI: true
+    MovementSpeed: .4
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=nightBeastHoundBite} @Target ~onAttack .2
+  - skill{s=nightBeastHoundClaw} @Target ~onAttack .2
+  - skill{s=nightBeastHoundDrool} @Target ~onTimer:240 .2
+  
+ignus:
+  Type: Zombie
+  Health: 40
+  Damage: 5
+  Display: '&6Ignus'
+  Options:
+    #NoAI: true
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  DamageModifiers:
+  - FIRE -0.5
+  - FIRE_TICK -0.5
+  Skills:
+  #- skill{s=ignusFlamethrower} @Self ~onTimer:300 #onskill end - ignite
+  - skill{s=ignusFlameBladeSkill} @self ~onAttack 
+  - skill{s=ignusFlameBladeSlashes} @Target ~onAttack .2
+  - skill{s=ignusFlameGuard} @self ~onDamaged 
+  - actionmessage{m=" &6HP &c&l<mob.hp> &f/ &c&l<mob.mhp> &f/ &6<mob.name>"} @PIR{r=20} ~onDamaged
+  
+blueIgnus:
+  Type: Zombie
+  Health: 45
+  Damage: 7
+  Display: '&6Blue Ignus'
+  Options:
+    #NoAI: true
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  DamageModifiers:
+  - FIRE -0.85
+  - FIRE_TICK -0.85
+  Skills:
+  #- skill{s=blueIgnusFlamethrower} @Self ~onTimer:300 #onskill end - ignite
+  - skill{s=blueIgnusFlameBladeSkill} @self ~onAttack 
+  - skill{s=blueIgnusFlameBladeSlashes} @Target ~onAttack .2
+  - skill{s=blueIgnusFlameGuard} @self ~onDamaged #cooldown ?
+  - actionmessage{m=" &6HP &c&l<mob.hp> &f/ &c&l<mob.mhp> &f/ &6<mob.name>"} @PIR{r=20} ~onDamaged
+  
+blackIgnus:
+  Type: Zombie
+  Health: 50
+  Damage: 10
+  Display: '&6Black Ignus'
+  Options:
+    #NoAI: true
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  DamageModifiers:
+  - FIRE -1.15
+  - FIRE_TICK -1.15
+  Skills:
+  #- skill{s=blackIgnusFlamethrower} @Self ~onTimer:300 #onskill end - ignite
+  - skill{s=blackIgnusFlameBladeSkill} @self ~onAttack 
+  - skill{s=blackIgnusFlameBladeSlashes} @Target ~onAttack .2
+  - skill{s=blackIgnusFlameGuard} @self ~onDamaged 
+  - actionmessage{m=" &6HP &c&l<mob.hp> &f/ &c&l<mob.mhp> &f/ &6<mob.name>"} @PIR{r=20} ~onDamaged
+  
+desertLocust:
+  Type: Zombie
+  Health: 12
+  Damage: 3
+  Display: '&6Locust'
+  Options:
+    #NoAI: true
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  #- specificfaction{f=somefaction} ?
+  Skills:
+  - skill{s=locustBite} @target ~onAttack
+  - actionmessage{m=" &6HP &c&l<mob.hp> &f/ &c&l<mob.mhp> &f/ &6<mob.name>"} @PIR{r=20} ~onTimer:10
+  
+flameElemental:
+  Type: Zombie
+  Health: 22
+  Damage: 6
+  Display: '&4Flame Elemental'
+  Options:
+    #NoAI: true
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  DamageModifiers:
+  - BLOCK_EXPLOSION -0.5
+  - ENTITY_EXPLOSION -0.5
+  - FIRE -1
+  - FIRE_TICK -1.5
+  - LAVA -1.5
+  Skills:
+  - skill{s=flameElementalFireball} ~onTimer:100
+  - skill{s=flameElementalCombustion} @self ~onDeath
+  - ignite{ticks=60} @target ~onAttack
+  
+jesterSamanthatheBlackMage:
+  Type: Zombie
+  Health: 150
+  Damage: 11
+  Display: '&0Jester Samantha the Black Mage'
+  Faction: Jester
+  Options:
+    #NoAI: true
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  #- skill{s=jesterSamFireball} ~onTimer:100
+  #- skill{s=jesterSamCurse} @pir{r=20} ~onTimer:100
+  #- skill{s=jesterSamCursedBarrier} @self ~onDamaged
+  # set stance
+  #- skill{s=summonCorruptDemon} @self ~onTimer:250 .3
+jesterSamFireballHelper:
+  Type: cod
+  Options:
+    NoAI: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true  
+    Invincible: true
+  Disguise: falling_block fire setBurning
+  
+corruptDemon:
+  Type: Zombie
+  Health: 100
+  Damage: 8.5
+  Display: '&0Corrupted Demon'
+  Faction: Jester
+  Options:
+    #NoAI: true
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  #- skill{s=jesterSamFireball} ~onTimer:100
+  #- skill{s=jesterSamCurse} @pir{r=20} ~onTimer:100
+  #- skill{s=jesterSamCursedBarrier} @self ~onDamaged
+  # set stance
+  #- skill{s=summonCorruptDemon} @self ~onTimer:250 .3
+  
+  
+  
+  
+  
+  

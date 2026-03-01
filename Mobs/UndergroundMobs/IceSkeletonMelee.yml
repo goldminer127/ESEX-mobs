@@ -1,0 +1,11 @@
+IceSkeletonMelee:
+  Type: Skeleton
+  Display: ice
+  Faction: Icers
+  Options:
+    FollowRange: 45
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Skills:
+  - skill{s=ColdTouch} @target ~onAttack
+  - dismount ~onTimer:10

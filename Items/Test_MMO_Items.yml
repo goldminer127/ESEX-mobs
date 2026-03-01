@@ -1,0 +1,8 @@
+LavariteSword:
+  Id: STICK   # doesn't matter since it's a dummy item
+  Skills:
+  - skill{s=[
+        - effect:particleline{p=flame;amount=5;speed=0.1;yOffset=0.45;hO=0.5;vO=0.5}
+        - damage{amount=10;element=FIRE}
+        - ignite{ticks=100}
+    ]} @target ~onUse

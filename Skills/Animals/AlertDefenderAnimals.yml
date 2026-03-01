@@ -1,0 +1,3 @@
+AlertDefenderAnimals:
+  Skills:
+  - signal{s=HERDUNDERATTACK} @EIR{r=32;conditions=[  - varEquals{var=target.Aggression;value=defensive} true  - varEquals{var=target.Age;value=adult} true ]}

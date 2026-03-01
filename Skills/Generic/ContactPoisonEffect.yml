@@ -1,0 +1,15 @@
+ContactPoisonEffect:
+  Skills:
+  - onDamaged{
+      auraName=poisonBite;d=20;
+      onHit=[
+        - skill{s=ApplyPoison;duration=<skill.duration>;level=<skill.level>}
+      ];
+      Charges=1;
+    }
+
+ApplyPoison:
+  Conditions:
+  - (damagecause{cause=POISON} false && damageamount{amount=>0} true)
+  Skills:
+  - potion{type=POISON;duration=<skill.duration>;level=<skill.level>;hasParticle=false}

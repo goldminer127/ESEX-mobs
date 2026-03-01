@@ -1,0 +1,15 @@
+MeleeSkeleton:
+  Type: SKELETON
+  Damage: 3.5
+  Equipment:
+  - AIR HAND
+  AIGoalSelectors:
+  - clear
+  - randomlookaround
+  - randomstroll
+  - meleeattack
+  Options:
+    MovementSpeed: 0.3
+    PreventOtherDrops: true
+  Drops:
+  - BONE 1-3 0.25

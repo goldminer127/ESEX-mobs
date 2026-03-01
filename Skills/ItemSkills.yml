@@ -1,0 +1,23 @@
+PlayerCombustXXX:
+  Skills:
+  - damage{a=5;pkb=true} @EIR{r=5;ignore=players}
+  - ignite{duration=100} @EIR{r=5;ignore=players}
+  - sound{s=entity.ghast.shoot} @origin
+  - effect:particles{particle=flame;y=1;a=50;vs=0.1;hs=0.1;s=0.1} @origin
+  
+JustATest:
+  Skills:
+  - delay 20
+  - effect:particles{particle=flame;y=0;a=50;vs=0.1;hs=0.1;s=0.1} @origin
+  - sound{s=entity.enderman.scream} @origin
+  
+reaperSoulHeal:
+  Conditions:
+  - playerwithin{d=1} true
+  Skills:
+  - heal{a=4}
+  - remove @self
+  
+spawnReaperSoul:
+  Skills:
+  - summon{t=ReaperSoul}

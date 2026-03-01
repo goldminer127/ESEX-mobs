@@ -1,0 +1,540 @@
+#Frost wolf skills:
+
+frostWolfBite:
+  Skills:
+  - damage{amount=4;pkb=true}
+  - delay 15
+  - potion{type=SLOW;duration=60;level=0} @target .15
+  - skill{s=frostWolfBite2} .67
+
+frostWolfBite2:
+  Skills:
+  - damage{amount=4;pkb=true} @target
+  - delay 10
+  - potion{type=SLOW;duration=60;level=0} @target .15
+  - skill{s=frostWolfBite3} .33
+
+frostWolfBite3:
+  Skills:
+  - damage{amount=4;pkb=true} @target
+  - potion{type=SLOW;duration=60;level=0} @target .15
+  - potion{type=SPEED;duration=60;level=1} @self .25
+
+frostDodge:
+  Skills:
+  - disengage @trigger ~onDamaged
+  - potion{type=SPEED;duration=60;level=0} @self
+
+#Cold beast of the night skills
+
+CBOTNdoubleClawStrike:
+  Skills:
+  - damage{amount=10} #ignore armor?
+  - delay 10
+  - damage{amount=10}
+  #play animation
+
+CBOTNintimidation:
+  Skills:
+  # howl
+  - sound{s=entity.polar_bear.warning;p=.6} #temp / reusing from another ability idc
+  - potion{type=WEAKNESS;duration=100;level=0} @target
+  
+redEyes:
+  Skills:
+  - potion{type=INCREASE_DAMAGE;duration=100;level=0} @self #idk how to do "Cold Beast Red eyes begins to show a aura making him stronger"
+
+CBOTNpirecingNightmares:
+  Skills:
+  - projectile{onTick=CBOTNpirecingNightmare-Tick;onHit=CBOTNpirecingNightmare-Hit;v=15;i=1;hR=1;vR=1;hnp=false}
+
+CBOTNpirecingNightmare-Tick:
+  Skills:
+  - effect:particles{p=smoke_normal;amount=20;speed=0;hS=0.2;vS=0.2} @origin
+CBOTNpirecingNightmare-Hit:
+  Skills:
+  - damage{a=8;ia=true}
+  - potion{type=CONFUSION;duration=150;lvl=1}
+  - potion{type=BLINDNESS;duration=50;lvl=0}
+
+#Ice Elemental Piercers skills
+
+
+icePiercerShield:
+  Conditions:
+  - stance{s=icePiercerShieldPrepStance} true
+  - damagecause{cause=ENTITY_ATTACK} true
+  Skills:
+  - setstance{stance=icePiercerShieldCooldown} @self
+  - delay 200 #Cooldown
+  - skill{s=icePiercerShieldPrepSkill} @self
+icePiercerShieldPrepSkill:
+  Skills:
+  - sound{s=item.armor.equip_iron;v=1;p=2}
+  - setstance{stance=icePiercerShieldPrepStance}
+readyIcePiercerShield:
+  #Cooldown: 300
+  Conditions:
+  - stance{s=icePiercerShieldPrepStance} true
+  Skills:
+  - potion{type=DAMAGE_RESISTANCE;duration=100;level=255;p=false}
+
+icePiercingBleed:
+  Skills:
+  - effect:particles{particle=reddust;amount=50;hS=0.5;vS=0.3;repeat=3;repeatinterval=20} @Target
+  - sound{s=entity.player.hurt_sweet_berry_bush;p=.8;repeat=3;repeatinterval=20}
+  - damage{a=1;ia=true;repeat=3;repeatinterval=20}
+
+icePiercingBleedOuch:
+  Conditions:
+  - playerwithin{d=1.5} true
+  Skills:
+  - effect:particles{particle=reddust;amount=50;hS=0.5;vS=0.3;repeat=3;repeatinterval=20} @Target
+  - sound{s=entity.player.hurt_sweet_berry_bush;p=.8;repeat=3;repeatinterval=20}
+  - damage{a=10;ia=false;repeat=3;repeatinterval=20}
+
+icePiercing:
+  Conditions:
+  - playerwithin{d=1.5} true
+  Skills:
+  # 'thrust' also add in distance condition prolly
+  - damage{a=14}
+  - delay 5
+  - skill{s=icePiercingBleed} @target .15
+
+doublePiercing:
+  Conditions:
+  - playerwithin{d=1.5} true
+  Skills:
+  # 'thrust'
+  - damage{a=14}
+  - skill{s=icePiercingBleed;repeat=1} @target .15
+  - delay 5
+  # 'thrust'
+  - damage{a=18}  
+  - delay 5
+  - skill{s=icePiercingBleed;repeat=1} @target .15
+
+brainFreeze:
+  Skills:
+  - sound{s=entity.polar_bear.warning;p=1} #change this prolly
+  - potion{type=INCREASE_DAMAGE;duration=200;level=2} @self
+  - potion{type=SPEED;duration=100;level=1} @self .5
+  - potion{type=DAMAGE_RESISTANCE;duration=200;level=4} @self .05
+  - potion{type=REGENERATION;duration=200;level=4} @self .05
+  - skill{s=piercingFrenzy} @target
+
+piercingFrenzy:
+  Skills:
+  # 'thrust'
+  - damage{a=5}
+  - skill{s=piercingFrenzy2} @target .80
+  - skill{s=icePiercingBleedOuch} @target .20
+piercingFrenzy2:
+  Skills:
+  # 'thrust'
+  - damage{a=5}
+  - skill{s=piercingFrenzy3} @target .60
+piercingFrenzy3:
+  Skills:
+  # 'thrust'
+  - damage{a=5}
+  - skill{s=piercingFrenzy4} @target .40
+  - skill{s=icePiercingBleedOuch} @target .10
+piercingFrenzy4:
+  Skills:
+  # 'thrust'
+  - damage{a=5}
+  - skill{s=piercingFrenzy5} @target .20
+piercingFrenzy5:
+  Skills:
+  # 'thrust'
+  - damage{a=5}
+  - skill{s=icePiercingBleedOuch} @target .8
+
+#Cold Flame Horse:
+
+
+SnowHorse:
+  Skills:
+    - randomskill{skills=horseSnowball,horseSnowflake}
+horseSnowball:
+  Skills:
+    - effect:particles{particle=snowball;amount=100;hS=1;vS=1;speed=2} @self
+horseSnowflake:
+  Skills:
+    - effect:particles{particle=reddust;color=#ffffff;hS=1;vS=1;amount=200;speed=1} @self
+
+HorseSpawnSpeed:
+  Skills:
+    - randomskill{skills=horseSpeed1,horseSpeed2,horseSpeed3,horseSpeed4,horseSpeed5}
+horseSpeed1:
+  Skills:
+  - setspeed{speed=1}
+horseSpeed2:
+  Skills:
+  - setspeed{speed=2}
+horseSpeed3:
+  Skills:
+  - setspeed{speed=3}
+horseSpeed4:
+  Skills:
+  - setspeed{speed=4}
+horseSpeed5:
+  Skills:
+  - setspeed{speed=5}
+  
+#Ice spider skills
+  
+  
+iceSpiderBite:
+  Conditions:
+  - playerwithin{d=2} castinstead spiderBiteCondition
+  Skills:
+  - leap{velocity=300;velocityY:30} @target
+  - delay 10
+  - skill{s=spiderBiteCondition}
+  
+spiderBiteCondition:  
+  Conditions:
+  - playerwithin{d=2} true
+  Skills:
+  - damage{a=10;pkb=true} @target
+  - potion{type=SLOW;duration=20;level=4} @target 0.25
+ 
+
+iceSpiderWeb:
+  Skills:
+  - projectile{onTick=iceSpiderWeb-Tick;onHit=iceSpiderWeb-Hit;v=20;syo=2;tyo=0.5;i=1;hR=1;vR=1} @target #@PIR{500}
+iceSpiderWeb-Tick:
+  Skills:
+  - effect:particles{p=snow_shovel;amount=15;speed=0;hS=0.05;vS=0.05} @origin
+  - effect:particles{p=snowball;amount=1;speed=0;hS=0.2;vS=0.2} @origin
+  - effect:particles{p=snowflake;amount=1;speed=0;hS=0.2;vS=0.2} @origin
+iceSpiderWeb-Hit:
+  Skills:
+  - damage{a=1}
+  - skill{s=iceWeb}
+  
+iceWeb:
+  Skills:
+  - delay 5
+  - freeze{ticks=300;repeat=4;repeatinterval=20} @target
+  - damage{a=10;repeat=4;repeatinterval=20}
+
+#Yeti skills
+
+
+yetiSmashAttack:
+  Conditions:
+  - targetwithin 5
+  Skills:
+  - effect:sound{s=mob.endermen.portal;volume=.5;pitch=0.5}
+  - delay 10
+  - playanimation{a=0;audience=World} @Self
+  - damage{amount=6;ia=true} @PlayersInRadius{r=150}
+  - throw{velocity=10;velocityY=5} @PlayersInRadius{r=150}
+  - delay 1
+  - throw{velocityY=10} @PlayersInRadius{r=150}
+  - effect:explosion @PlayersInRadius{r=150}
+  
+yetiGrab:
+  Conditions:
+  - targetwithin 5
+  Skills:
+  - summon{type=yetiGrabMob} @PIR{r=5;limit=1} #@Forward{f=1;y=0.5;sideOffset=0.0}
+  - delay 80
+  - throw{velocity=5;velocityY=5} @PIR{r=5;limit=1}
+  - delay 1
+  - throw{velocity=16;velocityY=7} @PIR{r=5;limit=1}
+yetiThrow:
+  Skills:
+  - delay 20
+  - stun{d=65} @pir{r=3;limit=1}
+  - delay 10
+  - mountme @PIR{r=15;limit=1;sort=NEAREST}
+  - delay 60
+  - suicide @self
+  - remove @self
+
+#Ice witch skills
+  
+  
+freeze:
+  Skills:
+  - aura{i=1;d=140;Ot=freezeProj} @Self #Test particleline + damage?
+
+freezeProj:
+  Skills:
+  - projectile{i=1;oT=freeze-Tick;oH=freeze-Hit;mr=20;sE=false;sB=true;sfo=0;v=20} @Target
+freeze-Tick:
+  Skills:
+  - effect:particles{p=snow_shovel;amount=2;speed=0;hS=0.05;vS=0.05} @origin
+  - effect:particles{p=snowball;amount=3;speed=0;hS=0.2;vS=0.2} @origin
+  - effect:particles{p=snowflake;amount=2;speed=0;hS=0.2;vS=0.2} @origin
+freeze-Hit:
+  Skills:
+  - damage{2;pkb=true}
+  - potion{type=SLOW;duration=100;level=0} @target
+    
+iceSpike:
+  Skills:
+  - missile{bulletType=MOB;mob=iceSpikeHelper;ot=iceSpike_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=40;oE=iceSpikeEnding} @Origin{fo=-3;y=1.5}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+ 
+iceSpikeShoot:
+  Skills:
+  - projectile{bulletType=MOB;mob=iceSpikeHelper;ot=iceSpike_TICK;oH=iceSpike_END;sB=true;v=16;i=1;hR=1;vR=1;hnp=false;md=200;tyo=1} @PIR{r=100;limit=2}
+iceSpike_TICK:
+  Skills:
+  - effect:particles{p=snowball;amount=1} @origin
+iceSpike_END:
+  Skills:
+  - effect:particles{p=snowflake;a=50;hS=1;vS=1}
+  - damage{a=4;ia=true}
+  
+iceSpikeEnding:
+  Skills:
+  - summon{type=iceSpikeHelper2}
+iceSpikeHelperDie:
+  Skills:
+  - potion{type=INVISIBILITY;duration=100;level=1;p=false} @self
+  - delay 100
+  - suicide
+  - remove @self
+
+iceShield:
+  Cooldown: 20
+  Conditions:
+  - stance{s=IceWitchShield;str=true} true
+  - damagecause{cause=ENTITY_ATTACK} true
+  Skills:
+  - potion{type=DAMAGE_RESISTANCE;duration=100;level=255;p=false}
+  - aura{onTick=IceWitchShield-Tick;duration=100}
+setIceWitchShield:
+  Skills:
+  - sound{s=item.armor.equip_iron;v=1;p=2}
+  - setstance{stance=IceWitchShield}
+setIceWitchShieldSpawn:
+  Skills:
+  - delay 100-300
+  - skill{s=setIceWitchShield}
+IceWitchShield-Tick:
+  Skills:
+  - effect:particlesphere{p=snowflake;amount=1;y=0.75;r=1.2} @origin
+  - effect:particlesphere{p=reddust;c=#ADD8E6;amount=1;y=0.75;r=1.2} @origin
+  - effect:particlesphere{p=reddust;c=#FFFFFF;amount=1;y=0.75;r=1.2} @origin
+
+#Frozen soldier skills:
+
+
+frozenResurrectedSoldiersSpawn:
+  Skills:
+  - delay 5
+  - randomskill{skills=equipFRSSpear,equipFRSSword,equipFRSMace}
+
+equipFRSSpear:
+  Skills:
+  - equip{item=iron_shovel HAND}
+equipFRSSword:
+  Skills:
+  - equip{item=iron_sword HAND}
+equipFRSMace:
+  Skills:
+  - equip{item=iron_axe HAND}
+
+FRSSlow:
+  Skills:
+  - potion{type=SLOW;duration=60;level=1} @target
+
+fRSAttack:
+  Skills:
+  - randomskill{skills=icePiercingBleed 1,FRSSlow 3}
+  
+#Fallen Black Prior Demetry Skills
+  
+  
+blackBaneBladeSlash:
+  Skills:
+  
+embraceInnerDarkness:
+  Skills:
+ 
+thornsOfDarknessSetStance:
+  Skills:
+  #animate some vines covering him i guess
+  - setstance{stance=thornsOfDarknessStance}
+  # testing message - message{m="thornsOfDarknessSetStance"} @PlayersInRadius{r=30}
+thornsOfDarkness:
+  Cooldown: 25
+  Conditions:
+  - stance{s=thornsOfDarknessStance;str=true} true
+  - damagecause{cause=ENTITY_ATTACK} true
+  Skills:
+  - potion{type=DAMAGE_RESISTANCE;duration=300;level=1} @self
+  - potion{type=INCREASE_DAMAGE;duration=400;level=0} @self
+  - message{m="thornsOfDarkness"} @PlayersInRadius{r=30}
+  - delay 200-400
+  - setstance{stance=darknessStanceCooldown} @self
+  
+  # testing message - message{m="set stance"} @PlayersInRadius{r=30}
+thornsOfDarknessRebound:
+  Conditions:
+  - stance{s=thornsOfDarknessStance;str=true} true
+  - damagecause{cause=ENTITY_ATTACK} true
+  Skills:
+  - damage{a=2-20;ia=false}
+  # testing message - message{m="thornsOfDarknessRebound"} @PlayersInRadius{r=30}
+fBPDstanceCD:
+  Conditions:
+  - stance{s=darknessStanceCooldown;str=true} true
+  - damagecause{cause=ENTITY_ATTACK} true
+  Skills:
+  - delay 150-350
+  - skill{s=thornsOfDarknessSetStance}
+  
+  
+#Dark Ice Witch Cassidy skills
+
+resurrectDeadFrozenSoliders:
+  Skills:
+  - summon{type=frozenResurrectedSoldiers;amount=9;radius=6} @self
+  - summon{type=fallenBlackPriorDemetry;amount=1;radius=6} @NearestPlayer{r=30;limit=1}
+
+dIWCChain:
+  Skills:
+  - speak{m="chain"} @PIR{r=30}
+  - chain{
+      bounces=5;
+      radius=15;
+      delay=30;
+      hitSelf=false;
+      hitPlayers=true; 
+      hitNonPlayers=false;
+      hitTarget=true;
+      onBounce=[
+        - effect:particleline{p=dripping_obsidian_tear;fromOrigin=true}
+        - damagepercent{percent=0.6} @target
+        - delay 20
+        - stun{d=35} @target
+      ];
+    } @target
+
+dIWCScythe:
+  Skills:
+  - equip{item=dIWCScytheItem HAND}
+  - setstance{stance=dIWCScythe} @self
+  # charge at opponent
+  # damage 10
+  - delay 100
+  - setstance{stance=dIWCScytheCD} @self
+  # dodges back after slash
+
+dIWCScytheSlow:
+  Conditions:
+  - stance{s=dIWCScythe;str=true} true
+  Skills:
+  - potion{type=SLOW;duration=100;level=1} @target
+
+#Ice Elemental Golem
+
+  
+iceBlockThrow:
+  Skills:
+  - projectile{bulletType=BLOCK;mat=ICE;onTick=iceBlockThrow-Tick;onHit=iceBlockThrow-Hit;v=20;syo=2;tyo=0.5;i=1;hR=1;vR=1} @target #@PIR{500}
+iceBlockThrow-Tick:
+  Skills:
+  - effect:particles{p=snow_shovel;amount=15;speed=0;hS=0.05;vS=0.05} @origin
+  - effect:particles{p=snowball;amount=1;speed=0;hS=0.2;vS=0.2} @origin
+  - effect:particles{p=snowflake;amount=1;speed=0;hS=0.2;vS=0.2} @origin
+iceBlockThrow-Hit:
+  Skills:
+  - damage{a=8}
+  - effect:particles{p=snow_shovel;amount=50;hS=0.05;vS=0.05} @origin
+  - effect:particles{p=snowball;amount=50;hS=0.2;vS=0.2} @origin
+  - effect:particles{p=snowflake;amount=50;hS=0.2;vS=0.2} @origin
+
+#Tundra Bear skills:
+
+  
+mommaBearRage:
+  Conditions:
+  - offgcd orElseCast bearTimer
+  Skills:
+  - gcd{ticks=600}
+  - sound{s=entity.polar_bear.warning;p=.1}
+  - potion{type=INCREASE_DAMAGE;duration=600;level=2}
+  - potion{type=DAMAGE_RESISTANCE;duration=600;level=0}
+  - potion{type=HEALTH_BOOST;duration=600;level=0}
+  - potion{type=REGENERATION;duration=600;level=0}
+  - potion{type=ABSORPTION;duration=600;level=1}
+  - potion{type=SPEED;duration=600;level=2}
+
+bearTimer:
+  Skills:
+  - delay 20
+  - signal{s=cubRage} @self
+  
+mommaBearMad:
+  Skills:
+  - sound{s=entity.polar_bear.warning;p=1}
+
+cubHit:
+  Skills:
+  - sound{s=entity.polar_bear.warning;p=2}
+  - signal{s=cubHit} @MIR{r=64;types=TundraBear}
+
+doubleClaw:
+  Skills:
+  #idk how to do slashes; custom animation?
+  - playanimation{a=0;audience=World} @Self
+  - damage{amount=8}
+  - playanimation{a=0;audience=World} @Self
+  - damage{amount=8}
+
+greatClawSlash:
+  Skills:
+  #idk how to do slashes; custom animation?
+  - playanimation{a=3;audience=World} @Self
+  - damage{amount=14}
+
+tundraBearRoar:
+  Skills:
+  - sound{s=entity.polar_bear.warning;p=1}
+  - sound{s=entity.polar_bear.warning;p=2}
+  - sound{s=entity.polar_bear.warning;p=3}
+  - potion{type=WEAKNESS;duration=1200;level=1}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

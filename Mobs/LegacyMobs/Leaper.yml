@@ -1,0 +1,11 @@
+Leaper:
+  Type: Creeper
+  Modules:
+    ThreatTable: true
+  Options:
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=LeaperLeap} @target ~onEnterCombat
+  Drops:
+  - exp 15 1
+  - GUNPOWDER 1-3 1

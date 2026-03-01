@@ -1,0 +1,26 @@
+#Taming item must be specified by the call, this skill will not test for item
+AttemptTame:
+  Conditions:
+  - hasowner false
+  Skills:
+  - consumeslot{amount=1}
+  - skill{s=TameSuccessful} @trigger 0.25
+#Modifies mob to become a tamed mob to the owner
+TameSuccessful:
+  Skills:
+  - skill{s=SetOwner}
+  - effect:particles{particle=heart;amount=10;speed=1} @self
+  - sound{s=entity.player.levelup;v=1;p=1.5} @self
+  #Behaviour
+  - runaigoalselector{goal=clear}
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=leapattarget}
+  - runaigoalselector{goal=gotoowner 10}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=lookatplayers}
+  - runaigoalselector{goal=randomlookaround}
+  #Targetting
+  - runaitargetselector{target=clear}
+  - runaitargetselector{target=ownerattacker}
+  - runaitargetselector{target=ownertarget}
+  - runaitargetselector{target=attacker}

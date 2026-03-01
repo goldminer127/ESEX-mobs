@@ -1,0 +1,14 @@
+SummonCow:
+  Skills:
+  - sound{s=block.beehive.exit} @self
+  - summon{type=Heifer;amount=1;r=1}
+
+SummonSheep:
+  Skills:
+  - sound{s=block.beehive.exit} @self
+  - summon{type=Ewe;amount=1;r=1}
+  
+SummonPig:
+  Skills:
+  - sound{s=block.beehive.exit} @self
+  - summon{type=Sows;amount=1;r=1}

@@ -1,0 +1,11 @@
+GrabAndSting:
+  Cooldown: 30
+  Skills:
+  - setStance{s=grabbingandstinging} @self
+  - lunge{velocity=1;velocityY=0.5}
+  - skill{s=DisableShield;duration=200} @target
+  - skill{s=ClawPinch}
+  - delay 5
+  - pull{velocity=10;repeat=4;repeatInterval=2}
+  - skill{s=ScorpionSting;delay=10}
+  - setStance{s=default;delay=10} @self

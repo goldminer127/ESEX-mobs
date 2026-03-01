@@ -1,0 +1,7 @@
+SkeletonGoatAttackHandler:
+  Conditions:
+  - stance{s=default} true
+  - skillOnCooldown{skill=SkeletonGoatBonePiercingThrust} orElseCast SkeletonGoatBonePiercingThrust
+  - skillOnCooldown{skill=SkeletonGoatCloak} orElseCast SkeletonGoatCloak
+  - skillOnCooldown{skill=SkeletonGoatGreatClawSlash} orElseCast SkeletonGoatGreatClawSlash
+  Skills:

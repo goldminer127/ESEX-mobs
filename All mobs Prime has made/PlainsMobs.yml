@@ -1,0 +1,294 @@
+WarBull:
+  Type: Horse
+  Display: 'War Bull'
+  Faction: WarBull
+  Options:
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - attacker
+  Skills:
+  #- skill{s=warBullRam} @Target ~onAttack
+  #- skill{s=warBullTrample} @EntitiesInRadius{r=2;targetSamefaction=false;targetOwner=false} ~onTimer:20
+
+WindEagle:
+  Type: Blaze
+  Health: 35
+  Armor: 0
+  Damage: 8.5
+  Display: 'Wind Eagle'
+  Options:
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    NoAI: true
+    MovementSpeed: .4
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  #Disguise: Bat
+  Skills:
+  #- skill{s=windEagleBleed;repeat=3;repeatinterval=20} @Target ~onAttack
+  #- skill{s=windEagleAirSlashes;repeat=2;repeatI=10} @pir{r=32} ~onTimer:120
+  #- skill{s=windEagleSkyPlunge} ~onAttack
+  #- skill{s=windEagleGust} @pir{r=32} ~onTimer:200
+  - skill{s=windEagleDodgeCheck} @self ~onDamaged 
+  - actionmessage{m=" &6HP &c&l<mob.hp> &f/ &c&l<mob.mhp> &f/ &6<mob.level>"} @PIR{r=20} ~onTimer:10
+
+Wolf:
+  Type: Wolf
+  Faction: Wolf
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=nightWolfBite} @target ~onAttack
+  - skill{s=frostDodge} @trigger ~onDamaged
+
+NightWolf:
+  Type: Wolf
+  Health: 15
+  Armor: 4
+  Damage: 4
+  #Disguise: Wolf
+  Faction: NightHowl
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=nightWolfBite} @target ~onAttack
+  - skill{s=nightWolfBlind} @target ~onAttack 0.15
+  - skill{s=frostDodge} @trigger ~onDamage
+  #- skill{s=nightSpawn} @self ~onSpawn 
+  - skill{s=moonHowl} @self ~onSpawn 0.2
+  - skill{s=starHowl} @self ~onSpawn 0.2
+  
+NightWolfSpawned:
+  Type: Wolf
+  Health: 15
+  Armor: 4
+  Damage: 4
+  #Disguise: Wolf
+  Faction: NightHowl
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=nightWolfBite} @target ~onAttack
+  - skill{s=nightWolfBlind} @target ~onAttack 0.3
+  - skill{s=moonHowl} @self ~onSpawn 0.01
+  - skill{s=starHowl} @self ~onSpawn 0.01
+
+NightWolfBossSpawned:
+  Type: Wolf
+  Faction: NightHowl
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=nightWolfBite} @target ~onAttack
+  - skill{s=nightWolfBlind} @target ~onAttack 0.3
+
+MoonHowlBoss:
+  Type: Wolf
+  Health: 900
+  Armor: 12
+  Damage: 25
+  Display: '&8Moon Howler'
+  #Disguise: Polar_Bear
+  Faction: NightHowl
+  Options:
+    AlwaysShowName: true
+    #NoAI: true
+  BossBar:
+    Enabled: true
+    Title: '&8Moon Howler'
+    Color: WHITE
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  #- skill{s=nightWolfBite} @target ~onAttack
+  - skill{s=darknessBeam} @self ~onTimer:300 #summon a bunch of invis flying things and shoot randomly? / slow projectile
+  #- skill{s=summonPack} @target ~onAttack
+  #- skill{s=nightHowl} @PIR{r=64} ~onTimer:100
+  #- skill{s=nightClaw} @target ~onAttack
+  #- skill{s=moonHowlBuff} @PIR{r=64} ~onTimer:100 
+
+StarHowlBoss:
+  Type: Wolf
+  Health: 700
+  Armor: 4
+  Damage: 50
+  Display: '&7Star Howler'
+  #Disguise: Polar_Bear
+  Faction: NightHowl
+  Options:
+    AlwaysShowName: true
+  BossBar:
+    Enabled: true
+    Title: '&7Star Howler'
+    Color: WHITE
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=starHowlBuff} @self ~onTimer:100 
+  #- skill{s=starHowlBuff} @PIR{r=64} ~onTimer:100 
+
+mulgerOrc:
+  Type: Iron_Golem
+  Health: 25
+  Armor: 5
+  Damage: 7.5
+  Display: '&aMulger Orc'
+  Faction: MulgerOrcs
+  Options:
+    #Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  #- skill{s=thornKnightBasicSlash} ~onTimer:100
+  - skill{s=mulgerOrcBash} ~onTimer:200
+  
+cloakedSkeletonGoat:
+  Type: Goat
+  Health: 25
+  Armor: 5
+  Damage: 5
+  Display: '&7Skeleton Goat'
+  Faction: Goat
+  Options:
+    #Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  #- skill{s=bonePiercingClaws} ~onTimer:100
+  - skill{s=GoatStealth} ~onDamaged @self .15
+  - skill{s=GoatStealthPack} @self ~onSignal:goatCloak
+  #- skill{s=doubleBoneClawSlash} ~onTimer:200
+  #- skill{s=heavyOverheadClawSlash} ~onTimer:200
+  - actionmessage{m=" &6HP &c&l<mob.hp> &f/ &c&l<mob.mhp> &f/ &6<mob.name>"} @PIR{r=20} ~onDamaged
+
+ladyOfMoonlight:
+  Type: Husk
+  Health: 25
+  Armor: 5
+  Damage: 5
+  Display: '&7Lady of Moonlight'
+  Faction: Moonlight
+  Options:
+    #Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  #- skill{s=moonBeam} ~onTimer:100
+  #- skill{s=reflectantCrescent} ~onTimer:100
+  #- skill{s=moonShardBarrage} ~onTimer:100
+  #- skill{s=moonlightRushingSlashes} ~onTimer:100
+  #- skill{s=restingInTheMoonlight} ~onTimer:100
+  #- skill{s=littleMoonSummon} ~onTimer:100
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+
+

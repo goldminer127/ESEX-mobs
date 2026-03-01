@@ -1,0 +1,13 @@
+AggroNight:
+  Conditions:
+  - incombat false
+  - night true
+  Skills:
+  - runaitargetselector{target=clear}
+  - runaitargetselector{target=players}
+  - runaitargetselector{target=otherfactionmonsters}
+  - runaitargetselector{target=attacker}
+PeaceAtDay:
+  Skills:
+  - runaitargetselector{target=clear}
+  - runaitargetselector{target=attacker}

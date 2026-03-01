@@ -1,0 +1,272 @@
+#War bull skill:
+
+warBullRam:
+  Skills:
+  #head animation
+  - damage{a=8} @target
+
+warBullTrample:
+  Conditions:
+  - velocity{v=1to1.9} true orElseCast warBullTrample2
+  Skills:
+  - damage{a=1}
+warBullTrample2:
+  Conditions:
+  - velocity{v=2to2.9} true orElseCast warBullTrample3
+  Skills:
+  - damage{a=3}
+warBullTrample3:
+  Conditions:
+  - velocity{v=3to3.9} true orElseCast warBullTrample4
+  Skills:
+  - damage{a=6}
+warBullTrample4:
+  Conditions:
+  - velocity{v=>4} true 
+  Skills:
+  - damage{a=10}
+
+#wind eagle skills:
+
+#windEagleBleed:
+#  Skills:
+#  - effect:particles{particle=reddust;amount=50;hS=0.5;vS=0.3} @Target
+#  - sound{s=entity.player.hurt_sweet_berry_bush;p=.8}
+#  - damage{a=4;ia=false}
+
+windEagleAirSlashes:
+  Skills:
+  - missile{v=16;
+               bulletType=ITEM;material=FEATHER;
+               onTick=windEagleAirSlashs-Tick;
+               onHit=windEagleAirSlashs-Hit}
+windEagleAirSlashs-Tick:
+  Skills:
+  #- effect:particles{p=block_marker-[cobweb];amount=2;speed=0;hS=0.2;vS=0.2;y=.4} @origin
+windEagleAirSlashs-Hit:
+  Skills:
+  - damage{a=6}
+  
+windEagleSkyPlunge:
+  Skills:
+  - damage{a=8} @pir{r=20;limit=1;sort=NEAREST}
+
+windEagleGust:
+  Skills:
+  - sound{s=entity.ender_dragon.flap;v=3;repeat=3;repeatI=10} @self #Volume doesn't actually mean volume it means 'max distance heard at' (v * 16)
+  - damage{a=1;repeat=3;repeatI=10}
+  #I can't find a specific 'knockback' mechanic but damage knocks you back so eh idk
+  
+windEagleDodgeCheck:
+  Conditions:
+  - damagecause{cause=PROJECTILE} true
+  Skills:
+  - skill{s=windEagleDodge} @self .7
+windEagleDodge:
+  Skills:
+  - message{m="Dodge Check"} @pir{r=32}
+  - potion{type=DAMAGE_RESISTANCE;duration=10;level=255;p=true}
+  
+#night wolf skills:
+
+nightWolfBite:
+  Skills:
+  - damage{amount=4;pkb=true}
+  - delay 15
+  #- potion{type=SLOW;duration=60;level=0} @target 0.15
+  - skill{s=frostWolfBite2} .67
+  
+nightWolfSpeed:
+  Skills:
+  - potion{type=SPEED;duration=60;level=1} @self
+
+nightWolfBlind:
+  Skills:
+  - potion{type=BLINDNESS;duration=60;level=0} @target
+
+summonPack:
+  Skills:
+  - summon{t=NightWolfBossSpawned;amount=6-8;r=4}
+
+nightSpawn:
+  Skills:
+  - summon{t=NightWolfSpawned;amount=2-4;r=3}
+
+nightHowl:
+  Skills:
+  # howl
+  - sound{s=entity.polar_bear.warning;p=.6} #temp / reusing from another ability idc
+  - potion{type=BLINDNESS;duration=100;level=0} @target
+  - potion{type=CONFUSION;duration=100;level=0} @target
+
+moonHowl:
+  Conditions:
+  - lunarphase{p=0} true
+  Skills:
+  - summon{t=MoonHowlBoss}
+  
+starHowl:
+  Conditions:
+  - lunarphase{p=4} true
+  Skills:
+  - summon{t=StarHowlBoss}
+  
+moonHowlBuff:
+  Conditions:
+  - mobsInRadius{types=NightWolf,NightWolfSpawned;radius=20}
+  Skills:
+  - randomskill{skills=nightHowl1,nightHowl2,nightHowl3}
+  - potion{type=DAMAGE_RESISTANCE;duration=140;level=2}
+  - potion{type=ABSORPTION;duration=140;level=1}
+  - potion{type=REGENERATION;duration=140;level=1}
+
+starHowlBuff:
+  Conditions:
+  - mobsInRadius{types=NightWolf,NightWolfSpawned;radius=20}
+  Skills:
+  - randomskill{skills=nightHowl1,nightHowl2,nightHowl3}
+  - potion{type=INCREASE_DAMAGE;duration=140;level=2}
+  - potion{type=REGENERATION;duration=140;level=1}
+  - potion{type=SPEED;duration=140;level=1}
+
+nightHowl1:
+  Skills:
+  #- message{m=".2"} @PlayersInRadius{r=40}
+  - sound{s=entity.polar_bear.warning;p=.2}
+nightHowl2:
+  Skills:
+  #- message{m=".6"} @PlayersInRadius{r=40}
+  - sound{s=entity.polar_bear.warning;p=.6}
+nightHowl3:
+  Skills:
+  #- message{m="1"} @PlayersInRadius{r=40}
+  - sound{s=entity.polar_bear.warning;p=1}
+
+  
+  
+frostInvis:
+  Skills:
+  - potion{type=INVISIBILITY;duration=100;level=0} @self # - command{c="effect give <target.name> INVISIBILITY 5 1 true"} 
+  - message{m="click"} @PlayersInRadius{r=40}
+
+darknessBeam:
+  Skills:
+  - aura{i=1;d=140;Ot=darknessBeamProj} @Self
+
+darknessBeamProj:
+  Skills:
+  - projectile{i=1;oT=darknessBeamTick;oH=darknessBeamHit;mr=20;sE=false;v=20} @Target
+  
+darknessBeamTick:
+  Skills:
+  - effect:particles{particle=reddust;color=#000000;a=20;s=0.05;hs=0.1;vs=0.1} @origin
+  
+darknessBeamHit:
+  Skills:
+  - damage{2;pkb=true}
+  - ignite{t=100}
+  
+  
+  
+#Mulger Orc skills:
+
+thornKnightBasicSlash:
+  Skills:
+  - armAnimation @self
+  - damage
+
+mulgerOrcBash:
+  Skills:
+  - potion{type=SPEED;duration=100;level=4} @self
+  - goto{speedModifier=1;sh=2} @target
+  #- potionclear @self
+#  - Aura{auraName=orcBash;onTick=orcBashThrow;interval=10;duration=240} @self
+  
+#orcBashThrow:
+#  Skills:
+#   throw{velocity=15;velocityY=5} @PlayersInRadius{r=2.5} #make this an aura
+  
+  
+#  - effect:particles{particle=reddust;amount=50;hS=0.5;vS=0.3} @Target
+#  - sound{s=entity.player.hurt_sweet_berry_bush;p=.8}
+#  - damage{a=4;ia=false}
+
+
+#Skeleton goat Skills
+
+GoatStealth:
+  Conditions:
+  - offgcd
+  Skills:
+  - potion{type=INVISIBILITY;duration=200;level=0;p=false} @self
+  - signal{s=goatCloak} @MIR{r=64;types=cloakedSkeletonGoat}
+  - gcd{ticks=600}
+  
+GoatStealthPack:
+  Conditions:
+  - offgcd
+  Skills:
+  - potion{type=INVISIBILITY;duration=200;level=0;p=false} @self
+  - gcd{ticks=600}
+  
+
+#lady of moon skills:
+
+moonBeam:
+  Conditions:
+  - lunarphase{p=0,4} true castinstead trueMoonBeam
+  Skills:  
+  #-damage{a=8}
+trueMoonBeam:
+  Skills:  
+  #-damage{a=18}
+
+  
+reflectantCrescent:
+  Conditions:
+  - lunarphase{p=1,5} true castinstead trueReflectantCrescent
+  Skills:
+  -
+trueReflectantCrescent:
+  Skills:
+  - 
+  
+moonShardBarrage:
+  Conditions:
+  - lunarphase{p=2,6} true castinstead trueMoonShardBarrage
+  Skills:
+  -
+trueMoonShardBarrage:
+  Skills:
+  - 
+  
+moonlightRushingSlashes:
+  Conditions:
+  - lunarphase{p=3,7} true castinstead trueMoonlightRushingSlashes
+  Skills:
+  -
+trueMoonlightRushingSlashes:
+  Skills:
+  -
+  
+restingInTheMoonlight:
+  Skills:
+  -
+  
+littleMoonSummon:
+  Skills:
+  -
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

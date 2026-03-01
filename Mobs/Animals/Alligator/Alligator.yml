@@ -1,0 +1,26 @@
+Alligator:
+  Type: TURTLE
+  Health: 20
+  Damage: 1
+  Display: Alligator
+  Faction: Wilderness
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - movetowater
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  - OtherFactionMonsters
+  Options:
+    PreventOtherDrops: true
+    Silent: true
+  Skills:
+  - cancelSkill ~onPlayerKill
+  - skill{s=AlligatorSpeedAdaption} @self ~onTimer:10
+  - skill{s=AlligatorDrag} @target ~onAttack
+  - damage{amount=1;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true} ~onAttack ?stance{s=default}
+  - damage{amount=1;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true} ~onAttack ?stance{s=default}
+  - cancelevent{sync=true} ~onAttack
+  - dismount ~onTimer:10

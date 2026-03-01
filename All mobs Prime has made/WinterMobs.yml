@@ -1,0 +1,419 @@
+FrostWolf:
+  Type: Wolf
+  Health: 15
+  Armor: 4
+  #Damage:
+  #Disguise: Wolf
+  Faction: FrostWolf
+  Options:
+    MovementSpeed: .35 #Adjust this?
+    Tameable: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=frostWolfBite} @target ~onAttack
+  - skill{s=frostDodge} @trigger ~onDamaged
+  DamageModifiers:
+  - LAVA 1.25
+  - FIRE 1.5
+  - FIRE_TICK 1.5
+
+
+ColdBeastoftheNight:
+  Type: Wolf
+  Health: 1000
+  Armor: 15
+  Damage: 1
+  Display: '&8Cold Beast of the Night'
+  #Disguise: Polar_Bear
+  Faction: FrostWolf
+  Options:
+    AlwaysShowName: true
+    #NoAI: true
+  BossBar:
+    Enabled: true
+    Title: '&8Cold Beast of the Night'
+    Color: WHITE
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=CBOTNdoubleClawStrike} @target ~onAttack
+  - skill{s=CBOTNintimidation} @PIR{r=64} ~onTimer:100
+  - skill{s=redEyes} @PIR{r=64} ~onTimer:100
+  - skill{s=CBOTNpirecingNightmares} @target ~onTimer:200 #described as a 'thrust' but idk what that means
+
+
+IceElementalPiercer:
+  Type: Stray
+  Health: 35
+  Armor: 8
+  Damage: 12
+  Display: '&8Ice Piercer'
+  Faction: IcePiercer
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    MovementSpeed: .325
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  DamageModifiers:
+  - FIRE 1.5
+  - FIRE_TICK 2
+  Skills:
+  - setstance{stance=icePiercerShieldPrepStance} @self ~onSpawn #later change to whatever the 'trigger' is / the starting cooldown - use new witch method
+  - skill{s=readyIcePiercerShield} @self ~onTimer:20
+  - skill{s=icePiercerShield} @trigger ~onDamaged
+  - skill{s=icePiercing} @target ~onTimer:100
+  - skill{s=doublePiercing} @target ~onTimer:100
+  - skill{s=piercingFrenzy} @target ~onTimer:100
+  - skill{s=brainFreeze} @target ~onTimer:100
+  BossBar:
+    Enabled: true
+    Title: '&8Ice P'
+    Color: WHITE
+
+
+ColdFlameHorse:
+  Type: Horse
+  Health: 25
+  Armor: 4
+  Options:
+    PreventOtherDrops: true
+    PreventLeashing: false
+    Tameable: true
+    MovementSpeed: .5
+  Equipment:
+  - ColdFlameHorseBoots FEET
+  DamageModifiers:
+  - LAVA 0
+  - FIRE 0
+  - FIRE_TICK 0
+  Skills:
+  - skill{s=SnowHorse} ~onTimer:100
+  - skill{s=HorseSpawnSpeed} ~onSpawn .90
+
+
+IceSpider:
+  Type: Spider
+  Health: 8
+  Armor: 8
+  Damage: 15
+  Display: '&8Ice Piercer'
+  Faction:
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  DamageModifiers:
+  - FIRE 1.5
+  - FIRE_TICK 1.5
+  Skills:
+  - skill{s=iceSpiderBite} @target ~onTimer:100
+  - skill{s=iceSpiderWeb} @PIR{50} ~onTimer:100
+
+Yeti:
+  Type: Iron_Golem
+  Health: 120
+  Armor: 20
+  Display: '&3Yeti'
+  Damage: 24
+  BossBar:
+    Enabled: true
+    Title: '&3Yeti'
+    Color: BLUE
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    #NoAI: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Faction: Yeti
+  Disguise: Iron_Golem
+  Skills:
+  #- skill{s=yetiSmashAttack} ~onTimer:100
+  - skill{s=yetiGrab} ~onTimer:100
+  
+yetiGrabMob:
+  Type: silverfish
+  Options:
+    NoAI: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true  
+    Invincible: true
+    Invisible: true
+    Collidable: false
+  Faction: Yeti
+  Disguise: silverfish
+  Skills:
+  - skill{s=yetiThrow} ~onSpawn
+  
+IceWitch:
+  Type: Witch
+  Health: 20
+  Damage: 0
+  Display: '&8Ice Piercer'
+  Faction: IceWitch
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    #NoAI: true
+    #Silent: true
+  Faction: IceWitch
+  AIGoalSelectors:
+  - clear
+  - meleeattack #?
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  DamageModifiers:
+  - FIRE 1.5
+  - FIRE_TICK 1.5
+  Skills:
+  #- skill{s=freeze} @target ~onTimer:300
+  #- skill{s=iceSpike} @target ~onTimer:100
+  #- skill{s=setIceWitchShieldSpawn} @self ~onSpawn # -> ice witch stance doesnt actually matter because its all based on a cooldown, 
+                                                    #    other than the initial cooldown when the mobs spawns --> replace with generic shield and add particles
+  #- skill{s=iceShield} @self ~onDamaged
+  BossBar:
+    Enabled: true
+    Title: '&8Ice Witch'
+    Color: WHITE
+  
+iceSpikeHelper:
+  Type: Salmon
+  Options:
+    NoAI: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true  
+    Invincible: true
+  Disguise: Salmon
+iceSpikeHelper2:
+  Type: Cod
+  Options:
+    NoAI: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true  
+    Invincible: true
+  Skills:
+  - skill{s=iceSpikeShoot} ~onSpawn
+  - skill{s=iceSpikeHelperDie} ~onSpawn
+  Disguise: Cod
+  
+frozenResurrectedSoldiers:
+  Type: Zombie
+  Health: 10
+  Armor: 6
+  Damage: 12
+  Display: '&8Frozen Soldier'
+  Faction: IceWitch
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    #NoAI: true
+  Faction: IceWitch
+  AIGoalSelectors:
+  - clear
+  - meleeattack 
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  DamageModifiers:
+  - FIRE 1.5
+  - FIRE_TICK 1.5
+  Skills:
+  - skill{s=frozenResurrectedSoldiersSpawn} ~onSpawn
+  - skill{s=fRSAttack} ~onAttack
+
+fallenBlackPriorDemetry:
+  Type: Zombie
+  Health: 35
+  Armor: 6
+  Damage: 6
+  Display: '&8Fallen Black Prior Demetry'
+  Faction: IceWitch
+  Equipment:
+  - NETHERITE_SWORD HAND
+  - SHIELD OFFHAND
+  - fallenBlackPriorDemetryHelmet HEAD
+  - fallenBlackPriorDemetryChest CHEST
+  - fallenBlackPriorDemetryPant LEGS
+  - fallenBlackPriorDemetrySingularBoot FEET
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Faction: IceWitch
+  AIGoalSelectors:
+  - clear
+  - meleeattack 
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  DamageModifiers:
+  - FIRE 1.5
+  - FIRE_TICK 1.5
+  BossBar:
+    Enabled: true
+    Title: 'fall'
+    Color: WHITE
+  Skills:
+  #- skill{s=fRSAttack} ~onAttack
+  #- skill{s=blackBaneBladeSlash} ~onTimer:100
+  #- skill{s=embraceInnerDarkness} ~onAttack
+  - skill{s=thornsOfDarkness} ~onDamaged
+  - skill{s=thornsOfDarknessRebound} @trigger ~onDamaged
+  - skill{s=thornsOfDarknessSetStance} @self ~onSpawn #~onTimer:600 #Probably want to chance this to spawn with cooldown active
+  - skill{s=fBPDstanceCD} ~onDamaged
+  
+darkIceWitchCassidy:
+  Type: Witch
+  Health: 150
+  Armor: 10
+  Damage: 25
+  Display: '&8Dark Ice Witch Cassidy'
+  Faction: IceWitch
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    #NoAI: true
+    #Silent: true
+  Faction: IceWitch
+  AIGoalSelectors:
+  - clear
+  - meleeattack #?
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Equipment:
+  - redstone_torch HAND
+  DamageModifiers:
+  - FIRE 1.5
+  - FIRE_TICK 1.5
+  Skills:
+  #- skill{s=resurrectDeadFrozenSoliders} @target       #Set Staff stance condition - this means i didnt code the "Staff stance" 
+                                                        #and am telling myself to in the future, go me
+  #- skill{s=dIWCChain} @target #Test this skill        #Set Staff stance condition
+  #- skill{s=dIWCScythe} @self ~onTimer:100
+  #- skill{s=dIWCScytheSlow} @target ~onAttack 
+  #- skill{s=iceSpike} @target ~onTimer:100             #Set Staff stance condition
+  #- skill{s=setIceWitchShieldSpawn} @self ~onSpawn     #Set Staff stance condition
+  #- skill{s=iceShield} @self ~onDamaged                #Set Staff stance condition
+  BossBar:
+    Enabled: true
+    Title: '&8Dark Ice Witch Cassidy'
+    Color: WHITE
+  
+iceElementalGolem:
+  Type: Iron_Golem
+  Health: 30
+  Armor: 10
+  Damage: 1
+  Display: '&8Ice Elemental Golem'
+  Faction: IceGolem
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  - monsters
+  - golems
+  DamageModifiers:
+  - FIRE 1.5
+  - FIRE_TICK 2
+  Skills:
+  - skill{s=iceBlockThrow} @target ~onTimer:100
+  #- skill{s=throwAtFort} @target ~onTimer:100
+  # The Ice Golems are constantly bombarding the Willows Fort and attack anyone near them with Giant Ice Pieces
+  # are we using this?
+  
+TundraBear:
+  Type: POLAR_BEAR
+  Health: 200
+  Armor: 15
+  Damage: 20
+  Display: '&3Mother Tundra Bear'
+  Options:
+    AlwaysShowName: true
+  Faction: TundraBearFac
+  Disguise: POLAR_BEAR
+  BossBar:
+    Enabled: true
+    Title: '&3Momma Bear'
+    Color: BLUE
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - summon{t=TundraBearCub;a=2-4} @self ~onSpawn
+  - skill{s=mommaBearRage} @self ~onSignal:cubRage
+  - skill{s=mommaBearMad} @self ~onSignal:cubHit
+  - skill{s=doubleClaw} @target ~onAttack .45
+  - skill{s=greatClawSlash} @target ~onAttack .15
+  - skill{s=tundraBearRoar} @trigger ~onInteract
+
+TundraBearCub:
+  Type: POLAR_BEAR
+  Health: 10
+  Armor: 4
+  Options:
+    Baby: true
+  Faction: TundraBearFac
+  Disguise: POLAR_BEAR
+  Skills:
+  - signal{s=cubRage} @MIR{r=64;types=TundraBear} ~onDeath
+  - skill{s=cubHit} @self ~onDamaged
+  
+

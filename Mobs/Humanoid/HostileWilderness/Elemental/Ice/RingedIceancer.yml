@@ -1,0 +1,30 @@
+RingedIceancer:
+  Type: SKELETON
+  Health: 50
+  Damage: 1
+  Display: Ringed Iceancer
+  Faction: Wilderness
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  - randomlookaround
+  AITargetSelectors:
+  - clear
+  - players
+  - OtherFactionMonsters
+  Options:
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    MovementSpeed: 0.375
+    Despawn: false
+  Skills:
+  - setVariable{var=caster.PiercingStrikes;value=0} @self ~onSpawn
+  - setVariable{var=caster.IsDefending;value=0} @self ~onSpawn
+  - skill{s=IceancerPiercing} @target ~onAttack
+  - skill{s=IceancerRingedDefense} @self ~onTimer:20 ?inCombat
+  - skill{s=IceancerBrainFreeze;delay=100} @self ~onCombat
+  - cancelevent{sync=true} ~onAttack
+  - dismount ~onTimer:10

@@ -1,0 +1,13 @@
+ScorpionSting:
+  Cooldown: 25
+  Skills:
+  - onDamaged{
+      auraName=poisonBite;d=20;
+      onHit=[
+        - skill{s=ApplyPoison;duration=300;level=0}
+      ];
+      Charges=1;
+    } @target
+  - damage{amount=0.8;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=0.4;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=2.8;element=POISON;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}

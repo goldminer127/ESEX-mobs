@@ -1,0 +1,5 @@
+FreezingTouch:
+  Skills:
+  - freeze{ticks=100;repeat=5;repeatInterval=20}
+  - potion{type=SLOW;duration=100;level=3;p=false}
+  - damage{a=1;pkb=true;pi=true;ia=true;repeat=5;repeatInterval=20}

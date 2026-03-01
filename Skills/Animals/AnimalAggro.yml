@@ -1,0 +1,7 @@
+AnimalAggro:
+  Conditions:
+  - incombat false
+  Skills:
+  - potion{type=SPEED;duration=600;level=4;hasParticles=false} @self
+  - potion{type=INCREASE_DAMAGE;duration=600;level=1;hasParticles=true} @self
+  - setTarget @NearestPlayer{r=32}

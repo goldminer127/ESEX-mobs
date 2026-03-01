@@ -1,0 +1,22 @@
+PetrifyingZombieInfectedPlayers:
+  Type: ZOMBIE
+  Health: 30
+  Damage: 10
+  Faction: StoneInfected
+  Options:
+    ReinforcementsChance: 75%
+    Despawn: false
+  DamageModifiers:
+  - PROJECTILE 0.005
+  Equipment:
+  - CobbleHead HEAD
+  - PetrifiedChest CHEST
+  - PetrifiedLegs LEGS
+  - PetrifiedFeet FEET
+  - AIR HAND
+  AITargetSelectors:
+  - SpecificFaction Zombie
+  Skills:
+  - skill{s=InfectPetrify} @target ~onAttack
+  - skill{s=PlayerInfect} @target ~onAttack 0.5
+  - skill{s=TryFullPetrify} ~onTimer:200

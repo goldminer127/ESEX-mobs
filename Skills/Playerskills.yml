@@ -1,0 +1,46 @@
+KnightsDevotion:
+  Skills:
+  - potion{type=INCREASE_DAMAGE;duration=300;level=0} @self
+  - potion{type=SPEED;duration=300;level=0} @self
+  - potion{type=DAMAGE_RESISTANCE;duration=300;level=0} @self
+  - effect:particles{p=electric_spark;amount=100;hSpread=15;ySpread=1;speed=1;yOFfset=0.5} @self
+  - sound{s=entity.ghast.shoot} @Self
+  
+HaloShield:
+  Skills:
+  - potion{type=DAMAGE_RESISTANCE;duration=50;level=10} @self
+  - signal{s=mageSuxSig} @MIR{r=64;types=mageCringe}
+  - aura{onTick=HaloShield-Tick;duration=50} @self
+
+HaloShield-Tick:
+  Skills:
+  - effect:particlering{particle=flame;radius=1;points=32;amount=1;hS=1;vS=0} @self
+
+PlayerCombust:
+  Skills:
+  - damage{a="<mmoitems.skill.PlayerCombust.damage>";pkb=true} @PIR{r=5}
+  - ignite{duration=100} @PIR{r=5}
+  - sound{s=entity.ghast.shoot} @Self
+  - effect:particles{particle=flame;y=1;a=50;vs=0.1;hs=0.1;s=0.1} @Self
+  
+deathField:
+  Skills:
+  - aura{onTick=deathField-Tick;duration=300} @self
+
+deathField-Tick:
+  Skills:
+  - effect:particlesphere{p=reddust;c=#000000;amount=275;y=0.5;s=0.00001;r=4.5} @origin
+  - damage{a=5;ia=false} @PIR{r=4.5}
+  - potion{type=wither;duration=20;level=1} @PIR{r=4.5}
+  - skill{s=deathFieldHeal}
+  
+deathFieldHeal:
+  #Conditions:
+  #- playersinradius{a=>0;r=5}
+  Skills:
+  - aura{onTick=deathField-TickHeal;duration=5}
+
+deathField-TickHeal:
+  Skills:
+  - heal{a=10;oh=true} @self
+  - heal{a=10;oh=true} @PIR{r=4.5}

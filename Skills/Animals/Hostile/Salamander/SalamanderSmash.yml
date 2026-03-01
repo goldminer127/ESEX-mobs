@@ -1,0 +1,40 @@
+SalamanderSmash:
+  Cooldown: 15
+  Skills:
+  - jump{velocity=2}
+  - onDamaged{
+      auraName=salamandersmash;d=200;
+      ondamaged=[
+        - skill{s=SmashEffect} @self
+      ];
+      damageMods="FALL 0"} @self
+
+SmashEffect:
+  Conditions:
+  - damagecause{cause=FALL} true
+  Skills:
+  - auraremove{aura=salamandersmash} @self
+  - sound{s=entity.generic.explode;v=2;p=0.5} @self
+  - sound{s=entity.generic.explode;v=2;p=1;repeat=5;repeatInterval=2} @self
+  - particlering{p=block_crack;material=STONE;a=40;vs=0.5;hs=0.5;points=6;radius=1} @self
+  - skill{s=SmashDamage} @EIRR{min=0;max=2}
+  - delay 2
+  - particlering{p=block_crack;material=STONE;a=40;vs=0.5;hs=0.5;points=12;radius=3} @self
+  - skill{s=SmashDamage} @EIRR{min=2;max=4}
+  - delay 2
+  - particlering{p=block_crack;material=STONE;a=40;vs=0.5;hs=0.5;points=18;radius=5} @self
+  - skill{s=SmashDamage} @EIRR{min=4;max=6}
+  - delay 2
+  - particlering{p=block_crack;material=STONE;a=40;vs=0.5;hs=0.5;points=24;radius=7} @self
+  - skill{s=SmashDamage} @EIRR{min=6;max=8}
+  - delay 2
+  - particlering{p=block_crack;material=STONE;a=40;vs=0.5;hs=0.5;points=30;radius=9} @self
+  - skill{s=SmashDamage} @EIRR{min=8;max=10}
+  - delay 2
+  - particlering{p=block_crack;material=STONE;a=40;vs=0.5;hs=0.5;points=36;radius=11} @self
+  - skill{s=SmashDamage} @EIRR{min=10;max=12}
+
+SmashDamage:
+  Skills:
+  - damage{amount=5;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true;ignoreshield=true}
+  - damage{amount=5;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true;ignoreshield=true}

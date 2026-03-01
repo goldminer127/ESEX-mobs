@@ -1,0 +1,15 @@
+IceancerRingedDefense:
+  Cooldown: 18
+  Skills:
+  - onDamaged{
+      auraName=snowShield;d=160;i=2;cancelEvent=true;deflectProjectiles=true;
+      onStartSkill=[
+        - setVariable{var=caster.IsDefending;value=1}
+      ];
+      onTick=[
+        - sound{s=block.snow.place;v=1;p=1}
+        - particlesphere{particle=snowflake;material=ICE;radius=1.5;amount=10;hS=0;vS=0;y=0.5}
+      ];
+      onEndSkill=[
+        - setVariable{var=caster.IsDefending;value=0}
+      ];}

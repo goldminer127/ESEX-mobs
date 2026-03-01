@@ -1,0 +1,4 @@
+#This directory will contain all bosses AND their minions.
+#Each subdirectory will contain a single boss and the minions related to them.
+
+#Minions contained in this folder must be unique to their bosses, otherwise they will be placed in a different directory outside of this directory

@@ -1,0 +1,24 @@
+Mira:
+  Type: SPIDER
+  Display: 'Mira'
+  Health: 800
+  Damage: 14
+  Modules:
+    ThreatTable: true
+  Skills:
+  - skill{s=MiraSkillPool1} @target ~onTimer:100
+  - skill{s=MiraSkillPool2} @target ~onTimer:180
+  - skill{s=MiraSkillPool3} @target ~onTimer:300
+  - skill{s=MiraRegion} @self ~onTimer:100
+  - summon{type=WeaverSpider;amount=2;r=2} @self ~onSpawn
+  - summon{type=LeapingSpider;amount=2;r=2} @self ~onSpawn
+  - summon{type=MiraSignalMob;amount=1;r=0} @location{c=213,58,344} ~onDeath
+  - summon{type=MiraSignalMob;amount=1;r=0} @location{c=213,58,344} ~onDespawn
+  Drops:
+  - MiraDrops
+  BossBar:
+    Enabled: true
+    Title: 'Mira'
+    Range: 20
+    Color: RED
+    Style: SOLID

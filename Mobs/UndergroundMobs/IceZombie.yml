@@ -1,0 +1,14 @@
+IceZombie:
+  Type: ZOMBIE
+  Display: ice
+  Faction: Icers
+  Options:
+    FollowRange: 45
+    PreventOtherDrops: true
+    PreventTransformation: true
+    PreventRandomEquipment: true
+    MovementSpeed: 0.23
+    KnockbackResistance: 0.25
+  Skills:
+  - skill{s=FreezingTouch} @target ~onAttack
+  - dismount ~onTimer:10

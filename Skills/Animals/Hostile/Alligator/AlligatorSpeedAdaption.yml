@@ -1,0 +1,9 @@
+#Adjusts speed based on land or speed
+AlligatorSpeedAdaption:
+  Conditions:
+  - onblock{m=WATER} castinstead AlligatorWaterSpeed
+  Skills:
+  - setspeed{speed=5.5;type=walking} ~onSpawn
+AlligatorWaterSpeed:
+  Skills:
+  - setspeed{speed=4;type=walking} ~onSpawn

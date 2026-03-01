@@ -1,0 +1,111 @@
+PiglinPet:
+  Type: baby_PIGLIN
+  Health: 24
+  Damage: 10
+  Options:
+    MovementSpeed: .3
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    Silent: true
+    Invulnerable: true
+    Despawn: persistent
+  Equipment:
+  - AIR HAND
+  - AIR OFFHAND
+  AIGoalSelectors:
+  - clear
+  - gotoowner 5
+  - randomstroll
+  - randomlookaround
+  - lookatplayers
+  Skills:
+  - skill{s=TamePet} @NearestPlayer{r=5} ~onSpawn
+  - skill{s=DespawnPiglinPet} @owner{r=100} ~onInteract
+#  - skill{s=DropGold} @self ~onTimer:20
+  - skill{s=DespawnPetNoInv} @owner{r=100} ~onInteract
+  - skill{s=TeleportBackToOwner} @self ~onTimer:20
+  
+ChickenPet:
+  Type: chicken
+  Health: 24
+  Damage: 10
+  Options:
+    MovementSpeed: .3
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    Silent: true
+    Invulnerable: true
+    Despawn: persistent
+  Equipment:
+  - AIR HAND
+  - AIR OFFHAND
+  AIGoalSelectors:
+  - clear
+  - gotoowner 5
+  - randomstroll
+  - randomlookaround
+  - lookatplayers
+  Skills:
+  - skill{s=TamePet} @NearestPlayer{r=5} ~onSpawn
+  - skill{s=DespawnChickenPet} @owner{r=100} ~onInteract
+  - skill{s=ChickenPetSpeed} @owner ~onSpawn
+  - skill{s=DespawnPetNoInv} @owner{r=100} ~onInteract
+  - skill{s=TeleportBackToOwner} @self ~onTimer:20
+  
+WolfPet:
+  Type: wolf
+  Health: 24
+  Damage: 10
+  Options:
+    MovementSpeed: .3
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    Silent: true
+    Invulnerable: true
+    Despawn: persistent
+  Equipment:
+  - AIR HAND
+  - AIR OFFHAND
+  AITargetSelectors:
+  - clear
+  - SpecificFaction fox
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - gotoowner 20
+  - randomstroll
+  - randomlookaround
+  - lookatplayers
+  Skills:
+  - skill{s=TamePet} @NearestPlayer{r=5} ~onSpawn
+  - skill{s=DespawnWolfPet} @owner{r=100} ~onInteract
+  - skill{s=DespawnPetNoInv} @owner{r=100} ~onInteract
+  - skill{s=TeleportBackToOwner} @self ~onTimer:20
+  
+CatPet:
+  Type: Cat
+  Health: 50
+  Damage: 10
+  Options:
+    MovementSpeed: .3
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    Silent: true
+    Invulnerable: true
+    Despawn: persistent
+    Tamed: true
+  AIGoalSelectors:
+  - clear
+  - gotoowner 5
+  - randomstroll
+  - randomlookaround
+  - lookatplayers
+  Skills:
+  - skill{s=TamePet} @NearestPlayer{r=5} ~onSpawn
+  - skill{s=DespawnCatPet} @owner{r=100} ~onInteract
+  - skill{s=DespawnPetNoInv} @owner{r=100} ~onInteract
+  - skill{s=TeleportBackToOwner} @self ~onTimer:20

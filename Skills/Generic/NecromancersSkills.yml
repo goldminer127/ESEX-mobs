@@ -1,0 +1,141 @@
+#Contains both standard and boss varient skills
+
+#Boss Summon
+SummonElderNecromancer:
+  Skills:
+  - sound{s=entity.lightning_bolt.thunder;v=5;p=0.1}
+  - delay 30
+  - potion{type=LEVITATION;duration=100;lvl=1;p=false} @EIR{r=50}
+  - sound{s=entity.lightning_bolt.thunder;v=5;p=1.8;repeat=4;repeatInterval=20}
+  - delay 10
+  - effect:particleline{particle=soul_fire_flame;amount=1;fromOrigin=true;zz=true;zzs=2;repeat=16;repeatInterval=2to5} @EIR{r=50;limit=1;sort=RANDOM}
+  - delay 70
+  - sound{s=entity.evoker.prepare_summon;v=10;p=0.8}
+  - throw{velocity=20;velocityY=1;sync=true} @EIR{r=50}
+  - delay 20
+  - summon{type=ElderNecromancer;a=1;r=0;sync=true}
+  - remove
+
+#Boss Skills
+SummonUndeadDefenders:
+  Conditions:
+  - incombat true
+  Skills:
+  - effect:playanimation{a=0;audience=World}
+  - sound{s=entity.skeleton.converted_to_stray;v=2;p=0}
+  - summon{type=NecroUndeadWarrior;a=1;r=20;yr=0;repeat=5;repeatInterval=5}
+  - summon{type=NecroUndeadSwordsman;a=1;r=20;yr=0;repeat=3;repeatInterval=5}
+  - summon{type=NecroSkeleton;a=1;r=20;yr=0;repeat=3;repeatInterval=5}
+  - summon{type=NecroZombie;a=1;r=25;yr=0;repeat=5;repeatInterval=5}
+  - delay 5
+  - signal{s=NecroSpawn} @MobsInRadius{r=3;t=NecroUndeadWarrior,NecroUndeadSwordsman}
+
+FireNecroticShot:
+  Conditions:
+  - incombat true
+  TargetConditions:
+  - targetwithin{d=20} true
+  Skills:
+  - effect:playanimation{a=0;audience=World} @self
+  - skill{s=NecroticShot}
+NecroticShot:
+  Skills:
+  - projectile{bulletType=ITEM;material=BONE;onStart=NecroticShot-Summon;onTick=NecroticShot-Tick;onHit=NecroticShot-Hit;v=0.01;i=1;syo=5to10;StartSideOffset=-5to5;hfs=2to5;immune=0;ac=1}
+NecroticShot-Summon:
+  Skills:
+  - sound{s=block.bone_block.place;v=5;p=2}
+  - delay 20
+  - modifyProjectile{trait=VELOCITY;action=SET;value=25}
+  - sound{s=entity.allay.item_thrown;v=5;p=1}
+NecroticShot-Tick:
+  Skills:
+  - particles{particle=scrape;a=2;hs=0;vs=0;s=0;y=0} @origin
+NecroticShot-Hit:
+  Skills:
+  - damage{a=6;preventimmunity=false}
+  - potion{type=WITHER;duration=60;lvl=1;p=false}
+
+SoulShield-Idle:
+  Conditions:
+  - stance{s=SoulShieldReady} true
+  Skills:
+  - effect:particleorbital{r=1;a=1;points=2;t=20;i=1;rY=5;oy=1;vx=0;vy=20;vz=50;particle=soul}
+SoulShield-Long:
+  Conditions:
+  - incombat true
+  - damagecause{cause=PROJECTILE} true
+  - stance{s=SoulShieldReady} true
+  Skills:
+  - effect:playanimation{a=0;audience=World} @self
+  - skill{s=SoulShot}
+  - sound{s=entity.vex.ambient;v=5;p=2} @self
+  - setstance{stance=SoulShieldDown} @self
+  - skill{s=SoulShield-Recharge} @self
+SoulShield:
+  Conditions:
+  - incombat true
+  - playerwithin{d=3} true
+  - stance{s=SoulShieldReady} true
+  Skills:
+  - effect:playanimation{a=0;audience=World} @self
+  - skill{s=SoulShot}
+  - sound{s=entity.vex.ambient;v=5;p=2} @self
+  - setstance{stance=SoulShieldDown} @self
+  - skill{s=SoulShield-Recharge} @self
+SoulShield-Recharge:
+  Conditions:
+  - stance{s=SoulShieldDown} true
+  Skills:
+  - delay 260
+  - setstance{stance=SoulShieldReady}
+SoulShot:
+  Skills:
+  - missile{ot=SoulShot-Tick;oh=SoulShot-Hit;v=4;i=1;hR=1;vR=1}
+SoulShot-Tick:
+  Skills:
+  - effect:particles{p=soul_fire_flame;a=1} @origin
+SoulShot-Hit:
+  Skills:
+  - effect:particles{p=sonic_boom;a=1;hS=1;vS=1}
+  - effect:sound{s=entity.generic.explode;v=1;p=0}
+  - damage{a=2}
+  - throw{velocity=10;velocityY=5}
+
+
+#Standard Skills
+WeakeningBolt:
+  Conditions:
+  - incombat true
+  Skills:
+  - sound{s=entity.shulker.shoot;v=1;p=0} @self
+  - projectile{onTick=WeakeningBolt-Tick;onHit=WeakeningBolt-Hit;v=5;i=1;hR=1;vR=1}
+WeakeningBolt-Tick:
+  Skills:
+  - effect:particles{p=crit_magic;amount=10;speed=0;hS=0.2;vS=0.2} @origin
+WeakeningBolt-Hit:
+  Skills:
+  - damage{a=5;pi=true}
+  - potion{type=HUNGER;duration=100;lvl=3;p=false}
+  - potion{type=WEAKNESS;duration=25;lvl=2;p=false}
+  - potion{type=SLOW;duration=40;lvl=3;p=false}
+  
+#Summoning
+SummonArmoredUndead:
+  Conditions:
+  - incombat true
+  Skills:
+  - effect:playanimation{a=0;audience=World}
+  - sound{s=entity.skeleton.converted_to_stray;v=2;p=0}
+  - summon{type=NecroUndeadWarrior;a=1;r=3;yr=0;repeat=2;repeatInterval=5}
+  - summon{type=NecroUndeadSwordsman;a=1;r=3;yr=0;repeat=2;repeatInterval=5}
+  - delay 5
+  - signal{s=NecroSpawn} @MobsInRadius{r=3;t=NecroUndeadWarrior,NecroUndeadSwordsman}
+  - delay 200 #extra cooldown on this roll
+SummonUndead:
+  Conditions:
+  - incombat true
+  Skills:
+  - effect:playanimation{a=0;audience=World}
+  - sound{s=entity.skeleton.converted_to_stray;v=2;p=0}
+  - summon{type=NecroSkeleton;a=1;r=20;yr=0;repeat=2;repeatInterval=5}
+  - summon{type=NecroZombie;a=1;r=25;yr=0;repeat=4;repeatInterval=5}

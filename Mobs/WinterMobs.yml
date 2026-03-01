@@ -1,0 +1,92 @@
+ColdFlameHorse:
+  Type: Horse
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    PreventLeashing: false
+  Equipment:
+  - ColdFlameHorseBoots FEET
+  DamageModifiers:
+  - LAVA 0
+  - FIRE 0
+  - FIRE_TICK 0
+  Skills:
+  - skill{s=SnowHorse} ~onTimer:100
+  
+Yeti:
+  Type: Iron_Golem
+  Display: '&3Yeti'
+  Damage: 1
+  BossBar:
+    Enabled: true
+    Title: '&3Yeti'
+    Color: BLUE
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    #NoAI: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Faction: Yeti
+  Disguise: Iron_Golem
+  Skills:
+  - skill{s=yetiSmashAttack} ~onTimer:100
+  - skill{s=yetiGrab} ~onTimer:160
+  
+yetiGrabMob:
+  Type: silverfish
+  Options:
+    NoAI: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true  
+    Invincible: true
+    Invisible: true
+    Collidable: false
+  Faction: Yeti
+  Disguise: silverfish
+  Skills:
+  - skill{s=yetiThrow} ~onSpawn
+  
+TundraBear:
+  Type: POLAR_BEAR
+  Health: 180
+  Damage: 20
+  Display: '&3Mother Tundra Bear'
+  Options:
+    AlwaysShowName: true
+  Faction: TundraBearFac
+  Disguise: POLAR_BEAR
+  BossBar:
+    Enabled: true
+    Title: '&3Momma Bear'
+    Color: BLUE
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - summon{t=TundraBearCub;a=2-4} @self ~onSpawn
+  - skill{s=mommaBearRage} @self ~onSignal:cubRage
+  - skill{s=mommaBearMad} @self ~onSignal:cubHit
+
+TundraBearCub:
+  Type: POLAR_BEAR
+  Options:
+    Baby: true
+  Faction: TundraBearFac
+  Disguise: POLAR_BEAR
+  Skills:
+  - signal{s=cubRage} @MIR{r=64;types=TundraBear} ~onDeath
+  - skill{s=cubHit} @self ~onDamaged

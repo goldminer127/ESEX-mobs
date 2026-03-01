@@ -1,0 +1,7 @@
+CheckStelf:
+  TargetConditions:
+  - faction{faction=Sculkers} false
+#  Conditions:
+#  - incombat false
+  Skills:
+  - setTarget

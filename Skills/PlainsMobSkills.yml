@@ -1,0 +1,52 @@
+windEagleBleed:
+  Skills:
+  - effect:particles{particle=reddust;amount=50;hS=0.5;vS=0.3} @Target
+  - sound{s=entity.player.hurt_sweet_berry_bush;p=.8}
+  - damage{a=10;ia=false}
+  
+nightSpawn:
+  Skills:
+  - summon{t=NightWolfSpawned;amount=2-4;r=3}
+  
+moonHowl:
+  Conditions:
+  - lunarphase{p=0} true
+  Skills:
+  - summon{t=MoonHowlBoss}
+  
+starHowl:
+  Conditions:
+  - lunarphase{p=4} true
+  Skills:
+  - summon{t=StarHowlBoss}
+  
+moonHowlBuff:
+  Conditions:
+  - mobsInRadius{types=NightWolf,NightWolfSpawned;radius=20}
+  Skills:
+  - randomskill{skills=nightHowl1,nightHowl2,nightHowl3}
+  - potion{type=DAMAGE_RESISTANCE;duration=140;level=2}
+  - potion{type=ABSORPTION;duration=140;level=1}
+  - potion{type=REGENERATION;duration=140;level=1}
+
+starHowlBuff:
+  Conditions:
+  - mobsInRadius{types=NightWolf,NightWolfSpawned;radius=20}
+  Skills:
+  - randomskill{skills=nightHowl1,nightHowl2,nightHowl3}
+  - potion{type=INCREASE_DAMAGE;duration=140;level=2}
+  - potion{type=REGENERATION;duration=140;level=1}
+  - potion{type=SPEED;duration=140;level=1}
+
+nightHowl1:
+  Skills:
+  #- message{m=".2"} @PlayersInRadius{r=40}
+  - sound{s=entity.polar_bear.warning;p=.2}
+nightHowl2:
+  Skills:
+  #- message{m=".6"} @PlayersInRadius{r=40}
+  - sound{s=entity.polar_bear.warning;p=.6}
+nightHowl3:
+  Skills:
+  #- message{m="1"} @PlayersInRadius{r=40}
+  - sound{s=entity.polar_bear.warning;p=1}

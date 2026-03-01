@@ -1,0 +1,6 @@
+PlainsWolfBite:
+  Conditions:
+  - stance{s=biting} false
+  Skills:
+  - damage{amount=1.6;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=1.6;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}

@@ -1,0 +1,5 @@
+BullBreed:
+  Skills:
+  - signal{s=BREEDHEIFER;repeat=2to4;repeatInterval=100to200} @MIR{r=25;limit=1;types=Heifer,BabyHeifer} #Max fires is 5
+  - delay 1000 #5 * 200
+  - suicide

@@ -1,0 +1,3 @@
+SpawnMiraTrigger:
+  Skills:
+  - summon{type=MiraTrigger;amount=1;r=1}

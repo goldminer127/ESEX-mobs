@@ -1,0 +1,5 @@
+DropDeerCarcass:
+  Conditions:
+  - varEquals{var=caster.Age;value=adult} true
+  Skills:
+  - dropitem{i=mmoitems{type=miscellaneous;id=DEER_CARCASS}} @self

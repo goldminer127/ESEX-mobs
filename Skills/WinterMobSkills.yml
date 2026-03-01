@@ -1,0 +1,66 @@
+SnowHorse:
+  Skills:
+    - randomskill{skills=horseSnowball,horseSnowflake}
+horseSnowball:
+  Skills:
+    - effect:particles{particle=snowball;amount=100;hS=1;vS=1;speed=2} @self
+horseSnowflake:
+  Skills:
+    - effect:particles{particle=reddust;color=#ffffff;hS=1;vS=1;amount=200;speed=1} @self
+
+yetiSmashAttack:
+  Conditions:
+  - targetwithin 5
+  Skills:
+  - effect:sound{s=mob.endermen.portal;volume=.5;pitch=0.5}
+  - delay 10
+  - playanimation{a=0;audience=World} @Self
+  - damage{amount=6;ia=true} @PlayersInRadius{r=150}
+  - throw{velocity=10;velocityY=5} @PlayersInRadius{r=150}
+  - delay 1
+  - throw{velocityY=10} @PlayersInRadius{r=150}
+  - effect:explosion @PlayersInRadius{r=150}
+  
+yetiGrab:
+  Conditions:
+  - targetwithin 5
+  Skills:
+  - summon{type=yetiGrabMob} @Forward{f=1;y=0.5;sideOffset=0.0}
+  - delay 80
+  - throw{velocity=5;velocityY=5} @PIR{r=2;limit=1}
+  - delay 1
+  - throw{velocity=16;velocityY=7} @PIR{r=2;limit=1}
+yetiThrow:
+  Skills:
+  - delay 20
+  - mountme @PIR{r=15;limit=1}
+  - delay 60
+  - suicide @self
+  - remove @self
+
+mommaBearRage:
+  Conditions:
+  - offgcd orElseCast bearTimer
+  Skills:
+  - gcd{ticks=600}
+  - sound{s=entity.polar_bear.warning;p=.1}
+  - potion{type=INCREASE_DAMAGE;duration=600;level=2}
+  - potion{type=DAMAGE_RESISTANCE;duration=600;level=0}
+  - potion{type=HEALTH_BOOST;duration=600;level=0}
+  - potion{type=REGENERATION;duration=600;level=0}
+  - potion{type=ABSORPTION;duration=600;level=1}
+  - potion{type=SPEED;duration=600;level=2}
+
+bearTimer:
+  Skills:
+  - delay 20
+  - signal{s=cubRage} @self
+  
+mommaBearMad:
+  Skills:
+  - sound{s=entity.polar_bear.warning;p=1}
+
+cubHit:
+  Skills:
+  - sound{s=entity.polar_bear.warning;p=2}
+  - signal{s=cubHit} @MIR{r=64;types=TundraBear}

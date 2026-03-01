@@ -1,0 +1,7 @@
+CowBirth:
+  Conditions:
+  - stance{s=adult;str=true} true
+  Skills:
+  - sound{s=block.beehive.exit;v=1;p=0.1} @self
+  - sound{s=entity.cow.hurt;v=1;p=0.1} @self
+  - randomskill{skills=BirthHeifer 9,BirthBull 1} @self

@@ -1,0 +1,25 @@
+Hind:
+  Health: 10
+  Type: COW
+  Display: Hind
+  Options:
+    PreventOtherDrops: true
+    Despawn: false
+    Silent: true
+  Variables:
+    Age: adult
+    Aggression: peaceful
+    Sex: female
+    Species: deer
+  Skills:
+  - model{mid=deer;n=false} @self ~onSpawn
+  - skill{s=AdultBehaviour} @self ~onSpawn
+  #Cannot birth another child for 100 minutes, births 1 baby per cycle
+  - skill:AnimalBirth{sound=item.ink_sac.use;cooldown=120000} @self ~onSignal:BREED
+  - skill{s=AnimalFollowMale} ~onTimer:100
+  #Dies after 300 * 3 + 10 + 300 = 1210 mins of existance
+  - skill{s=EndOfLife;delay="1210*60*20";sync=true} ~onSpawn
+  # Calls male if attacked
+  - signal{s=HERDUNDERATTACK} @MIR{r=25;types=Stag,BabyStag;limit=1;conditions=[   - varEquals{var=target.Age;value=adult} true ]} ~onDamaged
+  #Drops carcass
+  - skill{s=DropDeerCarcass} ~onDeath

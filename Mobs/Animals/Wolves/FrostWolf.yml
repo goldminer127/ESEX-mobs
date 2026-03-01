@@ -1,0 +1,20 @@
+FrostWolf:
+  Type: WOLF
+  Health: 20
+  Damage: 2
+  Display: Frost Wolf
+  Faction: Wilderness
+  AITargetSelectors:
+  - clear
+  - players
+  - OtherFactionMonsters
+  Options:
+    FollowRange: 48
+    Tameable: true
+  Skills:
+  - skill{s=FrostWolfBite} @target ~onAttack
+  - skill{s=FrostWolfBitingCombo} @target ~onAttack
+  - skill{s=WolfLeapBack} @self ~onDamaged
+  - setVariable{var=caster.BiteStrikes;value=0} @self ~onSpawn
+  - cancelevent{sync=true} ~onAttack
+  - summon{type=FrostWolf;amount=1to10;radius=20;yRadius=0;onSurface=true} @self ~onSpawn ?!hasParent

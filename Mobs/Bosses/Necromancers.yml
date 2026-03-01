@@ -1,0 +1,146 @@
+#Contains both the standard and boss varient
+ElderNecromancerSummoningTrigger:
+  Type: SKELETON
+  Options:
+    NoAI: true
+    Invincible: true
+    Collidable: false
+    Silent: true
+    PreventSunburn: true
+    KnockbackResistance: 1
+    PreventOtherDrops: true
+    Despawn: false
+  Equipment:
+  - AIR HEAD
+  - AIR CHEST
+  - AIR LEGS
+  - AIR FEET
+  - AIR HAND
+  AITargetSelectors:
+  - 1 clear
+  Skills:
+  - skill{s=SummonElderNecromancer} @self ~onInteract
+  - effect:particlesphere{particle=soul;speed=0to0.025;y=0.5;amount=1;radius=1} @self ~onTimer:10
+
+ElderNecromancer:
+  Type: EVOKER
+  Health: 100
+  Faction: NecroticForces
+  Options:
+    PreventOtherDrops: true
+    DigOutOfGround: true
+    MovementSpeed: 0.25
+    FollowRange: 25
+    FollowRange: 30
+  Equipment:
+  - AIR HEAD
+  - AIR CHEST
+  - AIR LEGS
+  - AIR FEET
+  - AIR HAND
+  AIGoalSelectors:
+  - clear
+  - lookatplayers
+  - opendoors
+  - randomstroll
+  - fleeplayers{d=10;}
+  Modules:
+    ImmunityTable: true
+    ThreatTable: true
+  Skills:
+  - skill{s=FireNecroticShot;repeat=5to15;repeatInterval=2to12} @PIR{r=20;limit=1;sort=RANDOM} ~onTimer:100
+  - skill{s=WeakeningBolt;repeat=2to5;repeatInterval=10} @PIR{r=20;limit=1;sort=RANDOM} ~onTimer:80
+  - command{c="time add 2000"} ~onTimer:100
+  - skill{s=SummonUndeadDefenders} @self ~onTimer:200
+  - skill{s=SoulShield-Idle} @self ~onTimer:20
+  - skill{s=SoulShield-Long} @PIR{r=20} ~onDamaged
+  - skill{s=SoulShield} @PIR{r=6} ~onTimer:1
+  - setstance{stance=SoulShieldReady} @self ~onSpawn
+  - skill{s=KillMinions} @Children ~onDeath
+
+Necromancer:
+  Type: EVOKER
+  Health: 100
+  Faction: NecroticForces
+  Options:
+    PreventOtherDrops: true
+    MovementSpeed: 0.25
+    FollowRange: 25
+    FollowRange: 30
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=10;s=2;ss=1}
+  - fleegolems
+  - fleewolf
+  - opendoors
+  - randomstroll
+  Modules:
+    ImmunityTable: true
+    ThreatTable: true
+  Skills:
+  - randomskill{skills=SummonUndead,SummonUndead,SummonArmoredUndead,SummonUndead,SummonUndead} @self ~onTimer:300
+  - summon{type=NecroZombie;a=1;r=0} @self ~onDamaged 0.5
+  - skill{s=WeakeningBolt;repeat=4;repeatInterval=10} @RandomThreatTarget ~onTimer:130
+  - skill{s=KillMinions} @Children ~onDeath
+
+
+#Support mobs
+NecroUndeadSwordsman:
+  Type: ZOMBIE
+  Health: 75
+  Damage: 6.5
+  Faction: NecroticForces
+  Options:
+    MovementSpeed: 0.3
+    FollowRange: 30
+  Modules:
+    ThreatTable: true
+    ImmunityTable: true
+  Equipment:
+  - IRON_HELMET HEAD
+  - IRON_CHESTPLATE CHEST
+  - CHAINMAIL_LEGGINGS LEGS
+  - CHAINMAIL_BOOTS FEET
+  - IRON_SWORD HAND
+  Skills:
+  - skill{s=SwordBash} @target ~onAttack
+  - skill{s=ChangeRandomTarget} @target ~onSignal:NecroSpawn
+  - skill{s=MinionSuicide} @self ~onSignal:PARENTDEAD
+NecroUndeadWarrior:
+  Type: SKELETON
+  Health: 40
+  Damage: 10
+  Faction: NecroticForces
+  Modules:
+    ThreatTable: true
+    ImmunityTable: true
+  AITargetSelectors:
+  - OtherFaction
+  Equipment:
+  - IRON_HELMET HEAD
+  - IRON_CHESTPLATE CHEST
+  - CHAINMAIL_LEGGINGS LEGS
+  - CHAINMAIL_BOOTS FEET
+  - IRON_SWORD HAND
+  Options:
+    FollowRange: 30
+  Skills:
+  - setstance{stance=BlockReady} @self ~onSpawn
+  - skill{s=ReadySwordBlock} @self ~onTimer:20
+  - skill{s=SwordBlock} @trigger ~onDamaged
+  - skill{s=ChangeRandomTarget} @target ~onSignal:NecroSpawn
+  - skill{s=MinionSuicide} @self ~onSignal:PARENTDEAD
+NecroZombie:
+  Type: ZOMBIE
+  Faction: Zombie
+  Modules:
+    ThreatTable: true
+  Skills:
+  - skill{s=MinionSuicide} @self ~onSignal:PARENTDEAD
+NecroSkeleton:
+  Type: SKELETON
+  Faction: NecroticForces
+  Modules:
+    ThreatTable: true
+  Skills:
+  - skill{s=MinionSuicide} @self ~onSignal:PARENTDEAD

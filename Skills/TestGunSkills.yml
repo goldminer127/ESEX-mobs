@@ -1,0 +1,41 @@
+TestGun-OutOfAmmo:
+  Skills:
+  - am{m="&c&lOut of Ammo"}
+
+TestGun-Fire:
+  Skills:
+  - raytrace{
+      origin=@forward{a=1;y=1};
+      entitySkill=TestGun-Damage;
+      locationSkill=TestGun-Fire-Effect}
+  - recoil{r=0.2;yawMod=-2to2;repeat=1;repeati=4} @self
+
+TestGun-Damage:
+  Skills:
+  - damage{amount=10}
+  
+TestGun-Fire-Effect:
+  Skills:
+  - sound{s=block.conduit.activate;p=1.75;v=1} @origin
+  - particleline{p=mobSpell;color=#FFFFFF;db=2;
+        fO=true;origin=@MuzzleLocation{y=-0.2};audience=SELF}
+  - particleline{p=mobSpell;color=#FFFFFF;db=2;fromOrigin=true;audience=NONSELF}
+
+TestGun-Reload:
+  Skills:
+  - actionmessage{m="&e&lRELOADING"} @self
+  - potion{type=SLOW_DIGGING;level=20;d=40}
+  - delay 1
+  - playanimation{audience=SELF;animation=0} @self
+  - delay 40
+  - potion{type=FAST_DIGGING;level=99}
+
+TestGun-Reload-Fail:
+  Skills:
+  - actionmessage{m="&4&lOUT OF AMMO"} @self
+  - sound{s=item.flintandsteel.use;p=.1}
+
+TestGun-Reload-Full:
+  Skills:
+  - actionmessage{m="&e&oAMMO FULL"} @self
+  - sound{s=item.flintandsteel.use;p=.1}

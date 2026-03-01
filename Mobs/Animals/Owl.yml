@@ -1,0 +1,8 @@
+Owl:
+  Health: 10
+  Type: PARROT
+  Skills:
+  - model{mid=owl;n=false} @self ~onSpawn
+  Options:
+    PreventOtherDrops: true
+    Collidable: true

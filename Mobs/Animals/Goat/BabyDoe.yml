@@ -1,0 +1,25 @@
+BabyDoe:
+  Health: 10
+  Type: GOAT
+  Display: Baby Doe
+  Options:
+    PreventOtherDrops: true
+    Baby: true
+    Despawn: false
+  Variables:
+    Age: baby
+    Aggression: peaceful
+    Sex: female
+    Species: goat
+  Skills:
+  #30 mins assumed before this mob is considered an adult
+  - skill:AdultBehaviour{AdultName=Doe;sync=true} @self ~onTimer:100 ?!isbaby ?varEquals{var=caster.Age;value=baby}
+  #20 min delay before breeding starts Cannot birth another child for 200 minutes, births 1 baby per cycle
+  - skill:AnimalBirth{sound=item.ink_sac.use;delay=36000;cooldown=240000} @self ~onSignal:BREED
+  - skill{s=AnimalFollowMale;delay=24001} ~onTimer:100
+  #Dies after 400 * 4 + 10 + 700 + 30 = 3140 mins of existance
+  - skill{s=EndOfLife;delay="3140*60*20";sync=true} ~onSpawn
+  # Calls male if attacked
+  - signal{s=HERDUNDERATTACK} @MIR{r=25;types=Buck,BabyBuck;limit=1;conditions=[   - varEquals{var=target.Age;value=adult} true ]} ~onDamaged
+  #Drops carcass
+  - skill{s=DropDeerCarcass} ~onDeath

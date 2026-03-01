@@ -1,0 +1,21 @@
+AlligatorDeathRollStart:
+  TargetConditions:
+  - onblock{m=WATER} true
+  Skills:
+  - setstance{stance=drowningtarget} @self
+  - damage{amount=5;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=5;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+AlligatorDeathRollTick:
+  TargetConditions:
+  - onblock{m=WATER} true
+  Skills:
+  - spin{duration=3;velocity=25;delay=2}
+  - recoil{r=1}
+  - pull{velocity=10}
+  - goto{speedModifier=5} @Forward{f=1;rot=180;yo=-5}
+  - shieldbreak{duration=360}
+AlligatorDeathRollEnd:
+  TargetConditions:
+  - onblock{m=WATER} true
+  Skills:
+  - setstance{stance=default} @self

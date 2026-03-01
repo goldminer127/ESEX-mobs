@@ -1,0 +1,5 @@
+BullRetaliation:
+  Conditions:
+  - stance{s=adult;str=true} true
+  Skills:
+  - potion{type=SPEED;duration=300;level=4;hasParticles=false} @self

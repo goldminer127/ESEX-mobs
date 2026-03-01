@@ -1,0 +1,22 @@
+NightMosquitoes:
+  Type: PARROT
+  Health: 20
+  Damage: 1
+  Display: Night Mosquito
+  Faction: Wilderness
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  - OtherFactionMonsters
+  Skills:
+  - skill{s=MosquitoSweep} @target ~onAttack
+  - damage{amount=3;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true} @target ~onAttack
+  - cancelevent{sync=true} ~onAttack
+  - potion{type=SPEED;duration=60;level=1;hasParticles=false} @self ~onTimer:60 ?inCombat

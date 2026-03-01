@@ -1,0 +1,22 @@
+FreezingZombie:
+  Type: ZOMBIE
+  Health: 40
+  Damage: 10
+  Armor: 2
+  Faction: Zombie
+  Options:
+    PreventTransformation: true
+    KnockbackResistance: 0.65
+    PreventRenaming: false
+    FollowRange: 60
+    MovementSpeed: 0.2
+  Modules:
+    ThreatTable: true
+  Equipment:
+  - IceHead HEAD
+  - IceChest CHEST
+  - IceLegs LEGS
+  - IceFeet FEET
+  - AIR HAND
+  Skills:
+  - skill{s=FreezingTouch} @target ~onAttack

@@ -1,0 +1,52 @@
+AnimalFollowMale:
+  Conditions:
+  - varEquals{var=caster.Age;value=adult} true
+  - hasparent castinstead AttemptGoToMale
+  Skills:
+  - skill{s=SetMaleAsOwner}
+  
+AttemptGoToMale:
+  Skills:
+  - skill{s=GoToMale} @parent
+  
+GoToMale:
+  TargetConditions:
+  - distance{d=>12} true
+  Skills:
+  - goto{speedModifier=1;sh=4}
+
+SetMaleAsOwner:
+  Conditions:
+  - variableEquals{var=caster.Species;value="cow"} cast SetMaleAsOwnerCow
+  - variableEquals{var=caster.Species;value="pig"} cast SetMaleAsOwnerPig
+  - variableEquals{var=caster.Species;value="sheep"} cast SetMaleAsOwnerSheep
+  - variableEquals{var=caster.Species;value="deer"} cast SetMaleAsOwnerDeer
+  - variableEquals{var=caster.Species;value="goat"} cast SetMaleAsOwnerGoat
+  Skills:
+  
+SetMaleAsOwnerCow:
+  Skills:
+  - skill{s=VerifyMaleAssignment} @MIR{r=32;limit=1;sort=RANDOM;type=Bull,BabyBull}
+SetMaleAsOwnerPig:
+  Skills:
+  - skill{s=VerifyMaleAssignment} @MIR{r=32;limit=1;sort=RANDOM;type=Boar,BabyBoar}
+SetMaleAsOwnerSheep:
+  Skills:
+  - skill{s=VerifyMaleAssignment} @MIR{r=32;limit=1;sort=RANDOM;type=Ram,BabyRam}
+SetMaleAsOwnerDeer:
+  Skills:
+  - skill{s=VerifyMaleAssignment} @MIR{r=32;limit=1;sort=RANDOM;type=Stag,BabyStag}
+SetMaleAsOwnerGoat:
+  Skills:
+  - skill{s=VerifyMaleAssignment} @MIR{r=32;limit=1;sort=RANDOM;type=Buck,BabyBuck}
+  
+VerifyMaleAssignment:
+  TargetConditions:
+  - variableEquals{var=target.Age;value="adult"} true
+  - (variableEquals{var=target.Age;value="cow"} && children{a=<6}) false #Cows max packs of 6 including male
+  - (variableEquals{var=target.Age;value="pig"} && children{a=<15}) false #Pigs max packs of 15 including male
+  - (variableEquals{var=target.Age;value="sheep"} && children{a=<6}) false #Sheep max packs of 6 including male
+  - (variableEquals{var=target.Age;value="deer"} && children{a=<4}) false #Deer max packs of 4 including male
+  - (variableEquals{var=target.Age;value="goat"} && children{a=<3}) false #Goat max packs of 3 including male
+  Skills:
+  - setparent

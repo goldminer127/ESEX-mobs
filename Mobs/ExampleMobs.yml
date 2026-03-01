@@ -1,10 +1,41 @@
-# For more information, check out the plugin manual or join us on Discord:
-# http://www.mythicmobs.net
-#  
+Dummy:
+  Type: Zombie
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  #- skill{s=PlayerCombustXXX} @self ~onInteract
 
-#
-# A very buff wither skeleton
-#
+SpawnAnvil:
+  Type: Zombie
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+    Invincible: true
+  Skills:
+  - setblock{m=ANVIL;md=0} @Location{location=-33,100,87} ~onTimer:5 #~onInteract
+
+DeathTouchZombie:
+  Type: Zombie
+  Display: '&5Death Touch'
+  Health: 50
+  Options:
+    AlwaysShowName: true
+    PreventSunburn: true
+    MovementSpeed: .425
+  Skills:
+  - potion{type=GLOWING;duration=9999999} @self ~onSpawn
+  - damage{amount=5000;ignorearmor=true;repeat=20;repeatinterval=2} @target ~onAttack
+  Drops:
+  - PrimeCoin 1 1
+  - SchlattCoin 1 1
+
 SkeletalKnight:
   Type: WITHER_SKELETON
   Display: '&aSkeletal Knight'

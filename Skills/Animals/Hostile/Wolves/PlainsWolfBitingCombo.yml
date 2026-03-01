@@ -1,0 +1,17 @@
+PlainsWolfBitingCombo:
+  Cooldown: 10
+  Skills:
+  - sound{s=entity.wolf.growl;v=1;p=0.85} @self
+  - sound{s=entity.wolf.ambient;v=1;p=0.85} @self
+  - setstance{stance=biting} @self
+  - skill{s=PlainsWolfRampUpBite;repeat=2;repeatInterval=10;sync=true}
+  - setVariable{var=caster.BiteStrikes;value=0;delay=40;sync=true} @self
+  - setstance{stance=default;delay=40;sync=true} @self
+PlainsWolfRampUpBite:
+  TargetConditions:
+  - distance{d=<2.5} true
+  Skills:
+  - lunge{velocity=0.5;velocityY=0}
+  - damage{amount=1.6;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=1.6;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - variableadd{var=caster.BiteStrikes;amount=1} @self

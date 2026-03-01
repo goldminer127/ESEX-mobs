@@ -1,0 +1,9 @@
+EntSignalMob:
+  Type: SILVERFISH
+  Options:
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  Skills:
+  - skill{s=SpawnEntTriggerDelay} ~onSpawn

@@ -1,0 +1,17 @@
+AdultBehaviour:
+  Skills:
+  - skill{s=AttachAdultAggroBehaviour}
+  - skill:RenameBabyToAdult{NewName=<skill.AdultName>}
+  - setvariable{var=caster.Age;type=STRING;val=adult}
+  - runaigoalselector{goal=clear}
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=lookatplayers}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=eatgrass}
+  
+AttachAdultAggroBehaviour:
+  Conditions:
+  - varEquals{var=caster.Aggression;value=defensive} true
+  Skills:
+  - runaitargetselector{target=clear}
+  - runaitargetselector{target=attacker}

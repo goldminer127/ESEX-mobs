@@ -1,0 +1,22 @@
+Jaguar:
+  Type: WOLF
+  Health: 40
+  Damage: 1
+  Display: Jaguar
+  Faction: Wilderness
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - leapattarget
+  - randomstroll
+  - lookatplayers
+  - randomlookaround
+  Options:
+    Silent: true
+  Skills:
+  - skill{s=JaguarBite} @target ~onAttack
+  - skill{s=JaguarPounce} @target ~onTimer:20
+  - skill{s=AggroNight} @self ~onTimer:20 ?!hasowner
+  - skill{s=ApplyPotion;cooldown=50;potionType=INVISIBILITY;duration=600;level=1} @self ~onTimer:20 ?night
+  - skill{s=AttemptTame} @trigger ~onInteract ?~holding{m=BREAD}
+  - cancelevent{sync=true} ~onAttack

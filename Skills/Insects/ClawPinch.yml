@@ -1,0 +1,4 @@
+ClawPinch:
+  Skills:
+  - damage{amount=3.5;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=3.5;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}

@@ -1,0 +1,54 @@
+#Contains commonly reused skills. Skills contained here are never unique to a single mob.
+SwordBash:
+  Cooldown: 8
+  Skills:
+  - damage{a=2;pi=true}
+  - throw{velocity=10;velocityY=1;}
+  - sound{s=entity.zombie.attack_iron_door;v=1;p=1}
+  - skill{s=ChangeTargetNearest}
+  - shieldbreak{duration=100}
+  
+SwordBlock:
+  Conditions:
+  - stance{s=BlockReady} true
+  - damagecause{cause=ENTITY_ATTACK} true
+  Skills:
+  - look{headOnly=false}
+  - effect:playanimation{a=0;audience=World} @self
+  - throw{velocity=10;velocityY=1;}
+  - sound{s=entity.zombie.attack_iron_door;v=1;p=0}
+  - particles{particle=fireworks_spark;a=10;hs=0.3;vs=0.3;y=0.3;s=0.1125}
+  - particles{particle=sweep_attack;a=1;y=1;fo=true}
+  - skill{s=ChangeTargetNearest}
+  - setstance{stance=BlockDown} @self
+  - delay 70 #Cooldown
+  - skill{s=SwordBlockReady} @self
+ReadySwordBlock:
+  Conditions:
+  - stance{s=BlockReady} true
+  Skills:
+  - potion{type=DAMAGE_RESISTANCE;duration=35;level=255;p=false}
+SwordBlockReady:
+  Skills:
+  - sound{s=item.armor.equip_iron;v=1;p=2}
+  - setstance{stance=BlockReady}
+  
+ChangeRandomTarget:
+  Skills:
+  - threat{amount=0;mode=set}
+  - threat{amount=10000} @PlayersInRadius{r=24;limit=1;sort=RANDOM}
+  
+ChangeTargetNearest:
+  Skills:
+  - threat{amount=0;mode=set}
+  - threat{amount=10000} @NearestPlayer
+
+KillMinions:
+  Skills:
+  - signal{s=PARENTDEAD}
+MinionSuicide:
+  Skills:
+  - delay 1to60
+  - damage{a=9999;ieff=true;ia=true;ir=true;ii=true;ie=true;pi=true;repeat=2;repeatInterval=5}
+  - delay 10
+  - sethealth{a=0}

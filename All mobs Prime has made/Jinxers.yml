@@ -1,0 +1,83 @@
+fallenHaloWarden:
+  Type: Iron_Golem
+  Health: 200
+  Armor: 10
+  Damage: 15
+  Display: '&3Fallen Halo Warden'
+  Faction: Jinxers
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  - monsters
+  - golems
+  Skills:
+  #- skill{s=fHWbasicSlash} #"Most Basic Attack.The Slashes comes from 3 different directions"
+  #- skill{s=fHWmansBestFriend} 
+  #- skill{s=fHWhaloBarrierShieldStartup} @self ~onSpawn
+  #- skill{s=fHWhaloBarrier} @self ~onDamaged <85% #haha it looks like whale barrier
+  #- skill{s=fHWhollowEyes} @self
+  #- skill{s=fHWchangeWeapons} @self #currently just a copy of frozenResurrectedSoldiersSpawn
+  BossBar:
+    Enabled: true
+    Title: '&3Fallen Halo Warden'
+    Color: WHITE
+
+fallenHaloWardenHound:
+  Type: Wolf
+  Health: 20
+  Armor: 6
+  Damage: 6
+  Display: '&3Fallen Warden Hound'
+  Faction: Jinxers
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: false
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=fHWHCursedBeam} @target ~onTimer:20
+  - skill{s=fHWHCursedClaw} @target ~onAttack .3
+  
+Jinxer:
+  Type: Stray
+  Health: 15
+  Armor: 2
+  Damage: 6
+  Display: '&5Jinx'
+  Faction: Jinxers
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: false
+  Equipment:
+  - redstone_torch HAND
+  - Elytra CHEST
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=jinxCurseExposure} @target ~onTimer:60
+  #- skill{s=jinxCursedFlames} @target ~onAttack #i havent coded this but the effect sounds a lot like the last one so holding off
+
+

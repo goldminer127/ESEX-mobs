@@ -1,0 +1,9 @@
+FallenViking:
+  Health: 22
+  Type: WITHER_SKELETON
+  Equipment:
+  - CARVED_PUMPKIN HEAD
+  - IRON_AXE HAND
+  - SHIELD OFFHAND
+  Options:
+    PreventOtherDrops: true

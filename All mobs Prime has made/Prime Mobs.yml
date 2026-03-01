@@ -1,0 +1,205 @@
+VoidReaver:
+  Type: Enderman
+  Display: '&cVoid Reaver'
+  Health: 100
+  Damage: 5
+  Options:
+    MovementSpeed: 0.135
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=voidReaverPrison} ~onTimer:200
+  - jsonmessage{m="[{'text':'&cYou have been detained. Await your sentence at the end of Time.'}]"} @trigger ~onPlayerKill
+  
+theBirch:
+  Type: Zombie
+  Display: '&7Birch'
+  Health: 100
+  Damage: 5
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=woodenToolCheck} @trigger ~onDamaged
+  - actionmessage{m=" &6HP &c&l<mob.hp> &f/ &c&l<mob.mhp> &f/ &6<mob.level>"} @PIR{r=20} ~onTimer:10
+
+raidBossLOLArena:
+  Type: Zombie
+  Display: '&bRaid Boss'
+  Health: 100
+  Damage: 5
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=raidBossLOLArenaSpawn} @self ~onInteract
+  - actionmessage{m="&6HP &c&l<mob.hp> &f/ &c&l<mob.mhp>"} @PIR{r=20} ~onTimer:10
+
+Cerastes:
+  Type: Zombie
+  Display: '&bCerastes'
+  Health: 100
+  Damage: 5
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=setPhaseDelay} @self ~onSpawn
+  - skill{s=healthBarActionMessage} @PIR{r=20} ~onTimer:10
+  - setvar{var=caster.phase;type=STRING;val="&3&lPHASE 1"} @self ~onSpawn
+  - setvar{var=caster.phase;type=STRING;val="&2&lPHASE 2"} @self ~onTimer:10 =25%-75%
+  - setvar{var=caster.phase;type=STRING;val="&1&lPHASE 3"} @self ~onTimer:10 <25%
+  - skill{s=startPhase2} @self ~onTimer:10 =25-75%
+  - skill{s=startPhase3} @self ~onTimer:10 <25%
+  - skill{s=P1} @pir{r=32} ~onDamaged
+  - skill{s=P2} @pir{r=32} ~onDamaged
+  - skill{s=P3} @pir{r=32} ~onDamaged
+
+differentColorProj:
+  Type: Zombie
+  Display: '&cRed &aGreen &9Blue'
+  Health: 100
+  Damage: 5
+  Options:
+    AlwaysShowName: false
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - randomskill{skills=differentColorProjBlue,differentColorProjRed,differentColorProjGreen} @pir{r=32} ~onTimer:100
+
+totemSpawner:
+  Type: Zombie
+  Display: '&dTotem Spawner'
+  Health: 100
+  Damage: 5
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=totemSpawnerProj} @pir{r=32} ~onTimer:200
+  - actionmessage{m="&6HP &c&l<mob.hp> &f/ &c&l<mob.mhp>"} @PIR{r=20} ~onTimer:10
+
+totemSpawned:
+  Type: Zombie
+  Display: '&dTotem'
+  Health: 20
+  Damage: 5
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Disguise: armor_stand
+  Skills:
+  - skill{s=totemSpawnedHeal} @MIR{type=totemSpawner;r=50} ~onTimer:100
+
+bigArmor:
+  Type: Zombie
+  Display: 'big'
+  Health: 100
+  Damage: 5
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=damageNegation;sync=true} ~onDamaged ?~isPlayer
+  - skill{s=littleDudes} @self ~onDamaged <50%
+  - skill{s=littleDudes} @self ~onInteract
+  - skill{s=consumeLittleDude} ~onSignal:armorMobHeal
+  - remove @MobsInRadius{type=littleDude;r=100} ~onDeath
+  - actionmessage{m="&6HP &c&l<mob.hp> &f/ &c&l<mob.mhp>"} @PIR{r=20} ~onTimer:10
+
+littleDude:
+  Type: Baby_Zombie
+  Display: 'little'
+  Health: 5
+  Damage: 15
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    #NoAI: true
+    ReviveHealth: 2
+  Skills:
+  - skill{s=dieImmortal;sync=true} @self ~onDeath
+  - skill{s=dieAndHeal} ~onTimer:5
+  - skill{s=littleDudeCD} ~onSignal:littleDudeDie
+
+ReaperSoul:
+  Type: Cow
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - model{mid=Soul} @self ~onSpawn
+  - model{mid=Soul} @self ~onLoad
+  #- DefaultState{mid=Soul;s=soul_idle} @self ~onSpawn
+  #- state{mid=Soul;s=soul_idle} @self ~onSpawn
+  #- skill{s=reaperSoulHeal} @pir{r=3} ~onTimer:5
+
+JagTest:
+  Type: Wolf
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    #NoAI: true
+  Skills:
+  - model{mid=BlackJag} @self ~onSpawn
+  - model{mid=BlackJag} @self ~onLoad
+
+beamTest:
+  Type: Zombie
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    #NoAI: true
+  Skills:
+  - effect:enderbeam{d=100;y=2} @target ~onTimer:100
+
+
+
+
+
+
+

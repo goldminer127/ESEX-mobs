@@ -1,0 +1,16 @@
+GemSkeleton:
+  Type: SKELETON
+  Display: gem
+  Faction: Gemmers
+  Armor: 5
+  Modules:
+    ThreatTable: true
+  Equipment:
+  - mmoitems{type=BOW;id=MAKE_BOW} HAND
+  Options:
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Skills:
+  - skill{s=AmethystShot} @target ~onShoot
+  - cancelevent{sync=true} ~onShoot
+  - dismount ~onTimer:10

@@ -1,0 +1,15 @@
+VengfulSoul:
+  Type: VEX
+  Health: 35
+  Damage: 10
+  Modules:
+    ThreatTable: true
+  Equipment:
+  - STICK HAND
+  Options:
+    MovementSpeed: 0.4
+    PreventOtherDrops: true
+  Skills:
+  - randomskill{skills=GrabShot,LevetationShot,GrabShot} @target ~onTimer:220
+  Drops:
+  - STICK 1 1

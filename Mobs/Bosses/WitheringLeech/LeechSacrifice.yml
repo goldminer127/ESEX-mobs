@@ -1,0 +1,14 @@
+LeechSacrifice:
+  Type: Wither_Skeleton
+  Health: 30
+  Damage: 10
+  Display: 'Rotting Bones'
+  Options:
+    AlwaysShowName: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    MovementSpeed: .4
+  Equipment:
+  - AIR HAND

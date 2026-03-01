@@ -1,0 +1,24 @@
+Bleed:
+  Skills:
+  - onDamaged{
+      auraName=bleed;d=20;
+      onHit=[
+        - skill{s=ApplyBleed;duration=<skill.repeatAmount> * <skill.interval>;interval=<skill.interval>}
+      ];
+      Charges=1;
+    }
+
+ApplyBleed:
+  Conditions:
+  - (damageTag{tag=BLEED} false && damageamount{amount=>0} true)
+  Skills:
+  - Aura{
+          duration=<skill.repeatAmount> * <skill.interval>;
+          onTickSkill=BleedDamage;
+          interval=<skill.interval>;
+        }
+
+BleedDamage:
+  Skills:
+  - damage{amount=<skill.amount>;element=GENERIC;tag=BLEED;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true;ignoreshield=true}
+  - effect:particles{particle=falling_lava;amount=5;hS=0.25;vS=0.25;speed=5}

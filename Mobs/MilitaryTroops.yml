@@ -1,0 +1,172 @@
+Captain:
+  Type: SKELETON
+  Health: 40
+  Damage: 10
+  Faction: Nation1
+  Modules:
+    ThreatTable: true
+    ImmunityTable: true
+  AITargetSelectors:
+  - OtherFaction
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - lookatplayers
+  - opendoors
+  - closedoors
+  - randomlookaround
+  Equipment:
+  - IRON_HELMET HEAD
+  - DIAMOND_CHESTPLATE CHEST
+  - CHAINMAIL_LEGGINGS LEGS
+  - CHAINMAIL_BOOTS FEET
+  - AIR HAND
+  Options:
+    FollowRange: 50
+    MovementSpeed: 0.3
+  Skills:
+  - summon{t=FootSoldier;a=11;r=5;yRadius=0} @self ~onSpawn
+  - setstance{stance=frontline;delay=1} @Children ~onSpawn
+  - skill{s=SelectCloseGuards;delay=2} @Children{limit=1;sort=NEAREST} ~onSpawn
+  - skill{s=SelectGuards;delay=2} @Children{limit=1;sort=FURTHEST} ~onSpawn
+  - skill{s=DetermineStance} @ThreatTable{limit=1;sort=NEAREST} ~onTimer:2
+  - skill{s=Fallback;sync=true} @Children{limit=1;sort=RANDOM} ~onTimer:2
+  - skill{s=DrawSword;delay=5to25} @Trigger ~onEnterCombat
+  - skill{s=SheathSword;delay=200to220} @Self ~onDropCombat
+  - signal{s=COMMANDLOST} @Children ~onDeath
+  #- skill{s=PartialTargetWeakest} @EIR{limit=1;sort=RANDOM} ~onTimer:2
+  #- setvariable{var=parent.forces;value=10;type=INTEGER} ~onSpawn
+  
+FootSoldier:
+  Type: SKELETON
+  Health: 40
+  Damage: 10
+  Faction: Default
+  Modules:
+    ThreatTable: true
+    ImmunityTable: true
+  AITargetSelectors:
+  - OtherFaction
+  - ownerattacker
+  Equipment:
+  - IRON_HELMET HEAD
+  - IRON_CHESTPLATE CHEST
+  - CHAINMAIL_LEGGINGS LEGS
+  - CHAINMAIL_BOOTS FEET
+  - AIR HAND
+  Options:
+    FollowRange: 50
+    MovementSpeed: 0.4
+  Skills:
+  - setstance{stance=nocommander} @Self ~onSpawn
+  - skill{s=GuardCommander;forcesync=true} @Self ~onSignal:GUARD
+  - skill{s=CloseGuardCommander;forcesync=true} @Self ~onSignal:CLOSEGUARD
+  - skill{s=ScanThreat} @Parent ~onSignal:INTRUDER
+  - skill{s=ScanCloseThreat} @Parent ~onSignal:CLOSEINTRUDER
+  - skill{s=AttackClosestTarget} ~onSignal:ATTACKTHREAT
+  - skill{s=CloseGuardReturnToCommander} @Parent ~onTimer:10
+  #- skill{s=TargetWeakest} ~onSignal:TARGETWEAK
+  - skill{s=SwitchOut} @Self ~onSignal:SWITCH
+  - skill{s=CommanderLost} @Self ~onSignal:COMMANDLOST
+  - skill{s=FrontLineTargetting} @ThreatTable{limit=1;sort=NEAREST} ~onTimer:1
+  - skill{s=DrawSword;delay=5to25} @Trigger ~onEnterCombat
+  - skill{s=SheathSword;delay=200to220} @Self ~onDropCombat
+  
+Captain1:
+  Type: SKELETON
+  Health: 40
+  Damage: 4
+  Faction: Nation2
+  Modules:
+    ThreatTable: true
+    ImmunityTable: true
+  AITargetSelectors:
+  - OtherFaction
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - lookatplayers
+  - opendoors
+  - closedoors
+  - randomlookaround
+  Equipment:
+  - IRON_HELMET HEAD
+  - DIAMOND_CHESTPLATE CHEST
+  - CHAINMAIL_LEGGINGS LEGS
+  - CHAINMAIL_BOOTS FEET
+  - IRON_SWORD HAND
+  Options:
+    FollowRange: 30
+    MovementSpeed: 0.3
+  Skills:
+  - summon{t=FootSoldier;a=6;r=5;yRadius=0} @self ~onSpawn
+  - setstance{stance=frontline;delay=1} @Children ~onSpawn
+  - skill{s=SelectCloseGuards;delay=2} @Children{limit=1;sort=NEAREST} ~onSpawn
+  - skill{s=SelectGuards;delay=2} @Children{limit=1;sort=FURTHEST} ~onSpawn
+  - skill{s=DetermineStance} @ThreatTable{limit=1;sort=NEAREST} ~onTimer:2
+  - skill{s=Fallback;sync=true} @Children{limit=1;sort=RANDOM} ~onTimer:2
+  - signal{s=COMMANDLOST} @Children ~onDeath
+  #- skill{s=PartialTargetWeakest} @EIR{limit=1;sort=RANDOM} ~onTimer:2
+  #- setvariable{var=parent.forces;value=10;type=INTEGER} ~onSpawn
+  
+FootSoldier1:
+  Type: SKELETON
+  Health: 40
+  Damage: 4
+  Faction: Nation2
+  Modules:
+    ThreatTable: true
+    ImmunityTable: true
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - randomlookaround
+  - doNothing
+  AITargetSelectors:
+  - OtherFaction
+  Equipment:
+  - IRON_HELMET HEAD
+  - IRON_CHESTPLATE CHEST
+  - CHAINMAIL_LEGGINGS LEGS
+  - CHAINMAIL_BOOTS FEET
+  - IRON_SWORD HAND
+  Options:
+    FollowRange: 30
+  Skills:
+  - message{m="<mob.name>&f<&co> Targetting <target.name>"} @PlayersInRadius{r=30} ~onEnterCombat
+  - skill{s=TestSkill} @ThreatTable{limit=1;sort=NEAREST} ~onTimer:2
+
+FootSoldier2:
+  Type: SKELETON
+  Health: 40
+  Damage: 4
+  Faction: Default
+  Modules:
+    ThreatTable: true
+    ImmunityTable: true
+  AITargetSelectors:
+  - OtherFaction
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack{attackReach=30}
+  Equipment:
+  - GOLD_HELMET HEAD
+  - IRON_CHESTPLATE CHEST
+  - CHAINMAIL_LEGGINGS LEGS
+  - CHAINMAIL_BOOTS FEET
+  - AIR HAND
+  Options:
+    FollowRange: 30
+    MovementSpeed: 0.3
+  Skills:
+  - setstance{stance=nocommander} @Self ~onSpawn
+  - skill{s=GuardCommander;forcesync=true} @Self ~onSignal:GUARD
+  - skill{s=CloseGuardCommander;forcesync=true} @Self ~onSignal:CLOSEGUARD
+  - skill{s=ScanThreat} @Parent ~onSignal:INTRUDER
+  - skill{s=ScanCloseThreat} @Parent ~onSignal:CLOSEINTRUDER
+  - skill{s=CloseGuardReturnToCommander} @Parent ~onTimer:10
+  #- skill{s=TargetWeakest} ~onSignal:TARGETWEAK
+  - skill{s=SwitchOut} @Self ~onSignal:SWITCH
+  - skill{s=CommanderLost} @Self ~onSignal:COMMANDLOST
+  - skill{s=DrawSword;delay=5to25} @Trigger ~onEnterCombat
+  - skill{s=SheathSword;delay=200to220;cooldown=10} @Trigger ~onDropCombat

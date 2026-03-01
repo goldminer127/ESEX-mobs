@@ -1,0 +1,11 @@
+LushSkeleton:
+  Type: SKELETON
+  Health: 25
+  Display: leaf
+  Options:
+    MovementSpeed: 0.45
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Skills:
+  - dismount ~onTimer:10

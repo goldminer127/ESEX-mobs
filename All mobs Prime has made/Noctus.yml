@@ -1,0 +1,93 @@
+Noctus:
+  Type: Zombie
+  Disguise: player Ohspyz setCustomName "&cNoctus&r"
+  Display: 'Noctus'
+  Faction: Noctus
+  Options:
+    AlwaysShowName: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    MovementSpeed: 0.075
+  Skills:
+  #- skill{s=noctusDarkSeekers;repeat=2-4;repeatI=20} @PIR{r=64} ~onTimer:200
+  #- skill{s=noctusRepel} @self ~onTimer:20
+  #- skill{s=noctusSickeningBlast} ~onTimer:200\
+  #- skill{s=NoctusBeam} @MIR{r=64;t=noctusBeamRunner} ~onTimer:1
+  #
+  #- skill{s=noctusHandOfDeath} @Target ~onAttack
+  #- skill{s=noctusRaiseTheDead} @PIR{r=64} ~onTimer:100
+  #
+  #
+  
+  # ~~ DO NOT TURN THESE ABILITIES OFF ~~
+  #
+  #
+  - setvariable{var=caster.counting;value=0} @self ~onSpawn
+
+NoctusMeleeCultist:
+  Type: Skeleton
+  Disguise: player Dameetree setCustomName "&cCult Melee&r" 
+  Equipment:
+  - iron_sword hand
+  Faction: Noctus
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+  
+NoctusRangeCultist:
+  Type: Skeleton
+  Disguise: player Dameetree setCustomName "&cCult Shooter&r" 
+  Equipment:
+  - bow hand
+  Faction: Noctus
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    
+NoctusDarkMage:
+  Type: Skeleton
+  Disguise: player Dameetree setCustomName "&cDark Mage&r" 
+  Equipment:
+  - air hand
+  Faction: Noctus
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+  Skills:
+  - skill{s=noctusDarkSeekers} @PIR{r=64} ~onTimer:200
+  
+NoctusWeepingServant:
+  Type: Skeleton
+  Disguise: player Dameetree setCustomName "&cWeeping Servant&r" 
+  Equipment:
+  - air hand
+  Faction: Noctus
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+  Skills:
+  - skill{s=weepingFrenzy} @PIR{r=64} ~onTimer:20
+  - skill{s=weepDamage} ~onAttack
+  
+noctusBeamRunner:
+  Type: Silverfish
+  Options:
+    AlwaysShowName: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    Invisible: true
+    MovementSpeed: .75
+  Disguise: silverfish
+  Equipment:
+  - air hand
+  AIGoalSelectors:
+  - clear
+  Skills:
+  - skill{s=noctusRun} ~onSpawn @PIR{r=100}

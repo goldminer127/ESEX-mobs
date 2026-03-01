@@ -1,0 +1,221 @@
+TestSkill:
+  Skills:
+  - setTarget
+  - skill{s=TestSkill1}
+TestSkill1:
+  Conditions:
+  #- incombat orElseCast TestSkill3
+  - (targetwithin{d=5} false && targetwithin{d=10} cast TestSkill4) orElseCast TestSkill2
+  Skills:
+  - message{m="<mob.name>&f<&co> EHHHHHH"} @PlayersInRadius{r=30}
+TestSkill2:
+  Skills:
+  - message{m="<mob.name>&f<&co> DHFUKYHIUFHIUSHFD"} @PlayersInRadius{r=30}
+TestSkill3:
+  Skills:
+  - message{m="<mob.name>&f<&co> LLLLLLLLLL"} @PlayersInRadius{r=30}
+TestSkill4:
+  Skills:
+  - message{m="<mob.name>&f<&co> YYYYYYYYYY"} @PlayersInRadius{r=30}
+  
+SelectGuards:
+  Skills:
+  - signal{s=GUARD}
+SelectCloseGuards:
+  Skills:
+  - signal{s=CLOSEGUARD}
+DetermineStance:
+  Skills:
+  - setTarget
+  #- speak{offset=0.6f;radius=30;maxlinelength=22;lineprefix="&5";message=" Setting stance in response to <target.name>";chatprefix=<caster.name>&f<&co>;duration=200}
+  - skill{s=CommandStance} @target
+CommandStance:
+  Conditions:
+    - incombat orElseCast RestingStance
+    - ((targetwithin{d=5} cast SendCloseGuards) false || (targetwithin{d=10} cast SendGuards) false || targetnotwithin{d=5}) orElseCast CombatStance
+    - stance command false
+  Skills:
+  - speak{offset=0.6f;radius=30;maxlinelength=22;lineprefix="&5";message=" Commanding stance against <target.name>";chatprefix=<caster.name>&f<&co>;duration=200}
+  - rally{type=FootSoldier;radius=30;ot=false;rallyconditions=[  - isChild true ]} @Target
+  - runaigoalselector{goal=clear} @Self
+  - runaigoalselector{goal=lookatplayers} @Self
+  - runaigoalselector{goal=randomlookaround} @Self
+  - runaigoalselector{goal=doNothing} @Self
+  - setstance{stance=command} @Self
+CombatStance:
+  Conditions:
+    - stance combat false
+  Skills:
+  - speak{offset=0.6f;radius=30;maxlinelength=22;lineprefix="&5";message=" Fighting stance against <target.name>";chatprefix=<caster.name>&f<&co>;duration=200}
+  - runaigoalselector{goal=clear} @Self
+  - runaigoalselector{goal=meleeattack} @Self
+  - runaigoalselector{goal=opendoors} @Self
+  - runaigoalselector{goal=closedoors} @Self
+  - runaigoalselector{goal=lookatplayers}
+  - setstance{stance=combat} @Self
+RestingStance:
+  Conditions:
+    - stance rest false
+  Skills:
+  - message{m="<mob.name>&f<&co> Resting"} @PlayersInRadius{r=30}
+  - runaigoalselector{goal=clear} @Self
+  - runaigoalselector{goal=randomstroll} @Self
+  - runaigoalselector{goal=lookatplayers} @Self
+  - runaigoalselector{goal=opendoors} @Self
+  - runaigoalselector{goal=closedoors} @Self
+  - runaigoalselector{goal=randomlookaround} @Self
+  - setstance{stance=rest} @Self
+SendGuards:
+  Skills:
+  - speak{offset=0.6f;radius=30;maxlinelength=22;lineprefix="&5";message=" Guards attack <target.name>";chatprefix=<caster.name>&f<&co>;duration=200}
+  - signal{s=INTRUDER} @Children
+SendCloseGuards:
+  Skills:
+  - speak{offset=0.6f;radius=30;maxlinelength=22;lineprefix="&5";message=" Close guards attack <target.name>";chatprefix=<caster.name>&f<&co>;duration=200}
+  - signal{s=CLOSEINTRUDER} @Children
+Fallback:
+  TargetConditions:
+  - (stance guarding false && stance close false) true
+  - health{h=<20} true
+  Skills:
+  - signal{s=GUARD}
+  - clearThreat
+  - potion{type=SPEED;duration=40;level=1;hasParticles=false}
+  - signal{s=SWITCH} @Children{limit=1;sort=NEAREST}
+  - message{m="<mob.name>&f<&co> SWITCHING"} @PlayersInRadius{r=30}
+
+GuardCommander:
+  Skills:
+  - message{m="<mob.name>&f<&co> Trooper Guarding Commander"} @PlayersInRadius{r=30}
+  - setstance{stance=guarding}
+  - runaigoalselector{goal=clear}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=randomlookaround}
+  - runaigoalselector{goal=doNothing}
+CloseGuardCommander:
+  Skills:
+  - message{m="<mob.name>&f<&co> Trooper Close Guarding Commander"} @PlayersInRadius{r=30}
+  - setstance{stance=close} 
+  #- setname{name=close} @self
+  - runaigoalselector{goal=clear}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=randomlookaround}
+  - runaigoalselector{goal=doNothing}
+AttackTarget:
+  Conditions:
+  - stance frontline true
+  Skills:
+  - setTarget @ThreatTable{limit=1;sort=NEAREST}
+ScanThreat:
+  Conditions:
+  - stance guarding true
+  Skills:
+  - speak{offset=0.6f;radius=30;maxlinelength=22;lineprefix="&5";message=" Orders from.. <target.name>";chatprefix=<caster.name>&f<&co>;duration=200}
+  - skill{s=AttackThreat} @ThreatTable{limit=1;sort=NEAREST}
+ScanCloseThreat:
+  Conditions:
+  - stance close true
+  Skills:
+  - speak{offset=0.6f;radius=30;maxlinelength=22;lineprefix="&5";message=" Close Orders from.. <target.name>";chatprefix=<caster.name>&f<&co>;duration=200}
+  - skill{s=AttackThreat} @ThreatTable{limit=1;sort=NEAREST}
+AttackThreat:
+  Skills:
+  - speak{offset=0.6f;radius=30;maxlinelength=22;lineprefix="&5";message=" Targetting.. <target.name>";chatprefix=<caster.name>&f<&co>;duration=200}
+  - runaigoalselector{goal=clear} @Self
+  - runaigoalselector{goal=meleeattack} @Self
+  - setTarget
+SwitchOut:
+  Conditions:
+  - (stance guarding true || stance close true) true
+  #- health{h=>20} true
+  Skills:
+  - speak{offset=0.6f;radius=30;maxlinelength=22;lineprefix="&5";message=" Going to frontline.. <target.name>";chatprefix=<caster.name>&f<&co>;duration=200}
+  - clearThreat
+  - setstance{stance=frontline}
+  #- runaitargetselector{target=clear}
+  #- runaitargetselector{target=OtherFaction}
+  - runaigoalselector{goal=clear}
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=opendoors}
+  - runaigoalselector{goal=closedoors}
+  - runaigoalselector{goal=lookatplayers}
+  - runaigoalselector{goal=randomlookaround}
+  - setname{name=SWITCHED} @self
+ReturnToCommander:
+  Conditions:
+  - stance guarding orElseCast GroupUp
+  TargetConditions:
+  - distance{d=>10}
+  Skills:
+  - speak{offset=0.6f;radius=30;maxlinelength=22;lineprefix="&5";message=" Returning to <target.name>";chatprefix=<caster.name>&f<&co>;duration=200}
+  - clearThreat @Self
+  - goto{speedModifier=1;sh=5}
+  - skill{s=ResetGoals} @Self
+CloseGuardReturnToCommander:
+  Conditions:
+  - stance close orElseCast ReturnToCommander
+  TargetConditions:
+  - distance{d=>5}
+  Skills:
+  - speak{offset=0.6f;radius=30;maxlinelength=22;lineprefix="&5";message=" Returning to close guard <target.name>";chatprefix=<caster.name>&f<&co>;duration=200}
+  - clearThreat @Self
+  - goto{speedModifier=1;sh=2}
+  - skill{s=ResetGoals} @Self
+GroupUp:
+  Conditions:
+  - incombat false
+  TargetConditions:
+  - distance{d=<10} false
+  - playerwithin{d=12} false #targeter should be parent
+  - incombat false
+  Skills:
+  - goto{speedModifier=1;sh=5}
+  #- message{m="<mob.name>&f<&co> Trooper to captain"} @PlayersInRadius{r=30}
+ResetGoals:
+  Skills:
+  - speak{offset=0.6f;radius=30;maxlinelength=22;lineprefix="&5";message=" Resetting Goals";chatprefix=<caster.name>&f<&co>;duration=200}
+  - runaigoalselector{goal=clear}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=lookatplayers}
+  - runaigoalselector{goal=randomlookaround}
+  - runaigoalselector{goal=opendoors}
+  - runaigoalselector{goal=closedoors}
+  - runaigoalselector{goal=doNothing}
+CommanderLost:
+  Skills:
+  - setstance{stance=nocommander}
+  #- runaitargetselector{target=clear}
+  #- runaitargetselector{target=OtherFaction}
+  - runaigoalselector{goal=clear}
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=randomstroll}
+  - runaigoalselector{goal=opendoors}
+  - runaigoalselector{goal=closedoors}
+  - runaigoalselector{goal=lookatplayers}
+  - runaigoalselector{goal=randomlookaround}
+  - speak{offset=0.6f;radius=30;maxlinelength=22;lineprefix="&5";message=" Commander Dead <target.name>";chatprefix=<caster.name>&f<&co>;duration=200}
+FrontLineTargetting:
+  Conditions:
+  - stance frontline
+  Skills:
+  - setTarget
+  
+DrawSword:
+  Conditions:
+  - incombat true
+  - holding{m=AIR} true
+  TriggerConditions:
+  - isparent false
+  Skills:
+  - equip{item=iron_sword HAND} @Self
+  - sound{s=item.trident.throw;sc=master;v=10;p=0.1to2.0} @Self
+SheathSword:
+  Cooldown: 20
+  Conditions:
+  - holding{m=IRON_SWORD} true
+  - incombat false
+  Skills:
+  - speak{offset=0.6f;radius=30;maxlinelength=22;lineprefix="&5";message=" Sheathing Sword";chatprefix=<caster.name>&f<&co>;duration=200}
+  - equip{item=air HAND} @Self
+  - sound{s=item.trident.throw;sc=master;v=10;p=0.1to2.0} @Self

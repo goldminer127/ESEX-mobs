@@ -1,0 +1,16 @@
+NightWidow:
+  Type: Spider
+  Health: 20
+  Damage: 1
+  Display: Night Widow
+  Faction: Wilderness
+  AITargetSelectors:
+  - OtherFactionMonsters
+  Options:
+    PreventOtherDrops: true
+  Skills:
+  - potionclear{delay=10} @self ~onSpawn
+  - skill{s=PoisonousBite} @target ~onAttack
+  - skill{s=ShootWeb;WebDuration=100;WebLevel=3} @target ~onTimer:160
+  - cancelevent{sync=true} ~onAttack
+  - dismount ~onTimer:10

@@ -1,0 +1,93 @@
+noctusDarkSeekers:
+  Skills:
+  - missile{onTick=noctusDarkSeekers-Tick;onHit=noctusDarkSeekers-Hit}
+
+noctusDarkSeekers-Tick:
+  Skills:
+  - effect:particles{p=spell_mob;amount=10} @origin
+  
+noctusDarkSeekers-Hit:
+  Skills:
+  - effect:particles{p=lava;a=50}
+  - effect:sound{s=entity.generic.explode;v=1;p=0}
+  - damage{a=1;i=false}
+  
+noctusRepel:
+  Conditions:
+  - variableEquals{var=caster.counting;value=5} orElseCast noctusCount
+  #- playernotwithin{d=10} orElseCast noctusCount
+  Skills:
+  - throw{velocity=10;velocityY=5;repeat=2;repeatInterval=2} @PIR{r=7}
+  - potion{type=slow;duration=50;level=1} @PIR{r=7}
+  - message{m="repel"} @PlayersInRadius{r=7}
+  - setvariable{var=caster.counting;value=0}
+  
+noctusCount:
+  Conditions:
+  - playerwithin{d=5} true
+  Skills:
+  - variableadd{var=caster.counting;amount=1}
+  #- message{m="<caster.var.counting>"} @PlayersInRadius{r=7}
+  
+noctusSickeningBlast:#this is a bad skill i was just lazy and it was for showcasing
+  Skills:
+  - summon{t=noctusBeamRunner} @location{c=-140.3,44.5,-305}
+  #- skill{s=NoctusBeam} @MIR{r=64;t=noctusBeamRunner} ~onTimer:1
+
+noctusRun:
+  Skills:
+  - delay 20
+  - goto{} @location{c=-160,44,-304.3}
+  - delay 10
+  - goto{} @location{c=-165,44,-304.3}
+  - delay 10
+  - goto{} @location{c=-167,44,-304.3}
+  - delay 10
+  - goto{} @location{c=-175,44,-304.3}
+  - delay 15
+  - remove @self
+
+NoctusBeam:
+  Skills:
+   - projectile{onTick=NoctusBeam-Tick;oH=NoctusBeam-Hit;v=75;i=1;sE=false;sB=false}
+NoctusBeam-Tick:
+  Skills:
+  - effect:particleline{particle=flame;amount=5;syo=1;tyo=1;sE=false;sB=false}
+NoctusBeam-Hit:
+  Skills:
+  - damage{a=1}
+  - potion{type=poison;duration=100;level=1}
+
+  
+noctusHandOfDeath:
+  Conditions:
+  - targetwithin 5
+  Skills:
+  - playanimation{a=3;audience=World} @Self
+  - damagepercent{p=0.5;c=true;ia=true}
+  
+noctusRaiseTheDead:
+  Skills:
+  - summon{type=NoctusMeleeCultist;amount=0-1;r=12;os=true;if=true}
+  - summon{type=NoctusRangeCultist;amount=0-1;r=12;os=true;if=true}
+  - summon{type=NoctusDarkMage;amount=0-1;r=12;os=true;if=true}
+  - summon{type=NoctusWeepingServant;amount=0-1;r=12;os=true;if=true}
+
+
+weepingFrenzy:
+  Conditions:
+  - targetwithin 10 orElseCast weepingCry
+  Skills:
+  - setspeed{speed=1.65} @self
+  
+weepingCry:
+  Skills:
+  - setspeed{speed=0} @self
+
+weepDamage:
+  Skills:
+  - delay 2
+  - damage{a=1} @Target
+  - delay 10
+  - playanimation{a=3;audience=World} @Self
+  - damage{a=1} @Target

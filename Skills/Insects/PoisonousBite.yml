@@ -1,0 +1,6 @@
+PoisonousBite:
+  Skills:
+  - skill{s=ContactPoisonEffect;duration=200;level=0}
+  - damage{amount=2;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=2;element=POISON;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=1;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}

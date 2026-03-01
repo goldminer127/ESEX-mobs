@@ -1,0 +1,5 @@
+EndOfLife:
+  Skills:
+  - sound{s=entity.player.hurt;v=1;p=0.75} @self
+  - effect:particles{p=cloud;a=15;spread=1;hSpread=0.5} @self
+  - remove @self

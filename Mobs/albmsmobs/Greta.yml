@@ -1,0 +1,21 @@
+GretatheMoonWitch:
+  Type: Illusioner
+  Display: 'Greta'
+  Health: 400
+  Damage: 6
+  Skills:
+  - speak{m="You should not have come here!";cooldown=40} @PlayersInRadius{r=40}
+    ~onCombat >0 0.2
+  - speak{m="May the moon guide you, <trigger.name>!"} @PlayersInRadius{r=40} ~onPlayerKill
+    >0 1
+  BossBar:
+    Enabled: true
+    Title: 'Greta The Moon Witch'
+    Range: 20
+    Color: RED
+    Style: SOLID
+  Options:
+    AlwaysShowName: true
+    MovementSpeed: 0.3
+    MaxCombatDistance: 25
+    PreventOtherDrops: true

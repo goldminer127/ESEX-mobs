@@ -1,0 +1,348 @@
+#Ignus skills:
+
+ignusFlamethrower:
+  Skills:
+  - aura{i=1;d=140;oT=ignusFlamethrowerProjectile} @self
+ignusFlamethrowerProjectile:
+  Skills:
+  - projectile{i=1;oT=ignusFTTick;oH=ignusFTHit;mr=20;sE=false;v=20} @pir{r=32}
+ignusFTTick:
+  Skills:
+  - effect:particles{p=flame;a=5;s=0.05;hs=0.1;vs=0.1} @origin
+ignusFTHit:
+  Skills:
+  - damage{a=2;pkb=true}
+  - ignite{t=100}  
+  
+ignusFlameBladeSkill:
+  Skills:
+  #- play animation - raise hand and equip the sword
+  #- play sound
+  - equip{item=ignusFlameBladeItem HAND}
+  - setstance{stance=ignusFlameBladeStance} @self
+
+ignusFlameBladeSlashes:
+  Conditions:
+  - stance{s=ignusFlameBladeStance;str=true} true
+  Skills:
+  # charges at opponent - 
+  # slashes
+  - skill{s=ignusFlameBladeSlashes1} @Target
+  
+ignusFlameBladeSlashes1:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="1"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=4}
+  - ignite{ticks=100} @target .15
+  - delay 10
+  - skill{s=ignusFlameBladeSlashes2} @Target .9
+ignusFlameBladeSlashes2:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="2"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=5}
+  - ignite{ticks=100} @target .15
+  - delay 10
+  - skill{s=ignusFlameBladeSlashes3} @Target .9
+ignusFlameBladeSlashes3:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="3"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=6}
+  - ignite{ticks=100} @target .15
+  - delay 10
+  - skill{s=ignusFlameBladeSlashes4} @Target .5
+ignusFlameBladeSlashes4:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="4"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=7}
+  - ignite{ticks=100} @target .15
+  - delay 10
+  - skill{s=ignusFlameBladeSlashes5} @Target .5
+ignusFlameBladeSlashes5:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="5"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=8}
+  - ignite{ticks=100} @target .15
+
+ignusFlameGuard:
+  Conditions:
+  - stance{s=ignusFlameBladeStance;str=true} true
+  - damagecause{cause=ENTITY_ATTACK} orElseCast ignusFlameGuard2
+  - offgcd
+  Skills:
+  #-play animation
+  - potion{type=DAMAGE_RESISTANCE;duration=120;level=255;p=true}
+  - message{m="guard atk"} @PlayersInRadius{r=30}
+  - sound{s=item.armor.equip_iron;v=1;p=2;cd=10}
+  - gcd{ticks=200}
+
+ignusFlameGuard2:
+  Conditions:
+  - stance{s=ignusFlameBladeStance;str=true} true
+  - damagecause{cause=PROJECTILE} true
+  - offgcd
+  Skills:
+  #-play animation
+  - potion{type=DAMAGE_RESISTANCE;duration=200;level=255;p=true}
+  - message{m="guard proj"} @PlayersInRadius{r=30}
+  - sound{s=item.armor.equip_iron;v=1;p=2}
+  - gcd{ticks=200}  
+  
+#Blue Ignus skills:
+
+blueIgnusFlamethrower:
+  Skills:
+  - aura{i=1;d=140;oT=blueIgnusFlamethrowerProjectile} @self
+blueIgnusFlamethrowerProjectile:
+  Skills:
+  - projectile{i=1;oT=blueIgnusFTTick;oH=blueIgnusFTHit;mr=20;sE=false;v=20} @pir{r=32}
+blueIgnusFTTick:
+  Skills:
+  - effect:particles{p=flame;a=5;s=0.05;hs=0.1;vs=0.1} @origin
+blueIgnusFTHit:
+  Skills:
+  - damage{a=3;pkb=true}
+  - ignite{t=120}
+  
+blueIgnusFlameBladeSkill:
+  Skills:
+  #- play animation - raise hand and equip the sword
+  #- play sound
+  - equip{item=ignusFlameBladeItem HAND}
+  - setstance{stance=blueIgnusFlameBladeStance} @self
+
+blueIgnusFlameBladeSlashes:
+  Conditions:
+  - stance{s=blueIgnusFlameBladeStance;str=true} true
+  Skills:
+  # charges at opponent - 
+  # slashes
+  - skill{s=blueIgnusFlameBladeSlashes1} @Target
+  
+blueIgnusFlameBladeSlashes1:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="1"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=5}
+  - ignite{ticks=100} @target .25
+  - delay 10
+  - skill{s=blueIgnusFlameBladeSlashes2} @Target .9
+blueIgnusFlameBladeSlashes2:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="2"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=6}
+  - ignite{ticks=100} @target .25
+  - delay 10
+  - skill{s=blueIgnusFlameBladeSlashes3} @Target .9
+blueIgnusFlameBladeSlashes3:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="3"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=7}
+  - ignite{ticks=100} @target .25
+  - delay 10
+  - skill{s=blueIgnusFlameBladeSlashes4} @Target .5
+blueIgnusFlameBladeSlashes4:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="4"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=8}
+  - ignite{ticks=100} @target .25
+  - delay 10
+  - skill{s=blueIgnusFlameBladeSlashes5} @Target .5
+blueIgnusFlameBladeSlashes5:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="5"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=9}
+  - ignite{ticks=100} @target .25
+
+blueIgnusFlameGuard:
+  Conditions:
+  - stance{s=blueIgnusFlameBladeStance;str=true} true
+  - damagecause{cause=ENTITY_ATTACK} orElseCast blueIgnusFlameGuard2
+  - offgcd
+  Skills:
+  #-play animation
+  - potion{type=DAMAGE_RESISTANCE;duration=160;level=255;p=true}
+  - message{m="guard atk"} @PlayersInRadius{r=30}
+  - sound{s=item.armor.equip_iron;v=1;p=2;cd=10}
+  - gcd{ticks=200}
+
+blueIgnusFlameGuard2:
+  Conditions:
+  - stance{s=blueIgnusFlameBladeStance;str=true} true
+  - damagecause{cause=PROJECTILE} true
+  - offgcd
+  Skills:
+  #-play animation
+  - potion{type=DAMAGE_RESISTANCE;duration=200;level=255;p=true}
+  - message{m="guard proj"} @PlayersInRadius{r=30}
+  - sound{s=item.armor.equip_iron;v=1;p=2}
+  - gcd{ticks=200}  
+  
+#Black Ignus skills:  
+  
+blackIgnusFlamethrower:
+  Skills:
+  - aura{i=1;d=140;oT=blackIgnusFlamethrowerProjectile} @self
+blackIgnusFlamethrowerProjectile:
+  Skills:
+  - projectile{i=1;oT=blackIgnusFTTick;oH=blackIgnusFTHit;mr=20;sE=false;v=20} @pir{r=32}
+blackIgnusFTTick:
+  Skills:
+  - effect:particles{p=flame;a=5;s=0.05;hs=0.1;vs=0.1} @origin
+blackIgnusFTHit:
+  Skills:
+  - damage{a=3;pkb=true}
+  - ignite{t=140}  
+  
+blackIgnusFlameBladeSkill:
+  Skills:
+  #- play animation - raise hand and equip the sword
+  #- play sound
+  - equip{item=ignusFlameBladeItem HAND}
+  - setstance{stance=blackIgnusFlameBladeStance} @self
+
+blackIgnusFlameBladeSlashes:
+  Conditions:
+  - stance{s=ignusFlameBladeStance;str=true} true
+  Skills:
+  # charges at opponent - 
+  # slashes
+  - skill{s=blackIgnusFlameBladeSlashes1} @Target
+  
+blackIgnusFlameBladeSlashes1:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="1"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=6}
+  - ignite{ticks=100} @target .35
+  - delay 10
+  - skill{s=blackIgnusFlameBladeSlashes2} @Target .9
+blackIgnusFlameBladeSlashes2:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="2"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=7}
+  - ignite{ticks=100} @target .35
+  - delay 10
+  - skill{s=blackIgnusFlameBladeSlashes3} @Target .9
+blackIgnusFlameBladeSlashes3:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="3"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=8}
+  - ignite{ticks=100} @target .35
+  - delay 10
+  - skill{s=blackIgnusFlameBladeSlashes4} @Target .5
+blackIgnusFlameBladeSlashes4:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="4"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=9}
+  - ignite{ticks=100} @target .35
+  - delay 10
+  - skill{s=blackIgnusFlameBladeSlashes5} @Target .5
+blackIgnusFlameBladeSlashes5:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="5"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=10}
+  - ignite{ticks=100} @target .35
+
+blackIgnusFlameGuard:
+  Conditions:
+  - stance{s=blackIgnusFlameBladeStance;str=true} true
+  - damagecause{cause=ENTITY_ATTACK} orElseCast blackIgnusFlameGuard2 
+  - offgcd
+  Skills:
+  #-play animation
+  - potion{type=DAMAGE_RESISTANCE;duration=200;level=255;p=true}
+  - message{m="guard atk"} @PlayersInRadius{r=30}
+  - sound{s=item.armor.equip_iron;v=1;p=2;cd=10}
+  - gcd{ticks=200}
+  
+blackIgnusFlameGuard2:
+  Conditions:
+  - stance{s=blackIgnusFlameBladeStance;str=true} true
+  - damagecause{cause=PROJECTILE} true
+  - offgcd
+  Skills:
+  #-play animation
+  - potion{type=DAMAGE_RESISTANCE;duration=200;level=255;p=true}
+  - message{m="guard proj"} @PlayersInRadius{r=30}
+  - sound{s=item.armor.equip_iron;v=1;p=2}
+  - gcd{ticks=200}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

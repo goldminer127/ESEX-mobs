@@ -1,0 +1,146 @@
+SkullDark:
+  Type: BEE
+  Health: 100
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+  Skills:
+  - skill{s=blackMonitor} ~onTimer:300 @PIR{r=100} 
+  - skill{s=darkProjectileStart} ~onTimer:200 @PIR{r=100}
+  AIGoalSelectors:
+  - clear
+  - fleeplayers
+  - randomstroll
+  BossBar:
+    Enabled: true
+    Title: 'Dark Skull'
+    Color: BLACK
+  DamageModifiers:
+  - PROJECTILE 0.75
+  - ENTITY_ATTACK 1.15
+
+SkullFire:
+  Type: BEE
+  Health: 100
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+  Skills:
+  - skill{s=ExplosiveBlast} ~onTimer:300 @self
+  - skill{s=ExplosiveBlast} ~onTimer:300 @PIR{r=50}
+  - skill{s=fireProjectileStart} ~onTimer:200 @PIR{r=100}
+  AIGoalSelectors:
+  - clear
+  - fleeplayers
+  - randomstroll
+  BossBar:
+    Enabled: true
+    Title: 'Fire Skull'
+    Color: RED
+  DamageModifiers:
+  - BLOCK_EXPLOSION -0.25
+  - ENTITY_EXPLOSION -0.25
+  - FIRE -1
+  - FIRE_TICK -1
+
+SkullWind:
+  Type: BEE
+  Health: 100
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+  Skills:
+  - skill{s=windThrow} ~onTimer:140 @PlayersInRadius{r=100} 
+  - skill{s=windProjectileStart} ~onTimer:200 @PIR{r=100}
+  AIGoalSelectors:
+  - clear
+  - fleeplayers
+  - randomstroll
+  BossBar:
+    Enabled: true
+    Title: 'Wind Skull'
+    Color: WHITE
+  DamageModifiers:
+  - PROJECTILE 1.2
+  
+
+SkullEarth:
+  Type: BEE
+  Health: 100
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+  Skills:
+  - randomskill{skills= summonObbyHead 1, summonStoneHead 4, summonDirtHead 4} @self ~onTimer:160
+  - skill{s=earthProjectileStart} ~onTimer:200 @PIR{r=100}
+  AIGoalSelectors:
+  - clear
+  - fleeplayers
+  - randomstroll
+  BossBar:
+    Enabled: true
+    Title: 'Earth Skull'
+    Color: GREEN
+  DamageModifiers:
+  - ENTITY_ATTACK -0.5
+  - FIRE 0.5
+  - FIRE_TICK 0.5
+  
+SkullWater:
+  Type: BEE
+  Health: 100
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+  Skills:
+  - skill{s=TridentBarrage} #@PIR{r=64} ~onTimer:190
+  - skill{s=waterProjectileStart} ~onTimer:200 @PIR{r=100}
+  AIGoalSelectors:
+  - clear
+  - fleeplayers
+  - randomstroll
+  BossBar:
+    Enabled: true
+    Title: 'Water Skull'
+    Color: BLUE
+  DamageModifiers:
+  - FIRE 0.75
+  - FIRE_TICK 0.75
+  - PROJECTILE 0.85
+  
+SkullIce:
+  Type: BEE
+  Health: 100
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+  BossBar:
+    Enabled: true
+    Title: 'Ice Skull'
+    Color: BLUE
+  Skills:
+  - skill{s=summonMeleeStray} @self ~onTimer:90
+  - skill{s=IceSkullField} @PIR{r=64} ~onTimer:15
+  - skill{s=iceProjectileStart} ~onTimer:200 @PIR{r=100}
+  #- skill{s=summonMobs (ice/snow melee mobs?)}
+  - damage{a=500} @MIR{r=64;t=meleeStray} ~onDeath
+  AIGoalSelectors:
+  - clear
+  - fleeplayers
+  - randomstroll
+  DamageModifiers:
+  - FIRE 1.15
+  - FIRE_TICK 1.15
+  - ENTITY_ATTACK 1.15

@@ -1,0 +1,94 @@
+WindEagle:
+  Type: Blaze
+  Options:
+    Silent: true
+    MovementSpeed: .4
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  #Disguise: Bat
+  Skills:
+  - skill{s=windEagleBleed;repeat=3;repeatinterval=20} @Target ~onAttack
+  
+#NightWolf:
+#  Type: Wolf
+#  #Disguise: Wolf
+#  Faction: NightHowl
+#  AIGoalSelectors:
+#  - clear
+#  - meleeattack
+#  - randomstroll
+#  AITargetSelectors:
+#  - clear
+#  - players
+#  Skills:
+#  - skill{s=nightSpawn} @self ~onSpawn 
+#  - skill{s=moonHowl} @self ~onSpawn 0.2
+#  - skill{s=starHowl} @self ~onSpawn 0.2
+  
+NightWolfSpawned:
+  Type: Wolf
+  #Disguise: Wolf
+  Faction: NightHowl
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=moonHowl} @self ~onSpawn 0.01
+  - skill{s=starHowl} @self ~onSpawn 0.01
+  
+MoonHowlBoss:
+  Type: Wolf
+  Health: 180
+  Damage: 20
+  Display: '&8Moon Howler'
+  #Disguise: Polar_Bear
+  Faction: NightHowl
+  Options:
+    AlwaysShowName: true
+  BossBar:
+    Enabled: true
+    Title: '&8Moon Howler'
+    Color: WHITE
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=moonHowlBuff} @self ~onTimer:100 
+  #- skill{s=moonHowlBuff} @PIR{r=64} ~onTimer:100 
+
+StarHowlBoss:
+  Type: Wolf
+  Health: 120
+  Damage: 40
+  Display: '&7Star Howler'
+  #Disguise: Polar_Bear
+  Faction: NightHowl
+  Options:
+    AlwaysShowName: true
+  BossBar:
+    Enabled: true
+    Title: '&7Star Howler'
+    Color: WHITE
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=starHowlBuff} @self ~onTimer:100 
+  #- skill{s=starHowlBuff} @PIR{r=64} ~onTimer:100

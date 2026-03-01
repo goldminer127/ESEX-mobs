@@ -1,0 +1,22 @@
+TestGun:
+  Id: BLAZE_ROD
+  Model: 10
+  Display: '<purple>X-97 Testing Phaser'
+  Ammo:
+    Enabled: TRUE
+    ConsumeOnUse: true
+    Bullet: TestAmmo
+    ClipSize: 10
+    AmmoPerItem: 1
+  Lore:
+  - "&7Ammunition 10 / 10"
+  Skills:
+  - consumeammo{amount=1; onNoAmmo=TestGun-OutOfAmmo; onUse=TestGun-Fire} @self ~onUse
+  - reloadammo{sync=false;
+      onReload=TestGun-Reload;
+      onFail=TestGun-Reload-Fail;
+      onFull=TestGun-Reload-Full} @self ~onSwing
+      
+TestAmmo:
+  Id: BLAZE_POWDER
+  Display: "Test Ammo"

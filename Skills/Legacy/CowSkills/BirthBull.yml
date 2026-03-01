@@ -1,0 +1,3 @@
+BirthBull:
+  Skills:
+  - summon{type=BabyBull;amount=1;r=1}

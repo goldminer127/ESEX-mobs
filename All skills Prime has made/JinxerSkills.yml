@@ -1,0 +1,88 @@
+#Fallen Hero Warden skills:
+
+fHWhaloBarrierShieldStartup:
+  Skills:
+  - delay 100-300
+  - sound{s=item.armor.equip_iron;v=1;p=2}
+  - setstance{stance=shieldReady} @self
+  - message{m="spawn delay"} @PlayersInRadius{r=30} #testing reasons
+  
+fHWhaloBarrier:
+  Conditions:
+  - stance{s=shieldReady;str=true} true
+  - damagecause{cause=ENTITY_ATTACK} true
+  Skills:
+  - potion{type=DAMAGE_RESISTANCE;duration=200;level=255;p=false}
+  - setstance{stance=shieldOnCooldown} @self
+  - message{m="shieldOnCooldown"} @PlayersInRadius{r=30} #testing reasons
+  - delay 350-575
+  - sound{s=item.armor.equip_iron;v=1;p=2}
+  - message{m="post delay"} @PlayersInRadius{r=30} #testing reasons
+  - setstance{stance=shieldReady} @self
+
+fHWmansBestFriend:
+  Skills:
+  - summon{type=fallenHaloWardenHound;amount=3;r=6} @Self
+
+fHWhollowEyes:
+  Skills:
+  #change model to have 'hollow eyes'
+  - potion{type=SPEED;duration=1200;level=0}
+  #- potion{type=DAMAGE_RESISTANCE;duration=1200;level=1} 
+  
+fHWchangeWeapons:
+  Skills:
+  - delay 5
+  - randomskill{skills=equipFRSSpear,equipFRSSword,equipFRSMace}
+equipFRSSpear:
+  Skills:
+  - equip{item=iron_shovel HAND}
+equipFRSSword:
+  Skills:
+  - equip{item=iron_sword HAND}
+equipFRSMace:
+  Skills:
+  - equip{item=iron_axe HAND}
+  
+
+#Fallen Hero Warden Hound skills:
+
+fHWHCursedBeam: 
+  Skills:
+  - delay 5-60
+  - projectile{i=1;oT=fHWHCursedBeam-Tick;oH=fHWHCursedBeam-Hit;mr=20;sE=false;sB=true;sfo=0;v=10} @Target
+fHWHCursedBeam-Tick:
+  Skills:
+  - effect:particles{p=spell_mob;amount=2;speed=0;hS=0.05;vS=0.05} @origin
+  - effect:particles{p=spell_mob_ambient;amount=2;speed=0;hS=0.05;vS=0.05} @origin
+fHWHCursedBeam-Hit:
+  Skills:
+  - damage{a=8;pkb=true}
+
+fHWHCursedClaw:
+  Skills:
+  #this sounds mostly like an animation thing idk
+  #-playanimation
+  - damage{a=6;pkb=false}
+  
+
+#Jinx skills:
+  
+jinxCurseExposure:
+  Skills:
+  - projectile{onTick=jinxCurseExposure-Tick;onHit=jinxCurseExposure-Hit;v=10} @target #its not really a ball but i cant figure it out
+jinxCurseExposure-Tick:
+  Skills:
+  - effect:particles{p=reddust;color=#9700ff;amount=15;speed=2;hS=0.2;vS=0.2;r=1;syo=1.5;tyo=1.5}
+jinxCurseExposure-Hit:
+  Skills:
+  - damage{a=1}
+  #Curse effect ??
+
+#jinxCursedFlames:
+#  Skills:
+  
+
+
+#- projectile{onTick=jinxCurseExposure-Tick;onHit=jinxCurseExposure-Hit;v=8}
+

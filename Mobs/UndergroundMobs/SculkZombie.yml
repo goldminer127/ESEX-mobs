@@ -1,0 +1,17 @@
+SculkZombie:
+  Type: ZOMBIE
+  Display: Sculk
+  Health: 100
+  Damage: 6
+  Faction: Sculkers
+  Hearing:
+    Enabled: true
+#  Options:
+#    FollowRange: 12
+  AITargetSelectors:
+  - clear
+  - OtherFaction
+  Skills:
+#  - skill{s=CheckStelf} @trigger ~onHear
+  - setTarget @trigger ~onHear
+  - message{m="I can hear you <trigger.name>! <skill.var.volume>? Way too loud!"} @trigger ~onHear

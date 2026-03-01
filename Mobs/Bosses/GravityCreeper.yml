@@ -1,0 +1,16 @@
+GravityCreeper:
+  Type: CREEPER
+  Health: 50
+  Damage: 25
+  Modules:
+    ThreatTable: true
+  Options:
+    PreventOtherDrops: true
+    FuseTicks: 30
+    ExplosionRadius: 15
+    FollowRange: 30
+  Skills:
+  - skill{s=CreepingGravity} ~onTimer:20
+  Drops:
+  - exp 50 1
+  - GUNPOWDER 1-5 1

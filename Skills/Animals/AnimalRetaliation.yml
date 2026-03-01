@@ -1,0 +1,5 @@
+AnimalRetaliation:
+  Conditions:
+  - varEquals{var=caster.Age;value=adult} true
+  Skills:
+  - potion{type=SPEED;duration=300;level=4;hasParticles=false} @self

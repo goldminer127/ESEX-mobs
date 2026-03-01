@@ -1,0 +1,10 @@
+MiraTrigger:
+  Type: SILVERFISH
+  Options:
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  Skills:
+  - potion{t=INVISIBILITY;d=100000000;p=false} @self ~onSpawn
+  - skill{s=SpawnMira} @self ~onTimer:40

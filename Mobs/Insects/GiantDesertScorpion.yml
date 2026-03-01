@@ -1,0 +1,16 @@
+GiantDesertScorpion:
+  Type: CAVE_SPIDER
+  Health: 20
+  Damage: 1
+  Display: Desert Scorpion
+  Faction: Wilderness
+  AITargetSelectors:
+  - clear
+  - players
+  - OtherFactionMonsters
+  Options:
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=ScorpionAttackHandler} @target ~onAttack
+  - cancelevent{sync=true} ~onAttack
+  - dismount ~onTimer:10

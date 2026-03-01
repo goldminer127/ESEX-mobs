@@ -1,0 +1,23 @@
+HeiferFollowMale:
+  Conditions:
+  - stance{s=adult;str=true} true
+  - hasparent orElseCast HeiferSetMaleAsOwner
+  - isparentalive orElseCast HeiferSetMaleAsOwner
+  Skills:
+  - skill{s=HeiferGoToMale} @parent
+
+HeiferGoToMale:
+  TargetConditions:
+  - distance{d=>12} true
+  Skills:
+  - goto{speedModifier=1;sh=4}
+
+HeiferSetMaleAsOwner:
+  Skills:
+  - skill{s=HeiferCheckForValidMale} @MIR{r=32;limit=1;types=Bull,BabyBull}
+
+HeiferCheckForValidMale:
+  TargetConditions:
+  - stance{s=adult;str=true} true
+  Skills:
+  - setparent

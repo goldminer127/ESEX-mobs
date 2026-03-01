@@ -1,0 +1,4 @@
+JaguarBite:
+  Skills:
+  - damage{amount=3;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=3;element=Generic;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}

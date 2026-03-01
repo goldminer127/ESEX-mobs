@@ -1,0 +1,14 @@
+IceSkeleton:
+  Type: SKELETON
+  Display: ice
+  Faction: Icers
+  Equipment:
+  - mmoitems{type=BOW;id=MAKE_BOW} HAND
+  Options:
+    FollowRange: 45
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Skills:
+  - skill{s=IcePelletShot} @target ~onShoot
+  - cancelevent{sync=true} ~onShoot
+  - dismount ~onTimer:10

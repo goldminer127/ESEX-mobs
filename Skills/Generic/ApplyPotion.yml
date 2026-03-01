@@ -1,0 +1,4 @@
+#No option to hide particles
+ApplyPotion:
+  Skills:
+  - potion{type=<skill.potionType>;duration=<skill.duration>;level=<skill.level>}

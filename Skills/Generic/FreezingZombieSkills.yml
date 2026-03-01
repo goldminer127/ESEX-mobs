@@ -1,0 +1,13 @@
+ConvertToFreeze: #used by vanilla zombies to convert
+  Conditions:
+  - biome{b=GROVE,SNOWY_TUNDRA,SNOWY_MOUNTAINS,ICE_SPIKES,SNOWY_PLAINS,FROZEN_RIVER,SNOWY_TAIGA,FROZEN_OCEAN} true
+  Skills:
+  - summon{type=FreezingZombie;amount=1;radius=0}
+  - sound{s=entity.player.hurt_freeze;v=3;p=0}
+  - sound{s=block.glass.break;v=3;p=0.5;delay=10}
+  - remove
+FreezingTouch:
+  Skills:
+  - freeze{ticks=100;repeat=5;repeatInterval=20}
+  - potion{type=SLOW;duration=100;level=3;p=false}
+  - damage{a=1;pkb=true;pi=true;ia=true;repeat=5;repeatInterval=20}

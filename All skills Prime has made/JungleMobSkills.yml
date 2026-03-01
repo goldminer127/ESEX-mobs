@@ -1,0 +1,170 @@
+#Alligator Skills:
+
+biteAndGo:
+  #Conditions:
+  #- targetwithin{d=1.5} true
+  Skills:
+#  - damage{a=2-10;pkb=true} @target
+#  - playanimation "bite animation?"
+#  - start walking backwards??
+#       - somehow make the mob moonwalk       
+#       - ORRR copy paste the gator model backwards and 
+#                             - setmodel {backwards models} 
+#                             (idk how to set models but you get the point)
+#
+  - delay 5
+  - runaitargetselector{target=clear}
+  - goto {} @location{c=-143,44,-307} #change to spawn locaiton somehow
+  - m{m="h"} @PIR{r=34}
+  - delay 40
+  - pull{velocity=10} @PIR{r=34} #modify and repeat pull amount
+  - skill{s=deathRoll} @target
+  - runaitargetselector{target=clear}
+  - runaitargetselector{target=players}
+  
+deathRoll:
+  Conditions:
+  - blocktype{type=water} true
+  Skills:
+  # I don't have a good hold mechanic - need to get
+  - effect:spin{duration=100;velocity=20} @self
+  
+  
+#Boris Skills:
+
+tailWhip:
+  Skills:
+  
+wavePool:
+  Skills:
+  
+gobble:
+  Conditions:
+  - blocktype{type=water} true
+  Skills:
+  - m{m="7"} @PIR{r=34;conditions=[  - blocktype{type=water} true ]}
+  
+  
+borisCall:
+  Skills:
+  - summon{t=Alligator;a=4-12;r=4}
+
+
+#Thorn Knight skills:
+
+thornKnightBasicSlash:
+  Skills:
+  - armAnimation @self
+  - damage
+  #- slash{y=1.8;w=4;h=2;mpd=true;a=180;oP=[ - effect:particles{p=CRIT} ];roll=-45to45} ~onTimer:100
+  
+thornKnightEntangled:
+  Skills:
+  
+  
+thornBurst:
+  Skills:
+  
+  
+#Black Jaguar skills:
+
+backJagPounce:
+  Conditions:
+  - playerwithin{d=2} castinstead blackJagBiteCondition
+  Skills:
+  - leap{velocity=300;velocityY:30} @target
+  - delay 10
+  - skill{s=blackJagBiteCondition}
+  
+blackJagBiteCondition:  
+  Conditions:
+  - playerwithin{d=2} true
+  Skills:
+  - damage{a=6;pkb=true} @target
+  - potion{type=SLOW;duration=20;level=4} @target 0.25  
+  
+blackJagBite:
+  Skills:
+  #-play animation bite
+  - damage{a=7.5;pkb=true} @target
+  
+blackJagStealth:
+  Skills:  
+  - potion{type=INVISIBILITY;duration=600;level=0;p=false} #have particles on or off ?
+  
+#Night Widow Spider skills  
+  
+  
+NWSvenomBite:
+  Conditions:
+  - offgcd
+  Skills:
+  - damage{a=5}
+  - randomskill{skills=NWSPois1,NWSPois2,NWSPois3}
+  - gcd{ticks=900}
+NWSPois1:
+  Skills:
+  - potion{type=POISON;duration=600;level=0}
+NWSPois2:
+  Skills:
+  - potion{type=POISON;duration=300;level=1}
+NWSPois3:
+  Skills:
+  - potion{type=POISON;duration=175;level=2}
+  
+NWSWebShot:
+  Skills:
+  - projectile{v=12.5;
+               bulletType=BLOCK;material=COBWEB;
+               onTick=NWSWebShot-Tick;
+               onHit=NWSWebShot-Hit}
+NWSWebShot-Tick:
+  Skills:
+  - effect:particles{amount=2;speed=0;hS=0.2;vS=0.2;y=.4} @origin
+NWSWebShot-Hit:
+  Skills:
+  - delay 10 #this delay is so you fall to the ground if you were jumping, trsut me, its worth it
+  - stun{d=100;f=true}
+  - summon{t=NWSCobweb}
+  
+NWSCobwebSkill:
+  Skills:
+  - delay 110
+  - remove @self
+  - suicide
+
+
+#night mosquito Skills
+
+nightMosqSweep:
+  Skills:
+  - mounttarget @pir{r=20}
+  - potion{type=LEVITATION;duration=50;level=2} @pir{r=20;limit=1;sort=NEAREST}
+  - potion{type=DAMAGE_RESISTANCE;duration=300;level=1} @self
+  - delay 45
+  - skill{s=nightMosqDrain} @pir{r=20;limit=1;sort=NEAREST}
+  - dismount
+
+nightMosqDrain:
+  Skills:
+  - damage{a=3;ia=true} @pir{r=20;limit=1;sort=NEAREST}
+  #effect "itchiness" .5
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+

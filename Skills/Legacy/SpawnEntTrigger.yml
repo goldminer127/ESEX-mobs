@@ -1,0 +1,3 @@
+SpawnEntTrigger:
+  Skills:
+  - summon{type=EntTrigger;amount=1;r=1}

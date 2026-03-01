@@ -1,0 +1,20 @@
+PetrifiedZombie:
+  Type: ZOMBIE
+  Health: 50
+  Damage: 25
+  Faction: StoneInfected
+  Options:
+    Despawn: false
+  DamageModifiers:
+  - PROJECTILE 0.005
+  Modules:
+    ThreatTable: true
+  Equipment:
+  - StoneHead HEAD
+  - PetrifiedChest CHEST
+  - PetrifiedLegs LEGS
+  - PetrifiedFeet FEET
+  - AIR HAND
+  Skills:
+  - skill{s=HardResistance} @trigger ~onDamaged
+  - skill{s=StonePrison} @target ~onAttack 0.25

@@ -1,0 +1,333 @@
+###Dark Skull
+
+blackMonitor:
+  Skills:
+  - blackscreen{d=30}
+  - delay 35
+  - potion{type=WITHER;duration=100;level=0}
+  - delay 12
+  - damage{a=2;ia=true}
+  - delay 15
+  - damage{a=3;ia=true}
+  - delay 18
+  - damage{a=4;ia=true}
+  
+darkProjectileStart:
+  Skills:
+  - missile{ot=darkProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=dpend2} @Origin{xoffset=3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 6
+  - missile{ot=darkProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=dpend2} @Origin{xoffset=-3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 6
+  - missile{ot=darkProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=dpend2} @Origin{yoffset=3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  
+dpend2:
+  Skills:
+  - summon{type=summonDarkMissile}
+
+dPeND:
+  Skills:
+  - delay 6
+  - skill{s=darkProjectile} @PIR{r=100;limit=2}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 70
+  - remove @self
+
+darkProjectile:
+  Skills:
+  - missile{ot=darkProjectile_TICK;oh=darkProjectile_HIT;sB=false;v=6;i=1;hR=1;vR=1;in=0.75}
+darkProjectile_TICK:
+  Skills:
+  - effect:particles{p=spell_mob;amount=10} @origin
+darkProjectile_HIT:
+  Skills:
+  - effect:particles{p=block;m=black_concrete;a=50;hS=1;vS=1}
+  - damage{a=3;ia=true}
+
+###Fire Skull
+
+ExplosiveBlast:
+  Skills:
+  - explosion{yield=4;f=true}
+
+fireProjectileStart:
+  Skills:
+  - missile{ot=fireProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=fireEnding} @Origin{xoffset=3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 6
+  - missile{ot=fireProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=fireEnding} @Origin{xoffset=-3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 6
+  - missile{ot=fireProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=fireEnding} @Origin{yoffset=3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+
+fireEnding:
+  Skills:
+  - summon{type=summonFireMissile}
+
+endFire:
+  Skills:
+  - delay 6
+  - skill{s=fireProjectile} @PIR{r=100;limit=2}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 70
+  - remove @self
+
+fireProjectile:
+  Skills:
+  - missile{ot=fireProjectile_TICK;oh=fireProjectile_HIT;sB=false;hnp=false;v=6;i=1;hR=1;vR=1;in=0.75}
+fireProjectile_TICK:
+  Skills:
+  - effect:particles{p=flame;amount=10} @origin
+fireProjectile_HIT:
+  Skills:
+  - effect:particles{p=lava;a=50;hS=1;vS=1}
+  - damage{a=3;ia=true}
+
+###Wind Skull
+
+windThrow:
+  Skills:
+  - throw{velocity=105;velocityY=15}
+  - sound{s=entity.horse.breathe;v=0.75;p=2;repeat=5;repeatInterval=2}
+  - sound{s=entity.horse.breathe;v=0.5;p=1;repeat=5;repeatInterval=2}
+  
+windProjectileStart:
+  Skills:
+  - missile{ot=windProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=windEnding} @Origin{xoffset=3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 6
+  - missile{ot=windProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=windEnding} @Origin{xoffset=-3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 6
+  - missile{ot=windProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=windEnding} @Origin{yoffset=3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+
+windEnding:
+  Skills:
+  - summon{type=summonWindMissile}
+
+endWind:
+  Skills:
+  - delay 6
+  - skill{s=windProjectile} @PIR{r=100;limit=2}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 70
+  - remove @self
+
+windProjectile:
+  Skills:
+  - missile{ot=windProjectile_TICK;oh=windProjectile_HIT;sB=false;hnp=false;v=6;i=1;hR=1;vR=1;in=0.75;md=100}
+windProjectile_TICK:
+  Skills:
+  - effect:particles{p=cloud;amount=10} @origin
+windProjectile_HIT:
+  Skills:
+  - effect:particles{p=crit;a=50;hS=1;vS=1}
+  - damage{a=3;ia=true}
+  
+###Earth Skull
+  
+earthProjectileStart:
+  Skills:
+  - missile{ot=earthProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=earthEnding} @Origin{xoffset=3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 6
+  - missile{ot=earthProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=earthEnding} @Origin{xoffset=-3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 6
+  - missile{ot=earthProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=earthEnding} @Origin{yoffset=3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+
+earthEnding:
+  Skills:
+  - summon{type=summonEarthMissile}
+
+endEarth:
+  Skills:
+  - delay 6
+  - skill{s=earthProjectile} @PIR{r=100;limit=2}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 70
+  - remove @self
+
+earthProjectile:
+  Skills:
+  - missile{ot=earthProjectile_TICK;oh=earthProjectile_HIT;sB=false;hnp=false;v=6;i=1;hR=1;vR=1;in=0.75;md=100}
+earthProjectile_TICK:
+  Skills:
+  - effect:particles{p=block_dust;m=dirt;amount=10} @origin
+earthProjectile_HIT:
+  Skills:
+  - effect:particles{p=block_dust;m=podzol;a=50;hS=1;vS=1}
+  - damage{a=3;ia=true}
+
+summonDirtHead:
+  Skills:
+  - summon{type=DIRT_HEAD}
+summonStoneHead:
+  Skills:
+  - summon{type=STONE_HEAD}
+summonObbyHead:
+  Skills:
+  - summon{type=OBSIDIAN_HEAD}
+
+DirtThrow:
+  Skills:
+  - sound{s=ui.stonecutter.take_result;v=10;p=1;sc=master} @self
+  - projectile{bulletType=BLOCK;material=DIRT;hnp=false;HitSelf=false;oH=DirtProjectile;i=1;v=30;syo=3}
+  - equip{item=air:4}
+  - delay 70
+  - remove @self
+  - suicide
+StoneThrow:
+  Skills:
+  - sound{s=ui.stonecutter.take_result;v=10;p=1;sc=master} @self
+  - projectile{bulletType=BLOCK;material=STONE;hnp=false;HitSelf=false;oH=StoneProjectile;i=1;v=30;syo=3}
+  - equip{item=air:4}
+  - delay 70
+  - remove @self
+  - suicide
+ObsidianThrow:
+  Skills:
+  - sound{s=ui.stonecutter.take_result;v=10;p=1;sc=master} @self
+  - projectile{bulletType=BLOCK;material=OBSIDIAN;hnp=false;HitSelf=false;oH=ObsidianProjectile;i=1;v=30;syo=3}
+  - equip{item=air:4}
+  - delay 70
+  - remove @self
+  - suicide
+  
+DirtProjectile:
+  Skills:
+  - damage{a=10}
+  - sound{s=entity.wither.break_block;v=10;p=0;sc=master} @Self
+  - throw{velocity=10;velocityY=1;repeat=2;repeatInterval=2}
+StoneProjectile:
+  Skills:
+  - damage{a=25}
+  - sound{s=entity.wither.break_block;v=20;p=0;sc=master} @Self
+  - throw{velocity=10;velocityY=1;repeat=2;repeatInterval=2}
+ObsidianProjectile:
+  Skills:
+  - damage{a=50}
+  - sound{s=entity.wither.break_block;v=30;p=0;sc=master} @Self
+  - throw{velocity=10;velocityY=1;repeat=2;repeatInterval=2}
+  
+###Water Skull
+
+waterProjectileStart:
+  Skills:
+  - missile{ot=waterProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=waterEnding} @Origin{xoffset=3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 6
+  - missile{ot=waterProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=waterEnding} @Origin{xoffset=-3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 6
+  - missile{ot=waterProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=waterEnding} @Origin{yoffset=3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+
+waterEnding:
+  Skills:
+  - summon{type=summonWaterMissile}
+
+endWater:
+  Skills:
+  - delay 6
+  - skill{s=waterProjectile} @PIR{r=100;limit=2}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 70
+  - remove @self
+
+waterProjectile:
+  Skills:
+  - missile{ot=waterProjectile_TICK;oh=waterProjectile_HIT;sB=false;hnp=false;v=6;i=1;hR=1;vR=1;in=0.75;md=100}
+waterProjectile_TICK:
+  Skills:
+  - effect:particles{p=drip_water;amount=10} @origin
+waterProjectile_HIT:
+  Skills:
+  - effect:particles{p=water_drop;a=50;hS=1;vS=1}
+  - damage{a=3;ia=true}
+
+TridentBarrage:
+  Skills:
+  - shoot{t=TRIDENT;velocity=2;damage=1;oh=TridentDamage1}
+  - delay 15
+  - shoot{t=TRIDENT;velocity=2;damage=1;oh=TridentDamage2}
+  - delay 15
+  - shoot{t=TRIDENT;velocity=2;damage=1;oh=TridentDamage3}
+  - delay 15
+  - shoot{t=TRIDENT;velocity=2;damage=1;oh=TridentDamage4}
+  - delay 15
+  - shoot{t=TRIDENT;velocity=2;damage=2;oh=TridentDamage5}
+
+TridentDamage1:
+  Skills:
+  - damage{a=1;ia=true}
+TridentDamage2:
+  Skills:
+  - damage{a=1;ia=true}
+TridentDamage3:
+  Skills:
+  - damage{a=3;ia=true}
+TridentDamage4:
+  Skills:
+  - damage{a=3;ia=true}
+TridentDamage5:
+  Skills:
+  - damage{a=5;ia=true}
+
+###Ice Skull
+
+iceProjectileStart:
+  Skills:
+  - missile{ot=iceProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=iceEnding} @Origin{xoffset=3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 6
+  - missile{ot=iceProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=iceEnding} @Origin{xoffset=-3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 6
+  - missile{ot=iceProjectile_TICK;sB=false;v=4;i=1;hR=1;vR=1;sE=false;hnp=false;md=60;oE=iceEnding} @Origin{yoffset=3}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+
+iceEnding:
+  Skills:
+  - summon{type=summonIceMissile}
+
+endIce:
+  Skills:
+  - delay 6
+  - skill{s=iceProjectile} @PIR{r=100;limit=2}
+  - sound{s=entity.blaze.shoot;v=2;p=1} @self
+  - delay 70
+  - remove @self
+
+iceProjectile:
+  Skills:
+  - missile{ot=iceProjectile_TICK;oh=iceProjectile_HIT;sB=false;hnp=false;v=6;i=1;hR=1;vR=1;in=0.75;md=100}
+iceProjectile_TICK:
+  Skills:
+  - effect:particles{p=spell_instant;amount=10} @origin
+iceProjectile_HIT:
+  Skills:
+  - effect:particles{p=fireworks_spark;a=50;hS=1;vS=1}
+  - damage{a=3;ia=true}
+  
+IceSkullField:
+  Skills:
+  - orbital{onTick=IceSkullAura-Tick;onHit=IceSkullAura-Hit;hnp=true;points=20;interval=1;duration=60;charges=20} 
+IceSkullAura-Tick:
+  Skills:
+  - effect:particles{p=snowballpoof;amount=10;speed=0;hS=0.2;vS=0.2} @origin
+IceSkullAura-Hit:
+  Skills:
+  - damage{a=10}
+  - freeze{ticks=8}
+  - heal{a=3;oh=false} @self
+  - heal{a=3;oh=false} @MIR{r=64;t=WitheringLeech}
+  
+summonMeleeStray:
+  Skills:
+  - summon{t=meleeStray}

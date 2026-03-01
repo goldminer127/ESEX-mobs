@@ -1,0 +1,8 @@
+IcePelletShot:
+  Skills:
+  - projectile{bulletType=ITEM;material=ICE;bulletmatchdirection=true;onHit=IcePelletProjectile-Hit;scale=1,1,1;v=30;i=1;hR=1;vR=1;hnp=true;rot=0,90,0}
+IcePelletProjectile-Hit:
+  Skills:
+  - damage{a=5}
+  - potion{type=SLOW;duration=50;level=2;hasParticles=false}
+  - sound{s=block.glass.break;p=1.75;v=1}

@@ -1,10 +1,37 @@
-# For more information, check out the plugin manual or join us on Discord:
-# http://www.mythicmobs.net
-#  
+dh:
+  Id: DIAMOND_HELMET
+  Data: 0
+  Amount: 1
+  Enchantments:
+  - PROTECTION_ENVIRONMENTAL:4
+  - DURABILITY:3
+ 
+dc:
+  Id: DIAMOND_CHESTPLATE
+  Data: 0
+  Amount: 1
+  Enchantments:
+  - PROTECTION_ENVIRONMENTAL:4
+  - DURABILITY:3
+  
+dl:
+  Id: DIAMOND_LEGGINGS
+  Data: 0
+  Amount: 1
+  Enchantments:
+  - PROTECTION_ENVIRONMENTAL:4
+  - DURABILITY:3
+  
+db:
+  Id: DIAMOND_BOOTS
+  Data: 0
+  Amount: 1
+  Enchantments:
+  - PROTECTION_ENVIRONMENTAL:4
+  - DURABILITY:3
 
 SkeletonKingSword:
   Id: DIAMOND_SWORD
-  Data: 0
   Display: '&3Greatsword of the Skeleton King'
   Lore:
   - '&6A powerful sword used by'
@@ -17,11 +44,8 @@ SkeletonKingSword:
     MainHand:
       Health: 10
       MovementSpeed: 0.1
-      
 KingsCrown:
   Id: GOLDEN_HELMET
-  Data: 0
-  Amount: 1
   Display: '&dCrown of the King'
   Lore:
   - '&6A kingly crowl that grants'
@@ -38,7 +62,6 @@ KingsCrown:
     Head:
       Health: 10
       KnockbackResistance: 10
-      
 BanditTunic:
   Id: LEATHER_CHESTPLATE
   Display: '&aBandit Tunic'
@@ -47,4 +70,11 @@ BanditTunic:
   - '&6the corpse of a bandit.'
   Options:
     Color: 255,40,40
-    
+Death:
+  Id: DIAMOND_SWORD
+  Display: '&0Reaper Scythe'
+  Enchantments: 
+  - DAMAGE_ALL:999999
+  - SWEEPING_EDGE:999999
+  Options:
+    Unbreakable: true

@@ -1,0 +1,100 @@
+ReaperSoul:
+  Type: Cow
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - model{mid=Soul} @self ~onSpawn
+  - model{mid=Soul} @self ~onLoad
+  - skill{s=reaperSoulHeal} @pir{r=3} ~onTimer:5
+
+armorPrime:
+  Type: Zombie
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=commandSkill} ~onSpawn
+PrimeArmor:
+  Type: Zombie
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=commandSkill} ~onSpawn
+
+mageCringe:
+  Type: Zombie
+  Health: 5
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=magicSux} @self ~onSignal:mageSuxSig
+  - skill{s=magicSux} @self ~onDamaged
+  
+LModeActivate:
+  Type: ARMOR_STAND
+  Health: 1
+  Display: 'Force Close Inventory'
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+    Invincible: true
+    AlwaysShowName: true
+  Skills:
+  - closeinventory{forcesync=true;targetcreative=true} @pir{r=16} ~onTimer:1
+  
+nightWidowSpider:
+  Type: Spider
+  Health: 20
+  Armor: 5
+  Damage: 3.5
+  Display: '&8Night Widow Spider'
+  Faction: JungleMobs
+  Options:
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    #NoAI: true
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=NWSvenomBite} @target ~onAttack
+  - skill{s=NWSWebShot} @PIR{r=64} ~onTimer:200
+NWSCobweb:
+  Type: cod
+  Options:
+    Silent: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    NoAI: true
+    Invincible: true
+  Disguise: FALLING_BLOCK COBWEB
+  Skills:
+  - skill{s=NWSCobwebSkill} @self ~onSpawn

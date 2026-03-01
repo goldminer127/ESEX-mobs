@@ -1,0 +1,20 @@
+AlligatorDrag:
+  Cooldown: 15
+  TargetConditions:
+  - blocking false
+  Conditions:
+  - stance{s=drowningtarget} false
+  Skills:
+  - damage{amount=2.5;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=2.5;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - lunge{velocity=2;velocityY=0.01} @Forward{f=5;rot=180;useeyelocation=true}
+  - pull{velocity=5;repeat=12;repeatInterval=2}
+  - Aura{
+          duration=720;
+          onStartSkill=AlligatorDeathRollStart;
+          onTickSkill=AlligatorDeathRollTick;
+          onEndSkill=AlligatorDeathRollEnd;
+          CancelOnCasterDeath=true;
+          interval=5;
+          delay=24;
+        } @target

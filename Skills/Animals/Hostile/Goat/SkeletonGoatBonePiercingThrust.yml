@@ -1,0 +1,33 @@
+SkeletonGoatBonePiercingThrust:
+  Cooldown: 15
+  Skills:
+  - onAttack{
+            auraName=Retributing_Light;
+            d=100;i=2;c=1;
+            onStartSkill=[
+                - setstance{stance=charging} @self
+                - setspeed{speed=4;type=walking} @self
+                ];
+            onTickSkill=[
+                - particlesphere{particle=cloud;amount=4;radius=1} @self
+                ];
+            onattack=SkeletonGoatBonePiercingThrust-Hit;
+            CancelOnCasterDeath=true;
+            interval=5;
+            delay=24;
+        } @self
+        
+SkeletonGoatBonePiercingThrust-Hit:
+  Skills:
+  - skill{s=DisableShield;duration=200}
+  - damage{amount=4;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=4;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - skill{s=Bleed;cooldown=0;amount=0.5;repeatAmount=10;interval=10} 0.15
+  - setspeed{speed=2;type=walking} @self
+  - clearThreat @self
+  - look{immediately=true;repeat=11;repeatInterval=2} @Forward{f=5}
+  - lunge{velocity=1.5;velocityY=0.01;repeat=11;repeatInterval=2} @Forward{f=5}
+  - pull{velocity=12;repeat=11;repeatInterval=2}
+  - delay 24
+  - throw{velocity=20;velocityY=2}
+  - setstance{stance=default} @self

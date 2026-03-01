@@ -1,0 +1,7 @@
+AmethystShot:
+  Skills:
+  - projectile{bulletType=ITEM;material=AMETHYST_SHARD;bulletmatchdirection=true;onHit=AmethystProjectile-Hit;scale=1,1,1;v=30;i=1;hR=1;vR=1;hnp=true;rot=0,90,0}
+AmethystProjectile-Hit:
+  Skills:
+  - damage{a=6}
+  - sound{s=block.amethyst_block.break;p=0.1;v=1}

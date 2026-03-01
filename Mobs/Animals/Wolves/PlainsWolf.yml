@@ -1,0 +1,19 @@
+PlainsWolf:
+  Type: WOLF
+  Health: 20
+  Damage: 1
+  Display: Plains Wolf
+  Faction: Wilderness
+  AITargetSelectors:
+  - clear
+  - players
+  - OtherFactionMonsters
+  Options:
+    FollowRange: 48
+  Skills:
+  - skill{s=PlainsWolfBite} @target ~onAttack
+  - skill{s=PlainsWolfBitingCombo} @target ~onAttack
+  - skill{s=WolfLeapBack} @self ~onDamaged
+  - setVariable{var=caster.BiteStrikes;value=0} @self ~onSpawn
+  - cancelevent{sync=true} ~onAttack
+  - summon{type=PlainsWolf;amount=1to10;radius=20;yRadius=0;onSurface=true} @self ~onSpawn ?!hasParent

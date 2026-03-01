@@ -1,0 +1,6 @@
+JaguarPounce:
+  Cooldown: 5
+  TargetConditions:
+  - distance{d=<9}
+  Skills:
+  - lunge{velocity=1;velocityY=0.5}

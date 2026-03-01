@@ -1,0 +1,25 @@
+#Marked for making as generic when bug is fixes
+NightWolfBitingCombo:
+  Cooldown: 10
+  Skills:
+  - sound{s=entity.wolf.growl;v=1;p=0.85} @self
+  - sound{s=entity.wolf.ambient;v=1;p=0.85} @self
+  - setstance{stance=biting} @self
+  - skill{s=NightWolfRampUpBite;repeat=2;repeatInterval=10;sync=true}
+  - setVariable{var=caster.BiteStrikes;value=0;delay=40;sync=true} @self
+  - setstance{stance=default;delay=40;sync=true} @self
+NightWolfRampUpBite:
+  TargetConditions:
+  - distance{d=<2.5} true
+  Conditions:
+  - varEquals{var=caster.BiteStrikes;value=2} cast FullBiteComboNight
+  Skills:
+  - lunge{velocity=0.5;velocityY=0}
+  - damage{amount=1.6;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=1.6;element=ICE;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=0.8;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - variableadd{var=caster.BiteStrikes;amount=1} @self
+FullBiteComboNight:
+  Skills:
+  - sound{s=block.powder_snow.fall;v=1;p=1.09} @self
+  - potion{type=BLINDNESS;duration=100;level=1} @target

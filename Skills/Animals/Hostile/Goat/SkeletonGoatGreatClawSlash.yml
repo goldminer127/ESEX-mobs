@@ -1,0 +1,18 @@
+SkeletonGoatGreatClawSlash:
+  Cooldown: 2
+  TargetConditions:
+  - distance{d=>6} cast SkeletonGoatGreatClawSlashLunge
+  Skills:
+  - delay 12
+  - slash{foffset=2;d=2;y=1;w=3;h=-2;r=3;mpd=true;onHitEntity=SkeletonGoatGreatClawSlash-Hit;a=180;oP=[ - effect:particles{p=CRIT} ];roll=-45to45;Pitch=180} @self
+  
+SkeletonGoatGreatClawSlash-Hit:
+  Skills:
+  - damage{amount=5;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=5;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - throw{velocity=15;velocityY=5}
+  
+SkeletonGoatGreatClawSlashLunge:
+  Skills:
+  - propel{v=5}
+  - look{headOnly=false;immediately=true;repeat=4;repeatInterval=2} @target

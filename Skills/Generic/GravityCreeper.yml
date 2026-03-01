@@ -1,0 +1,10 @@
+#GravityCreeper
+CreepingGravity:
+  Conditions:
+  - incombat true
+  Cooldown: 25
+  Skills:
+  - stun{d=150;f=true} @self
+  - effect:particles{particle=cloud;amount=100;hS=15;vS=1;speed=0.25;dir=0,0,0;repeat=30;repeatInterval=5} @self
+  - pull{velocity=3.5;repeat=30;repeatInterval=5} @PIR{r=15}
+  - pull{velocity=3.5;repeat=30;repeatInterval=5} @EIR{r=15}

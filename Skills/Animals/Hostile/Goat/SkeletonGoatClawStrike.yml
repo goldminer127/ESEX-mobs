@@ -1,0 +1,9 @@
+SkeletonGoatClawStrike:
+  Skills:
+  - damage{amount=4;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=4;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - skill{s=Bleed;cooldown=0;amount=0.5;repeatAmount=7;interval=10} 0.15
+
+DoubleSkeletonGoatClawStrike:
+  Skills:
+  - skill{s=SkeletonGoatClawStrike;repeat=1;repeatInterval=2}

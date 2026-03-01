@@ -1,0 +1,3 @@
+AlertBull:
+  Skills:
+  - signal{s=HERDUNDERATTACK} @MIR{r=32;limit=1;types=Bull,BabyBull}

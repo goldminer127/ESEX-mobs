@@ -1,0 +1,379 @@
+# For more information, check out the plugin manual or join us on Discord:
+# http://www.mythicmobs.net
+#  
+
+givePrimeArmor:
+  Skills:
+  - giveitem{i=dh}
+  - giveitem{i=dc}
+  - giveitem{i=dl}
+  - giveitem{i=db}
+
+SmashAttack:
+  Cooldown: 8
+  Conditions:
+  - targetwithin 25
+  Skills:
+  - leap @target
+  - effect:sound{s=mob.endermen.portal;volume=.5;pitch=0.5}
+  - delay 10
+  - damage{amount=10;ignorearmor=f} @PlayersInRadius{r=5}
+  - throw{velocity=10;velocityY=5} @PlayersInRadius{r=5}
+  - effect:explosion @Self
+  
+SummonSkeletons:
+  Cooldown: 15
+  Skills:
+  - message{m="<mob.name><&co> Arise, my minions!"} @PlayersInRadius{r=40}
+  - delay 20
+  - summon{mob=SkeletalMinion;amount=2;noise=5} @Self
+  - delay 20
+  - summon{mob=SkeletalMinion;amount=2;noise=5} @Self
+  - delay 20
+  - summon{mob=SkeletalMinion;amount=2;noise=5} @Self
+AngrySludgePoison:
+  Cooldown: 10
+  Skills:
+  - potion{type=POISON;lvl=2;duration=100} @PlayersInRadius{r=15}
+  - effect:particles{p=happyVillager;amount=1000;hSpread=15;ySpread=1;speed=0;yOFfset=0.5}
+    @Self  
+    
+    #------------------------------------------------------------------------------------
+    
+ArrowBarrage:
+  Skills:
+  - arrowvolley{a=1;s=0;v=30;f=0;rd=200;repeat=4;repeatInterval=10}
+Barrage:
+  Skills:
+  - shoot{t=ARROW;velocity=30;damage=12;repeat=4;repeatInterval=10}
+MultiplyStrong:
+  Skills:
+  - summon{mob=MSFMinion;amount=5} @Self
+MultiplyWeak:
+  Skills:
+  - summon{mob=Fishy;amount=5} @Self
+LegionPotion:
+  Skills:
+  - potion{type=SLOW;duration=100;level=1}
+  - potion{type=WEAKNESS;duration=100;level=2}
+RestoreLegion:
+  Skills:
+  - healpercent{m=0.05} @MobsInRadius{r=30;types=Legion}
+RestoreLegionS:
+  Skills:
+  - healpercent{m=0.01} @MobsInRadius{r=30;types=Legion}
+NomNom:
+  Skills:
+  - potion{type=WITHER;duration=20;level=0}
+SkullBarrage:
+  Skills:
+  - shootskull{y=1;v=4} @target
+  - delay 10
+  - shootskull{y=1;v=4} @target
+  - delay 10
+  - shootskull{y=1;v=4} @target
+SummonZombie:
+  Skills:
+  - message{m="&4Rise, my fallen brothers!"} @PlayersInRadius{r=20}
+  - delay 20
+  - summon{mob=UndeadBro;amount=3;r=5} @Self
+RulerTP:
+  Skills:
+  - lunge{velocity=1} @Target
+RestoreUndead:
+  Skills:
+  - healpercent{m=0.005} @MobsInRadius{r=30;types=Ruler_Undead} 
+RulerFire:
+  Skills:
+  - potion{type=FIRE_RESISTANCE;duration=9999;level=1}
+TitanFly:
+  Conditions:
+  - targetwithin{d=5} false
+  Skills:
+  - lunge{velocity=4} @Target
+FirstJump:
+  Skills:
+  - lunge{velocity=1} @PIR{r=25}
+Stun:
+  Cooldown: 5
+  Skills:
+  - stun{d=20} @target
+  Cooldown: 45
+Firebolt:
+  Skills:
+  - projectile{onTick=FireBolt-Tick;onHit=FireBolt-Hit;v=20;syo=2;tyo=0.5;i=1;hR=1;vR=1} @target
+FireBolt-Tick:
+  Skills:
+  - effect:particles{p=flame;amount=25;speed=0;hS=0.2;vS=0.2} @origin
+  - effect:particles{particle=dripLava;amount=10;vSpread=.1;hSpread=.25;Speed=25;y=0;s=2} @origin
+  - effect:particles{p=lava;amount=10;speed=0;hS=0.2;vS=0.2} @origin
+FireBolt-Hit:
+  Skills:
+  - damage{a=45}
+  - effect:particles{p=flame;a=100;hs=0.3;vs=0.3;s=0.4;y=0.9}
+  - effect:particles{p=dripLava;a=100;hs=0.2;vs=0.2;s=0.5;y=0.9}
+  - effect:particles{p=lava;a=35;hs=0.2;vs=0.2;s=0.5;y=0.9}
+FloodFire:
+  Cooldown: 10
+  Skills:
+  - spring{t=lava;d=5} @target
+FireballBarrage:
+  Cooldown: 15
+  Skills:
+  - shootfireball{y=2;v=2} @target
+  - delay 10
+  - shootfireball{y=2;v=2} @target
+  - delay 10
+CrushingLeap:
+  Cooldown: 30
+  Skills:
+  - leap{velocity=300} @target
+  - delay 20
+  - jump{velocity=-100}
+  - effect:explosion @self
+  - damage{amount=35} @PlayersInRadius{r=8}
+Homer:
+  Cooldown: 15
+  Skills:
+  - missile{ot=Homer_TICK;oh=Homer_HIT;v=4;i=1;hR=1;vR=1;in=0.75}
+Homer_TICK:
+  Skills:
+  - effect:particles{p=flame;a=1} @origin
+Homer_HIT:
+  Skills:
+  - effect:particles{p=lava;a=50;hS=1;vS=1}
+  - effect:sound{s=entity.generic.explode;v=1;p=0}
+  - damage{a=40;i=false}
+#SquidKill:
+  #Skills:
+  #- damage{amount=250;ignoreArmor=true} @PIR{r=25}
+GuardianConsume:
+  Skills:
+  - summon{type=BloopSquid;amount=5;r=4} @Self
+  - delay 140
+  - consume{d=1000;h=20} @MobsInRadius{type=BloopSquid;r=40}
+FishBolt:
+  Skills:
+  - speak{m="&9*blip bloop*"} @PIR{r=20}
+  - delay 100
+  - missile{onTick=FishBolt_Tick;onHit=FishBolt_Hit;in=15;v=5;syo=2;tyo=0.5;i=1;hR=1;vR=1;md=120}
+  - delay 40
+  - missile{onTick=FishBolt_Tick;onHit=FishBolt_Hit;in=15;v=5;syo=2;tyo=0.5;i=1;hR=1;vR=1;md=120}
+  - delay 40
+  - missile{onTick=FishBolt_Tick;onHit=FishBolt_Hit;in=15;v=5;syo=2;tyo=0.5;i=1;hR=1;vR=1;md=120}
+FishBolt_Tick:
+  Skills:
+  - effect:particles{p=flame;a=1} @origin
+FishBolt_Hit:
+  Skills:
+  - effect:particles{p=lava;a=50;hS=1;vS=1}
+  - damage{a=55;i=false}
+ShootRing:
+  Skills:
+  - shoot{t=ARROW;velocity=5;damage=35;rd=200} @Ring{radius=3;points=8}
+PirateShot:
+  Skills:
+  - speak{m="aye"} @PIR{r=30}
+  - shoot{t=ARROW;velocity=5;damage=20} @target
+PirateZap:
+  Skills:
+  - speak{m="zap"} @PIR{r=30}
+  - lightning{d=20} @PIR{r=20}
+Jail:
+  Skills:
+  - prison{material=IRON_BLOCK;duration=140}
+  - delay 40
+  - damage{amount=6;ignoreArmor=true}
+  - delay 60
+  - damage{amount=8;ignoreArmor=true}
+Chain:
+  Skills:
+  - speak{m="chain"} @PIR{r=30}
+  - chain{
+      bounces=5;
+      radius=15;
+      delay=60;
+      hitSelf=false;
+      hitPlayers=true; 
+      hitNonPlayers=false;
+      hitTarget=true;
+      onBounce=[
+        - effect:particleline{p=dripping_obsidian_tear;fromOrigin=true}
+        - damagepercent{percent=0.6} @target
+        - delay 20
+        - stun{d=35} @target
+      ];
+    } @target
+WardenReinforce:
+  Skills:
+  - summon{mob=LesserTitan;amount=3;radius=4} @Self
+  
+  
+beamEffect:
+  Skills: 
+  - enderbeam{d=100} @MobsInRadius{type=GodFollowers;r=400}
+godSpawn:
+  Skills:
+  - summon{type=GodFollowers;amount=8;r=7;os=true} @Origin{xoffset=0;yoffset=-16;zoffset=0}
+  - delay 104
+  - summon{type=CultFighters;amount=1;r=0;os=true;sio=false;sip=true} @MIR{type=GodFollowers;r=400}
+  - sound{s=entity.generic.explode;v=2;p=.4} @self
+triggerMoo:
+  Skills:
+  - signal{s=MOO_FOR_ME} @EIR{r=64} ~onSpawn
+  - delay 105
+  - remove @self
+  - suicide
+  
+deathPower:
+  Skills:
+  - damage{a=150;ia=true} @MIR{type=CagedGod;r=100} ~onDeath
+CGphase2:
+  Skills:
+  - delay 60
+  - message{m="&cPhase 1 Complete -i dont get paid to write dialouge"} @PlayersInRadius{r=40}
+  - delay 5
+  - healpercent{m=1} @self
+  - delay 5
+  - message{m="&cBeginning Phase 2 -i dont get paid to write dialouge"} @PlayersInRadius{r=40}
+  - summon{mob=CultMage;amount=6;radius=8;os=true;sio=false;sip=true} @Origin{xoffset=0;yoffset=-10;zoffset=0}
+  
+  
+cultMageCast:
+  Skills:
+  - speak{m="&9*spooky magic*"} @PIR{r=300}
+  - delay 60
+  - missile{onTick=cultMageCast_Tick1;onHit=cultMageCast_Hit1; in=18;v=3;syo=2;tyo=0.5;i=1;hR=1;vR=1;md=160;sB=false;sE=true;hnp=false} @PIR{r=30}
+  - delay 40
+  - missile{onTick=cultMageCast_Tick2;onHit=cultMageCast_Hit2; in=15;v=6;syo=2;tyo=0.5;i=1;hR=1;vR=1;md=120;sB=false;sE=true;hnp=false} @PIR{r=30}
+  - delay 40
+  - missile{onTick=cultMageCast_Tick3;onHit=cultMageCast_Hit3; in=12;v=10;syo=2;tyo=0.5;i=1;hR=1;vR=1;md=100;sB=false;sE=true;hnp=false} @PIR{r=30}
+cultMageCast_Tick1:
+  Skills:
+  - effect:particles{p=flame;a=1} @origin
+cultMageCast_Hit1:
+  Skills:
+  - effect:particles{p=drip_lava;a=50;hS=1;vS=1}
+  - damage{a=24;i=false}
+cultMageCast_Tick2:
+  Skills:
+  - effect:particles{p=glow;a=1} @origin
+cultMageCast_Hit2:
+  Skills:
+  - effect:particles{p=bubble_pop;a=50;hS=1;vS=1}
+  - damage{a=18;i=false}
+  - recoil{r=6;pitch=1to-1} 
+cultMageCast_Tick3:
+  Skills:
+  - effect:particles{p=dragon_breath;a=1} @origin
+cultMageCast_Hit3:
+  Skills:
+  - effect:particles{p=crit;a=50;hS=1;vS=1}
+  - damage{a=12;i=false}
+  
+meleeArmor:
+  Skills:
+  - damage{a=2;i=true} @PIR{r=4} ~onDamaged
+  
+deathPowerMage:
+  Skills:
+  - damage{a=205;ia=true} @MIR{type=CagedGod;r=100} ~onDeath
+
+mageRecoil:
+  Skills:
+  - recoil{r=2;pitch=3to-3} @trigger ~onDamaged
+
+IceShield:
+  Skills:
+#  - speak{m="ice shield"} @PIR{r=30}
+  - orbital{onTick=IceShield-Tick;onHit=IceShield-Hit;points=20;interval=1;duration=60;charges=20} @self
+IceShield-Tick:
+  Skills:
+  - effect:particles{p=snowballpoof;amount=10;speed=0;hS=0.2;vS=0.2} @origin
+IceShield-Hit:
+  Skills:
+  - damage{a=10}
+  - stun{ticks=10}
+  
+mageIgnite:
+  Skills:
+  - ignite{ticks=50} @trigger ~onDamaged
+
+throwOnDamaged:
+  Skills:
+  - throw{velocity=4;velocityY=3;velocityX=8} @target
+
+slowOnDamaged:
+  Skills:
+  - potion{type=SLOW;duration=70;level=1} @target
+
+weakOnAttack:
+  Skills:
+  - potion{type=WEAKNESS;duration=80;level=2} @target
+
+strengthOnDamaged:
+  Skills:
+  - potion{type=INCREASE_DAMAGE;duration=50;level=1} @self
+
+summonWitch:
+  Skills:
+  - speak{m="summon witch"} @PIR{r=30}
+  - summon{type=CultWitch;amount=1;r=2;os=true} @self
+
+cultWitchPoison:
+  Skills:
+  - speak{m="poison"} @PIR{r=30}
+  - potion{type=poison;duration=120;level=3} @PIR{r=12;limit=2}
+  - delay 20
+  - remove @self
+
+cultWitchWither:
+  Skills:
+  - speak{m="wither"} @PIR{r=30}
+  - potion{type=wither;duration=80;level=3} @PIR{r=12;limit=2}
+  - delay 20
+  - remove @self
+
+cultWitchHarm:
+  Skills:
+  - speak{m="harm"} @PIR{r=3000}
+  - potion{type=harm;level=0;duration=40} @PIR{r=12;limit=2}
+  - delay 20
+  - remove @self
+
+summonHealer:
+  Skills:
+  - cooldown: 25
+  - speak{m="summon healer"} @PIR{r=30}
+  - summon{type=CultHealer;amount=1;r=2;os=true} 
+
+cultHealing:
+  Skills:
+  - speak{m="healing"} @PIR{r=300}
+  - healpercent{m=0.05} @MIR{type=CultFighters;r=25}
+
+startUp:
+  Skills:
+  - speak{m="horse"} @PIR{r=3000} ~onSpawn
+  - summon{type=TestStartup;amount=1;r=2;os=true} @location{c=17,129,-56} ~onSpawn
+  #- delay 10
+  #- remove @self
+
+WitheringBladeStrike:
+    Cooldown: 5
+    Skills:
+    - speak{m='test.exe';repeat=5;repeatInterval=20}
+    #- damage{amount=1;ignoreArmor=false;repeat=5;repeatInterval=20}
+
+
+#SmashAttack:
+#  Cooldown: 8
+#  Conditions:
+#  - targetwithin 25
+#  Skills:
+#  - teleport @target
+#  - effect:sound{s=mob.endermen.portal;volume=1.0;pitch=0.5}
+#  - delay 10
+#  - damage{amount=10;ignorearmor=f} @PlayersInRadius{r=5}
+#  - throw{velocity=10;velocityY=5} @PlayersInRadius{r=5}
+#  - effect:explosion @Self

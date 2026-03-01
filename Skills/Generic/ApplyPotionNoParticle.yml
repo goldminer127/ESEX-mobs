@@ -1,0 +1,3 @@
+ApplyPotionNoParticle:
+  Skills:
+  - potion{type=<skill.potionType>;duration=<skill.duration>;level=<skill.level>;hasParticle=false}

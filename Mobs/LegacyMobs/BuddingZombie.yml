@@ -1,0 +1,14 @@
+BuddingZombie:
+  Type: ZOMBIE
+  AIGoalSelectors:
+  - clear
+  - randomlookaround
+  - randomstroll
+  - fleeplayers
+  - fleegolems
+  - fleewolf
+  Skills:
+  - skill{s=SummonBabyZombie} @self ~onTimer:200
+  Drops:
+  - exp 5 0.5
+  - exp 10 0.5

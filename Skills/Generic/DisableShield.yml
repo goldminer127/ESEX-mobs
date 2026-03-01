@@ -1,0 +1,15 @@
+DisableShield:
+  Skills:
+  - onDamaged{
+      auraName=disabledShield;d=20;
+      onHit=[
+        - skill{s=ActivateDisableShield;duration=<skill.duration>}
+      ];
+      Charges=1;
+    }
+    
+ActivateDisableShield:
+  Conditions:
+  - (blocking false && damageamount{amount=<0.01} true)
+  Skills:
+  - shieldbreak{duration=<skill.duration>}

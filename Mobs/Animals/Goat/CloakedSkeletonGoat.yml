@@ -1,0 +1,28 @@
+CloakedSkeletonGoat:
+  Type: GOAT
+  Health: 25
+  Damage: 1
+  Display: Cloaked Skeleton Goat
+  Faction: Wilderness
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  - randomlookaround
+  AITargetSelectors:
+  - clear
+  - players
+  - OtherFactionMonsters
+  Options:
+    PreventOtherDrops: true
+    FollowRange: 50
+  Skills:
+  - setspeed{speed=2;type=walking} @self ~onSpawn
+  - skill{s=SkeletonGoatCloakTriggered} @self ~onSignal:CLOAK
+  - skill{s=SkeletonGoatAttackHandler} @target ~onTimer:20 ?inCombat
+  - skill{s=SkeletonGoatClawStrike} @target ~onAttack
+  - summon{type=CloakedSkeletonGoat;amount=2;radius=5;yRadius=0;onSurface=true} @self ~onSpawn ?!hasParent
+  - cancelevent{sync=true} ~onAttack

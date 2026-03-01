@@ -1,0 +1,39 @@
+StabilizedPetrifiedZombie:
+  Type: ZOMBIE
+  Display: '&5Stabilized Petrified Zombie'
+  Health: 50
+  Equipment:
+  - StableCobbleHead HEAD
+  - StablePetrifiedChest CHEST
+  - StablePetrifiedLegs LEGS
+  - StablePetrifiedFeet FEET
+  - AIR HAND
+  AITargetSelectors:
+  - 1 players
+  DamageModifiers:
+  - ENTITY_ATTACK 0.25
+  - PROJECTILE 0
+  - FIRE_TICK 0
+  - FIRE 0
+  - LAVA 0
+  - MAGIC 0
+  Options:
+    MovementSpeed: 0.3
+    Silent: true
+    PreventSunburn: true
+    KnockbackResistance: 1
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventTransformation: true
+    Despawn: false
+    FollowRange: 50
+  Drops:
+  - COBBLESTONE: 1728 1
+  Skills:
+  - skill{s=StoneSpawn} @trigger ~onTimer:200
+  - skill{s=SuperStonePrison} ~onTimer:600
+  - skill{s=StoneThrow} @target ~onTimer:50
+  - skill{s=HardResistance} ~onDamaged
+  - skill{s=GroundStoneAura} ~onTimer:1
+  - damage{a=5;i=true} @target ~onAttack
+  - sound{s=item.totem.use;v=10;p=0.5;sc=master} @Self ~onDeath

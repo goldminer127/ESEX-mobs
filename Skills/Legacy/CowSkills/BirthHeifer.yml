@@ -1,0 +1,3 @@
+BirthHeifer:
+  Skills:
+  - summon{type=BabyHeifer;amount=1;r=1}

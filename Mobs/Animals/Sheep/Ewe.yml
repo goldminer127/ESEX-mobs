@@ -1,0 +1,24 @@
+Ewe:
+  Health: 10
+  Type: SHEEP
+  Display: Ewe
+  Options:
+    PreventOtherDrops: true
+    Despawn: false
+    Interactable: false
+  Variables:
+       Age: adult
+       Aggression: peaceful
+       Sex: female
+       Species: sheep
+  Skills:
+  - skill{s=AdultBehaviour} @self ~onSpawn
+  #Cannot birth another child for 100 minutes, births 1-3 babies per cycle
+  - skill:AnimalBirth{sound=entity.sheep.hurt;cooldown=120000} @self ~onSignal:BREED
+  - skill{s=AnimalFollowMale} ~onTimer:100
+  #Dies after 300 * 4 + 10 + 720 = 1930 mins of existance
+  - skill{s=EndOfLife;delay="1930*60*20";sync=true} ~onSpawn
+  # Calls male if attacked
+  - signal{s=HERDUNDERATTACK} @MIR{r=25;types=Ram,BabyRam;limit=1;conditions=[   - varEquals{var=target.Age;value=adult} true ]} ~onDamaged
+  #Drops carcass
+  - skill{s=DropSheepCarcass} ~onDeath

@@ -1,0 +1,10 @@
+WolfLeapBack:
+  Cooldown: 3
+  Conditions:
+  - stance biting false
+  - entitytype{t=WOLF}
+  Skills:
+  - sound{s=entity.bat.takeoff;v=1.5;p=1} @self
+  - sound{s=block.gravel.step;v=1.5;p=0.7;delay=12} @self
+  - leap{v=300;vy=0.5} @Forward{f=5;rot=180;useeyelocation=true}
+  - potion{type=SPEED;duration=60;level=1;hasParticles=false}

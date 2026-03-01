@@ -1,0 +1,75 @@
+deathField:
+  Skills:
+  - aura{onTick=deathField-Tick;duration=5}
+
+deathField-Tick:
+  Skills:
+  - effect:particlesphere{p=reddust;c=#000000;amount=275;y=0.5;s=0.00001;r=4.5} @origin
+  - damage{a=1;ia=false} @PIR{r=4.5}
+  - potion{type=wither;duration=20;level=1} @PIR{r=4.5}
+  - skill{s=deathFieldHeal}
+  
+deathField2:
+  Skills:
+  - aura{onTick=deathField-Tick2;duration=5}
+
+deathField-Tick2:
+  Skills:
+  - effect:particlesphere{p=reddust;c=#000000;amount=275;y=0.5;s=0.00001;r=7.5} @origin
+  - damage{a=1;ia=false} @PIR{r=6.5}
+  - potion{type=wither;duration=20;level=1} @PIR{r=6.5}
+  - skill{s=deathField2Heal}
+
+deathFieldHeal:
+  Conditions:
+  - playersinradius{a=>0;r=5}
+  Skills:
+  - aura{onTick=deathField-TickHeal;duration=5}
+
+deathField-TickHeal:
+  Skills:
+  - heal{a=10;oh=true} @self
+
+deathField2Heal:
+  Conditions:
+  - playersinradius{a=>0;r=10}
+  Skills:
+  - aura{onTick=deathField-Tick2Heal;duration=5}
+
+deathField-Tick2Heal:
+  Skills:
+  - heal{a=10;oh=true} @self
+  
+deathGrasp:
+  Skills:
+  - pull{velocity=3}
+  
+leechConsume:
+  Skills:
+  - summon{type=LeechSacrifice;amount=5;r=4} @Self
+  - delay 70
+  - consume{d=1000;h=50} @MobsInRadius{type=LeechSacrifice;r=400}
+
+summonSkull:
+  Skills:
+  - randomskill{skills= summonDark, summonFire, summonWind, summonEarth, summonWater, summonIce}
+  
+summonDark:
+  Skills:
+  - summon{type=SkullDark}
+
+summonFire:
+  Skills:
+  - summon{type=SkullFire}
+  
+summonWind:
+  Skills:
+  - summon{type=SkullWind}
+  
+summonEarth:
+  Skills:
+  - summon{type=SkullEarth}
+  
+summonWater:
+  Skills:
+  - summon{type=SkullWater}

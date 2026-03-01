@@ -1,0 +1,346 @@
+###/playsound minecraft:entity.ender_dragon.ambient ambient HayPrime ~ ~ ~ 1 .2 0
+
+FireOrc:
+  Type: Zombie
+  Display: '&cFire Orc'
+  Health: 100
+  Damage: 5
+  BossBar:
+    Enabled: true
+    Title: '&cFire Orc'
+    Color: RED
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+  DamageModifiers:
+  - LAVA -4
+  - FIRE -2
+  - FIRE_TICK -2
+  Disguise: player FireOrc setCustomName "&cFire Orc" setSkin MurkScream
+  Skills:
+  - skill{s=FireOrcbolt} ~onTimer:100
+#  - skill{s=SetFire} ~onTimer:20 --- set 3 different areas that can be set alight, and pick 1 randomly
+#  - skill{s=SetAir} ~onDeath
+
+WaterSerpent:
+  Type: Zombie
+  Display: '&3Water Serpent'
+  Health: 100
+  Damage: 5
+  BossBar:
+    Enabled: true
+    Title: '&3Water Serpent'
+    Color: BLUE
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+  Disguise: cod
+  Skills:
+  - skill{s=SerpentBolt} @PIR{r=20} ~onTimer:200
+  
+LittleWolf:
+  Type: Wolf
+  Health: 100
+  Display: 'Little Wolfe'
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+  AIGoalSelectors:
+  - clear
+  #- fleeplayers
+  - randomstroll
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - players
+
+BigWolf:
+  Type: Wolf
+  Health: 100
+  Display: 'Big Wolfe'
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  #- rally{types=LittleWolf;radius=30;ot=true} @Target ~onTimer:100
+
+WitheringLeech:
+  Type: Wither
+  Health: 1050
+  Display: '&6Withering Leech'
+  Options:
+    AlwaysShowName: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    KnockbackResistance: .95
+    MovementSpeed: .325
+    Silent: true
+  BossBar:
+    Enabled: true
+    Title: '&6Leech'
+    Color: YELLOW
+  Disguise: Wither
+  Skills:
+  - damage{a=12} @self ~onTimer:10
+  - heal{a=100;oh=true} @self ~onAttack
+  - skill{s=deathField} @self ~onTimer:5 =70%-90%
+  - skill{s=deathField2} @self ~onTimer:5 =50%-70%
+  - skill{s=deathField} @self ~onTimer:5 =30%-50%
+  - skill{s=deathGrasp} @PIR{r=32} ~onTimer:30
+  - skill{s=leechConsume} @self ~onTimer:200 <45%
+  - skill{s=summonSkull} @self ~onTimer:600
+  
+LeechSacrifice:
+  Type: Wither_Skeleton
+  Health: 30
+  Damage: 10
+  Display: 'Rotting Bones'
+  Options:
+    AlwaysShowName: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    MovementSpeed: .4
+  Equipment:
+  - AIR HAND
+
+DeathTouchZombie:
+  Type: Zombie
+  Display: '&5Death Touch'
+  Options:
+    AlwaysShowName: true
+    PreventSunburn: true
+    MovementSpeed: .1
+  Skills:
+  - potion{type=GLOWING;duration=9999999} @self ~onSpawn
+  - damage{amount=5000;ignorearmor=true;repeat=500; repeatinterval=1} @target ~onAttack
+
+#bleed effect: red particles, berry bush sound? damage over time
+
+Test:
+  Type: ZOMBIE
+  Health: 100
+  Options:
+    NoAI: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Silent: true
+  BossBar:
+    Enabled: true
+    Title: '&6Leech'
+    Color: YELLOW
+
+Beamer:
+  Type: zombie
+  Options:
+    AlwaysShowName: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=FireBeam} @MIR{r=64;t=runningType1} ~onTimer:1
+  #- skill{s=Guardian_Beam} @MIR{r=64;t=runningType1} ~onTimer:1
+  Disguise: zombie
+  
+runningType1:
+  Type: Silverfish
+  Display: '1'
+  Options:
+    AlwaysShowName: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    #Invisible: true
+    MovementSpeed: .75
+  Disguise: silverfish
+  Equipment:
+  - air hand
+  AIGoalSelectors:
+  - clear
+  Skills:
+  - skill{s=run1} ~onSpawn @PIR{r=100}
+
+Archibold:
+  Type: Zombie
+  Display: 'Archibold'
+  Options:
+    AlwaysShowName: true
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    #Invisible: true
+    #NoAI: true
+  Equipment:
+  - crossbow OFFHAND
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  #- skill{s=archiShoot} @PIR{r=32} ~onTimer:80
+  #- skill{s=archiShootCone} ~onTimer:80
+  - skill{s=archiPunch} ~onTimer:80
+
+CrossbowSkeleton:
+  Type: Pillager
+  Disguise: Skeleton
+
+TackleSkeleton:
+  Type: Skeleton
+  Options:
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Skills:
+  - skill{s=skeleTackle} ~onAttack
+  Equipment:
+  - air hand
+
+tackleFish:
+  Type: Silverfish
+  Options:
+    NoAI: true
+    PreventOtherDrops: true
+    Invisible: true
+    Invincible: true
+    Silent: true
+  Skills:
+  - skill{s=fishyTackle} @PIR{r=3;limit=1;sort=NEAREST} ~onSpawn
+  # spawn underground?
+
+clubberSkeleton:
+  Type: Skeleton
+  Options:
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Equipment:
+  - bone hand
+
+armorPrime:
+  Type: Zombie
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=commandSkill} ~onSpawn
+  
+PrimeArmor:
+  Type: Zombie
+  Options:
+    PreventRandomEquipment: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+    NoAI: true
+  Skills:
+  - skill{s=commandSkill} ~onSpawn
+  
+Nemo:
+  Type: GUARDIAN
+  Display: '&9Blooper'
+  Health: 850
+  Damage: 50
+  Armor: 10
+  BossBar:
+    Enabled: true
+    Title: '&9Blooper'
+    Color: BLUE
+  Options:
+    KnockbackResistance: .5
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Equipment:
+  - GuardianBoots FEET
+  Skills:
+  - skill{s=GuardianConsume} @self ~onTimer:600
+  - skill{s=FishBolt} @PIR{r=25} ~onTimer:1000
+  - skill{s=ShootRing} ~onTimer:250
+  - remove @self ~onKillPlayer
+  - giveitem{i=Bloop_KeyMold;a=1} @PIR{r=20} ~onDeath
+BloopSquid:
+  Type: SALMON
+  Display: 'bloop'
+  Health: 10
+  Skills:
+  - damage{amount=1;ignoreArmor=true} @PIR{r=15} ~onSpawn
+  Disguise: SQUID
+  Drops:
+  - ink_sac 1-3 1
+  Options:
+    PreventOtherDrops: true
+
+fallenHaloWarden:
+  Type: Stray
+  Display: '&8Fallen Halo Warden'
+  Health: 200
+  Damage: 10
+  Armor: 10
+  BossBar:
+    Enabled: true
+    Title: '&8Fallen Halo Warden'
+    Color: WHITE
+  Options:
+    KnockbackResistance: .5
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Equipment:
+  - GuardianBoots FEET
+  Skills:
+  - skill{s=GuardianConsume} @self ~onTimer:600
+  - skill{s=FishBolt} @PIR{r=25} ~onTimer:1000
+  - skill{s=ShootRing} ~onTimer:250
+  - remove @self ~onKillPlayer
+  - giveitem{i=Bloop_KeyMold;a=1} @PIR{r=20} ~onDeath
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

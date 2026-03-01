@@ -1,0 +1,15 @@
+SalamanderStandstormBreath:
+  Cooldown: 10
+  Skills:
+  - sound{s=entity.wither.shoot;v=2;p=2} @self
+  - projectile{onTick=SalamanderStandstormBreath-Tick;onHit=SalamanderStandstormBreath-Hit;v=8;i=1;hR=2.5;vR=2.5;y=2.5;hnp=true;StopAtEntity=false}
+
+SalamanderStandstormBreath-Tick:
+  Skills:
+  - particlebox{particle=cloud;amount=5;radius=2.5;directional=true} @origin
+
+SalamanderStandstormBreath-Hit:
+  Skills:
+  - damage{amount=4;element=EARTH;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=3;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
+  - damage{amount=3;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}

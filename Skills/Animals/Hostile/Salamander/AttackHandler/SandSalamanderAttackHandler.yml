@@ -1,0 +1,7 @@
+SandSalamanderAttackHandler:
+  Conditions:
+  - stance{s=default} true
+  - skillOnCooldown{skill=SalamanderSmash} orElseCast SalamanderSmash
+  - skillOnCooldown{skill=SalamanderTailWhip} orElseCast SalamanderTailWhip
+  - skillOnCooldown{skill=SalamanderStandstormBreath} orElseCast SalamanderStandstormBreath
+  Skills:

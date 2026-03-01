@@ -1,0 +1,240 @@
+#Desert salamander skills
+
+salamanderSandSpit:
+  Skills:
+  - projectile{onTick=salamanderSandSpit-Tick;onHit=salamanderSandSpit-Hit;v=12}
+salamanderSandSpit-Tick:
+  Skills:
+  - effect:particles{p=block_dust;m=sand;amount=10} @origin
+salamanderSandSpit-Hit:
+  Skills:
+  - damage{a=10}
+  
+attackAnimation:
+  Skills:
+  - randomskill{skills= salamanderAttackClaw, salamanderAttackTail}
+salamanderAttackClaw:
+  Skills:
+  - playanimation{a=0;audience=World}
+salamanderAttackTail:
+  Skills:
+  - playanimation{a=3;audience=World}
+
+
+
+
+#desert wolf skill
+  
+desertWolfIgnite:
+  Skills:
+  - ignite{ticks=100} @target
+  
+
+#desert scorpion skills:
+
+dScorpClawPinch:
+  Skills:
+  - playanimation{a=0;audience=World} @self
+  - damage{a=4}
+  - delay 20
+  - skill{s=dScorpClawPinch2} .5
+dScorpClawPinch2:
+  Skills:
+  - playanimation{a=3;audience=World} @self
+  - damage{a=4}
+
+dScorpStinger:
+  Skills:
+  - projectile{v=10;
+               bulletType=ITEM;material=Ghast_Tear;
+               onHit=dScorpStinger-Hit}
+dScorpStinger-Hit:
+  Skills:
+  - damage{a=4}
+  - potion{type=POISON;duration=600;level=0;p=true} @target
+
+dScorpGrabAndSting:
+  Skills:
+  - leap{velocity=300;velocityY:30} @target
+  - delay 10
+  - stun{d=60;f=true} @target
+  - stun{d=60} @self
+  - damage{a=4}
+  - playanimation{a=3;audience=World} @self
+  - potion{type=POISON;duration=900;level=0;p=true} @target
+  
+#dScorpGrabAndStingPoison:   needs premium MM
+#  TargetConditions:
+#  - haspotioneffect{t=POISON} true orElseCast dScorpGrabAndStingPoison2
+#  Skills:
+#  - potion{type=POISON;duration=400;level=2;p=true} @target
+#dScorpGrabAndStingPoison2:
+#  Skills:
+#  - potion{type=POISON;duration=900;level=0;p=true} @target
+  
+  
+#Night beast hound Skills
+
+nightBeastHoundBite:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  #-playanimation
+  - damage{a=6}
+nightBeastHoundClaw:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  #-playanimation
+  - damage{a=6}
+
+nightBeastHoundDrool:
+  Skills:
+  - message{m="&8Hunger..."} @PlayersInRadius{r=30}
+  - skill{s=feedingFrenzy} @Target
+
+feedingFrenzy:
+  Skills:
+  - potion{type=SPEED;duration=2400;level=0;p=true} @self
+  - delay 25
+  - skill{s=nightBeastHoundBite1} @Target ~onAttack  
+nightBeastHoundBite1:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="1"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=6}
+  - delay 10
+  - skill{s=nightBeastHoundClaw1} @Target
+nightBeastHoundClaw1:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="2"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=6}
+  - delay 10
+  - skill{s=nightBeastHoundBite2} @Target .8
+nightBeastHoundBite2:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="3"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=6}
+  - delay 10
+  - skill{s=nightBeastHoundClaw2} @Target .8
+nightBeastHoundClaw2:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="4"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=6}
+  - delay 10
+  - skill{s=nightBeastHoundBite3} @Target .6
+nightBeastHoundBite3:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="5"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=6}
+  - delay 10
+  - skill{s=nightBeastHoundClaw3} @Target .6
+nightBeastHoundClaw3:
+  Conditions:
+  - playerwithin{d=2}
+  Skills:
+  - message{m="6"} @PlayersInRadius{r=30}
+  #-playanimation
+  - damage{a=6}
+  
+#Locust
+
+locustBite:
+  Skills:
+  - consume{d=3;h=1} @Target
+
+#Flame ele:
+
+flameElementalFireball:
+  Skills:
+  - projectile{bulletType=BLOCK;material=fire;onHit=flameElementalFireball-Hit;v=12;hnp=false} @target
+  - sound{s=entity.blaze.shoot} @self
+  
+flameElementalFireball-Hit:
+  Skills:
+  - damage{a=10}
+  - ignite{ticks=200} @target
+  
+flameElementalCombustion:
+  Skills:
+  - effect:particles{particle=explosion_huge;amount=3;hS=1;vS=2;speed=1} @self
+  - sound{s=entity.generic.explode} @self
+  - damage{a=35} @PIR{r=5}
+  - ignite{ticks=200} @PIR{r=5}
+ 
+#jester sam
+
+jesterSamFireball:
+  Skills:
+  - projectile{bulletType=mob;mobType=jesterSamFireballHelper;onHit=jesterSamFireball-Hit;v=12;hnp=false} @target
+  - sound{s=entity.blaze.shoot} @self
+  
+jesterSamFireball-Hit:
+  Skills:
+  - damage{a=10}
+  #'curse'
+
+jesterSamCurse:
+  Skills:
+  - potion{type=SLOW;duration=1200;level=0;p=true;i=false}
+  - potion{type=WEAKNESS;duration=1200;level=0;p=true;i=false}
+  - potion{type=BLINDNESS;duration=1200;level=0;p=true;i=false}
+  - potion{type=CONFUSION;duration=1200;level=0;p=true;i=false}
+  
+jesterSamCursedBarrier:
+  Skills:
+  - potion{type=DAMAGE_RESISTANCE;duration=100;level=255;p=true;cd=10}
+  - sound{s=item.armor.equip_iron;v=1;p=2;cd=10}
+  #- message{m="barrier";cd=10} @PlayersInRadius{r=30}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

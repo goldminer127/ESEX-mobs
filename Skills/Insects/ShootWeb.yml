@@ -1,0 +1,10 @@
+ShootWeb:
+  Conditons:
+  - incombat true
+  Skills:
+  - projectile{bulletType=BLOCK;material=COBWEB;onHit=WebShot-Hit;v=20;i=1;hnp=true;g=0.2;ImmuneDelay=0}
+WebShot-Hit:
+  Skills:
+  - potion{type=SLOW_DIGGING;duration=<skill.WebDuration>;level=<skill.WebLevel>}
+  - potion{type=SLOW;duration=<skill.WebDuration>;level=<skill.WebLevel>}
+  - setblock{m=COBWEB}

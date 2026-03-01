@@ -1,0 +1,33 @@
+BabyBuck:
+  Health: 10
+  Type: GOAT
+  Display: Baby Buck
+  Options:
+    PreventOtherDrops: true
+    Baby: true
+    Despawn: false
+    Silent: true
+  Variables:
+    Age: baby
+    Aggression: defensive
+    Sex: male
+    Species: goat
+  Skills:
+  #30 mins assumed before this mob is considered an adult
+  - skill:AdultBehaviour{AdultName=Buck;sync=true} @self ~onTimer:100 ?!isbaby ?varEquals{var=caster.Age;value=baby}
+  #10 mins delay for breeding upon spawning and with a 200-600 mins interval between breeding and will repeat 1to4
+  #Interval: 240000to720000 delay: 36000
+  - signal{s=BREED;repeat=0to3;repeatInterval=240000to720000;delay=36000;sync=true} @MIR{r=25;types=Doe,BabyDoe;limit=1;sort=RANDOM;conditions=[
+                                                                                                                - varEquals{var=target.Age;value=adult} true
+                                                                                                                - skillOnCooldown{skill=AnimalBirth} false
+                                                                                                                ]} ~onSpawn
+  #Dies after 600 * 4 + 10 + 700 + 30 = 3140 mins of existance
+  - skill{s=EndOfLife;delay="3140*60*20";sync=true} ~onSpawn
+  #Recieves speed buff when attacked
+  - skill{s=AnimalRetaliation} ~onDamaged
+  # Calls male if attacked
+  - signal{s=HERDUNDERATTACK} @MIR{r=25;types=Buck,BabyBuck;limit=1;conditions=[   - varEquals{var=target.Age;value=adult} true ]} ~onDamaged
+  #Attacks nearest player if herd is attacked and is buffed with strength and speed
+  - skill{s=AnimalAggro} ~onSignal:HERDUNDERATTACK
+  #Drops carcass
+  #- skill{s=DropDeerCarcass} ~onDeath

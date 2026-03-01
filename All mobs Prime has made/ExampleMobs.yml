@@ -1,0 +1,627 @@
+
+
+Test:
+  Type: ZOMBIE
+  Health: 1000
+  Options:
+    NoAI: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+  
+Test1:
+  Type: ZOMBIE
+  Health: 1000
+  Options:
+    NoAI: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    Silent: true
+  Skills:
+  - skill{s=darkProjectileStart} ~onTimer:150 @PIR{r=100}
+  
+SkeletalKnight:
+  Type: WITHER_SKELETON
+  Display: '&aSkeletal Knight'
+  Health: 40
+  Damage: 8
+  Equipment:
+  - IRON_HELMET HEAD
+  - IRON_CHESTPLATE CHEST
+  - IRON_LEGGINGS LEGS
+  - IRON_BOOTS FEET
+  - IRON_SWORD HAND
+  - SHIELD OFFHAND
+  Drops:
+  - GOLD_NUGGET{display="Gold Coin"} 1to2 0.5
+  LevelModifiers:
+  - health 5
+  - damage 0.5
+  Options:
+    MovementSpeed: 0.1
+SkeletonKing:
+  Type: WITHER_SKELETON
+  Display: '&6Skeleton King'
+  Health: 500
+  Damage: 10
+  Skills:
+  - speak{m="None may challenge the Skeleton King!";cooldown=20} @PlayersInRadius{r=40}
+    ~onCombat >0 0.2
+  - speak{m="Ahahahahah! Die, <trigger.name>!"} @PlayersInRadius{r=40} ~onPlayerKill
+    >0 1
+  - skill{s=SummonSkeletons} @self 0.1
+  - skill{s=SmashAttack} @target >0 0.2
+  Equipment:
+  - KingsCrown HEAD
+  - SkeletonKingSword HAND
+  Drops:
+  - SkeletonKingDrops
+  Options:
+    AlwaysShowName: true
+    MovementSpeed: 0.2
+    MaxCombatDistance: 25
+    PreventOtherDrops: true
+SkeletalMinion:
+  Type: SKELETON
+  Display: '&2Skeletal Minion'
+  Health: 10
+  Damage: 2
+  Options:
+    MovementSpeed: 0.1
+StaticallyChargedSheep:
+  Type: SHEEP
+  Display: '&aStatically Charged Sheep'
+  Health: 100
+  Damage: 2
+  Options:
+    MovementSpeed: 0.3
+  DamageModifiers:
+  - LIGHTNING 0
+  - FIRE 0.5
+  Skills:
+  - lightning @LivingInRadius{r=10} ~onTimer:100
+AngrySludge:
+  Type: SLIME
+  Display: '&aAngry Sludge'
+  Health: 100
+  Damage: 2
+  Options:
+    Size: 20
+    MovementSpeed: 0.1
+    PreventSlimeSplit: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 30
+    KnockbackResistance: 1
+  Skills:
+  - skill{s=AngrySludgePoison} 0.2
+  - blockmask{material=SLIME_BLOCK;r=1;duration=100} @self ~onTimer:100
+  
+  #------------------------------------------------------------------------------------
+  
+Hermes:
+  Type: HUSK
+  Display: '&6Hermes'
+  Health: 300
+  Damage: 30
+  Options:
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    KnockbackResistance: .5
+  Equipment:
+  - HermesBoots FEET
+  Drops:
+  - HermesDrops
+  Skills:
+  - remove @self ~onKillPlayer
+Hanzo:
+  Type: STRAY
+  Display: '&3Hanzo'
+  Health: 450
+  Damage: 45
+  Options:
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+  BossBar:
+    Enabled: true
+    Title: '&3Hanzo'
+    Color: BLUE
+  Drops:
+  - HanzoDrops
+  Equipment:
+  - DragonsBow HAND
+  Skills:
+  - skill{s=Barrage} @PIR{r=20} ~onTimer:450
+  - remove @self ~onKillPlayer
+Darth_Vader:
+  Type: ZOMBIE
+  Display: '&0Darth Vader'
+  Health: 500
+  Damage: 15
+  Options:
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    MovementSpeed: .3
+  BossBar:
+    Enabled: true
+    Title: '&0Darth Vader'
+    Color: BLACK
+  Equipment:
+  - LightSaber HAND
+  - VADER_MASK HEAD
+  Skills:
+  - pull{v=7.5} @PIR{r=30} ~onTimer:400
+  - remove @self ~onKillPlayer
+  Drops:
+  - VaderDrops
+  Disguise:
+    Type: Player
+    Player: D4rthVader
+    Skin: D4rthVader
+DEATH:
+  Type: SKELETON
+  Display: '&0The Grim Reaper'
+  Health: 9999
+  Damage: 999
+  Equipment:
+  - Death HAND
+  Options:
+    MovementSpeed: .5
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+  BossBar:
+    Enabled: true
+    Title: '&0The Grim Reaper'
+    Color: WHITE
+Legion:
+  Type: SKELETON
+  Display: '&bWe are Legion'
+  Health: 225
+  Damage: 15
+  Options:
+    AlwaysShowName: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+  Skills:
+  - skill{s=MultiplyStrong} @self ~onTimer:75
+  - skill{s=MultiplyWeak} @self ~onTimer:75
+  - speak{r=30;m="&bFor we are many."}@self ~onDeath
+  - skill{s=LegionPotion} @Target ~onAttack
+#  - remove @self ~onTimer:600
+  - skill{s=MultiplyStrong} @self ~onSpawn
+  - skill{s=MultiplyWeak} @self ~onSpawn
+  BossBar:
+    Enabled: true
+    Title: '&bLegionnaire'
+    COLOR: BLUE
+MSFMinion:
+  Type: SKELETON
+  Display: '&bStrong Minion'
+  Health: 12
+  Damage: 30
+  Skills:
+  - skill{s=RestoreLegion} @MobsInRadius{r=30;types=Legion} ~onAttack
+  - remove @self ~onTimer:600
+  Options:
+    PreventRandomEquipment: true
+  Drops:
+  - exp 15
+Fishy:
+  Type: SKELETON
+  Display: '&bWeak Minion'
+  Health: 6
+  Damage: 1
+  Skills:
+  - skill{s=RestoreLegionS} @MobsInRadius{r=30;types=Legion} ~onAttack
+  - skill{s=NomNom} @Target ~onAttack
+  - remove @self ~onTimer:600
+  Options:
+    PreventRandomEquipment: true
+  Drops:
+  - exp 12
+Ruler_Undead:
+  Type: ZOMBIE
+  Display: '&eRuler Of The Undead'
+  Health: 500
+  Damage: 20
+  Armor: 8
+  BossBar:
+    Enabled: true
+    Title: '&eRuler Of The Undead'
+    Color: YELLOW
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    MovementSpeed: .35
+    KnockbackResistance: .65
+  DamageModifiers:
+  - PROJECTILE 0.5
+  Drops:
+  - RulerUndeadDrops
+  Equipment:
+  - DIAMOND_HELMET HEAD
+  - DIAMOND_CHESTPLATE CHEST
+  - DIAMOND_LEGGINGS LEGS
+  - DIAMOND_BOOTS FEET
+  - UnderSwordBoss HAND
+  Skills:
+  - skill{s=SkullBarrage} @target >0 0.2
+  - skill{s=SummonZombie} @self =90%,=50%,=10% 1
+  - skill{s=RulerTP} @self ~onTimer:160
+  - skill{s=RulerFire} @self ~onSpawn
+  - remove @self ~onKillPlayer
+UndeadBro:
+  Type: BABY_ZOMBIE
+  Health: 20
+  Damage: 10
+  Equipment:
+  - IRON_HELMET HEAD
+  - IRON_CHESTPLATE CHEST
+  - IRON_LEGGINGS LEGS
+  - IRON_BOOTS FEET
+  - IRON_SWORD HAND
+  DamageModifiers:
+  - PROJECTILE 0.25
+  Options:
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Skills:
+  - skill{s=RestoreUndead} @MobsInRadius{r=30;types=Ruler_Undead} ~onAttack
+Titan:
+  Type: IRON_GOLEM
+  Display: '&7Titan'
+  Health: 750
+  Armor: 20
+  Damage: 25
+  BossBar:
+    Enabled: true
+    Title: '&8Titan'
+    Color: WHITE
+  Equipment:
+  - GolemArmor CHEST
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    KnockbackResistance: .9
+  DamageModifiers:
+  - PROJECTILE 0.35
+  - FIRE_TICK 0
+  Skills:
+  - skill{s=TitanFly} @trigger ~onDamaged 1
+  - skill{s=FirstJump} @PIR{r=25} ~onSpawn
+  - skill{s=Stun} @target ~onAttack
+  - skill{s=Firebolt} @target ~onTimer:200
+  - remove @self ~onKillPlayer
+  - giveitem{i=Titan_KeyMold;a=1} @PIR{r=20} ~onDeath
+  Drops:
+    - GolemDrops
+Fire_Knight:
+  Type: ZOMBIE
+  Display: '&4Fire Knight&r'
+  Health: 650
+  Damage: 5
+  BossBar:
+    Enabled: true
+    Title: '&4Fire Knight'
+    Color: RED
+  Options:
+    MovementSpeed: .3
+    KnockbackResistance: .35
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Disguise: player ADMIN_MADORD setCustomName "&4Fire Knight&r" Dameetree
+  DamageModifiers:
+  - PROJECTILE 0.65
+  - FIRE_TICK -4
+  Equipment:
+  - DIAMOND_HELMET HEAD
+  - DIAMOND_CHESTPLATE CHEST
+  - Leggings_of_The_Fallen_Knight LEGS
+  - DIAMOND_BOOTS FEET
+  - Bonefire_Sword HAND
+  Skills:
+  - skill{s=FireballBarrage} =65%-90% ~onTimer:300
+  - skill{s=CrushingLeap} ~onTimer:250
+  - skill{s=Homer} =5-60% 
+  - remove @self ~onKillPlayer
+  - giveitem{i=FireK_Key;a=1} @PIR{r=20} ~onDeath
+  Modules:
+    ThreatTable: true
+Nemo:
+  Type: GUARDIAN
+  Display: '&9Blooper'
+  Health: 850
+  Damage: 50
+  Armor: 10
+  BossBar:
+    Enabled: true
+    Title: '&9Blooper'
+    Color: BLUE
+  Options:
+    KnockbackResistance: .5
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Equipment:
+  - GuardianBoots FEET
+  Skills:
+  - skill{s=GuardianConsume} @self ~onTimer:600
+  - skill{s=FishBolt} @PIR{r=25} ~onTimer:1000
+  - skill{s=ShootRing} ~onTimer:250
+  - remove @self ~onKillPlayer
+  - giveitem{i=Bloop_KeyMold;a=1} @PIR{r=20} ~onDeath
+BloopSquid:
+  Type: SALMON
+  Display: 'bloop'
+  Health: 10
+  Skills:
+  - damage{amount=1;ignoreArmor=true} @PIR{r=15} ~onSpawn
+  Disguise: SQUID
+  Drops:
+  - ink_sac 1-3 1
+  Options:
+    PreventOtherDrops: true
+    
+Pirate:
+  Type: Zombie
+  Display: '&5The Pirate'
+  Health: 425
+  Damage: 20
+  Armor: 5
+  BossBar:
+    Enabled: true
+    Title: '&5Pirate'
+    Color: PURPLE
+  Options:
+    KnockbackResistance: .5
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true 
+    MovementSpeed: .35
+  Equipment:
+  - Pirate_Bandana HEAD
+  - IRON_SWORD HAND
+  Disguise:
+    Type: Player
+    Player: Pirate
+    Skin: Pirate
+  Skills:
+  - skill{s=PirateShot} @Target ~onDamaged .4
+  - skill{s=PirateZap} @PIR{r=20} ~onTimer:300
+  - remove @self ~onKillPlayer
+  - giveitem{i=Pirate_Key;a=1} @PIR{r=20} ~onDeath
+  DamageModifiers:
+  - PROJECTILE 0.75
+  
+Warden:
+  Type: Zombie
+  Display: '&fWarden'
+  Health: 1250
+  Damage: 15
+  BossBar:
+    Enabled: true
+    Title: '&fWarden'
+    Color: WHITE
+  Options:
+    KnockbackResistance: .5
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true 
+    MovementSpeed: .3
+  Equipment:
+  - Baton HAND
+  - WardensCap HEAD
+  Disguise: player Lisqu setCustomName "&fWarden" 
+  Skills:
+  - skill{s=Jail} @PIR{r=30;limit=2;sort=RANDOM} ~onTimer:600
+  - skill{s=Chain} ~onDamaged .15
+  - skill{s=WardenReinforce} =90%,=50%,=10% 1
+  - healpercent{m=0.05} @self ~onKillPlayer
+  - giveitem{i=Warden_Key;a=1} @PIR{r=20} ~onDeath
+  DamageModifiers:
+  - PROJECTILE 0.5
+  Modules:
+    ThreatTable: true
+  Drops:
+    - WardenDrops
+LesserTitan:
+  Type: ZOMBIE
+  Display: '&7Security Guard'
+  Health: 20
+  Armor: 0
+  Damage: 50
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    MovementSpeed: .35
+  Skills:
+  - skill{s=Stun} @target ~onAttack
+  Disguise: iron_golem
+  DamageModifiers:
+  - PROJECTILE 0.5
+IronGolem:
+  Type: IRON_GOLEM
+  
+CagedGod:
+  Type: ZOMBIE
+  Display: '&cCaged God&r'
+  Health: 1210
+  Damage: 5
+  Disguise: player Ohspyz setCustomName "&cCaged God&r" 
+  #Faction: Cult
+  BossBar:
+    Enabled: true
+    Title: '&cCaged God'
+    Color: RED
+  Options:
+    Silent: true
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Skills:
+   - skill{s=godSpawn} @Origin{xoffset=0;yoffset=-4;zoffset=0} ~onSpawn
+   - skill{s=beamEffect} @MobsInRadius{type=GodFollowers;r=400} ~onSignal:MOO_FOR_ME
+   - skill{s=CGphase2} @self <1%
+   - message{m="&cYou think you can defeat me?! (50% hp) "} @PlayersInRadius{r=40} =52%
+   - message{m="&bCagedGod has died xd -i dont get paid to write dialouge"} @PlayersInRadius{r=40} ~onDeath
+   
+GodFollowers:
+  Type: Zombie
+  Display: '&4Cult Follower&r'
+  Health: 1000
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    NoAI: true
+    Silent: true
+  Skills:
+  - skill{s=triggerMoo} @self ~onSpawn
+  Disguise: Villager
+   
+CultFighters:
+  Type: Zombie_Villager
+  Display: '&cCult Fighter&r'
+  Health: 95
+  Damage: 10
+  Faction: Cult
+  Disguise: player Dameetree setCustomName "&cCult Fighter&r" 
+  #BossBar:
+  #  Enabled: true
+  #  Title: '&cCultist'
+  #  Color: RED
+  Options:
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    MovementSpeed: .35
+    PreventSunburn: true
+    Silent: true
+  Skills:
+  - damage{a=1000;ia=true} @MIR{r=64;t=GodFollowers} ~onSpawn
+  - effect:particles{p=explosion_large;a=50;hS=1;vS=1} @self ~onSpawn
+  - skill{s=deathPower} @MIR{type=CagedGod;r=100} ~onDeath
+  - skill{s=SmashAttack} @target ~onAttack .2
+  - skill{s=throwOnDamaged} @target ~onDamaged .15
+  - skill{s=weakOnAttack} @target ~onAttack .6
+  - randomskill{skills= slowOnDamaged, strengthOnDamaged} @target ~onDamaged .4
+  - skill{s=summonHealer} @self =30%
+  
+CultMage:
+  Type: Stray
+  Display: '&bCult Mage'
+  Health: 135
+  Damage: 20
+  Faction: Cult
+  Options:
+    PreventSunburn: true
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - fleeplayers
+  - randomstroll
+  Skills:
+  - skill{s=meleeArmor} @PIR{r=4} ~onDamaged
+  - skill{s=deathPowerMage} @MIR{type=CagedGod;r=100} ~onDeath
+  - skill{s=mageRecoil} @trigger ~onDamaged 0.5
+  - skill{s=mageIgnite} @trigger ~onDamaged 0.15
+  - skill{s=IceShield} @self ~onSpawn
+  - skill{s=IceShield} @self ~onTimer:15
+  - randomskill{skills= cultMageCast 2, summonWitch 1} ~onTimer:250 0.95
+  
+  #- skill{s=cultMageCast} @PIR{r=25} ~onTimer:275
+  DamageModifiers:
+  - ENTITY_ATTACK 0.2
+  - PROJECTILE 1.25
+  - CUSTOM 1.25
+  
+CultWitch:
+  Type: Witch
+  Health: 2000
+  Faction: Cult
+  Options:
+    PreventOtherDrops: true
+    NoAI: true
+    Invincible: true
+  Skills:
+    - randomskill{skills= cultWitchPoison, cultWitchWither, cultWitchHarm} ~onSpawn
+  
+CultHealer:
+  Type: Witch
+  Display: '&dCult Healer'
+  Health: 18
+  Faction: Cult
+  Options:
+    PreventSunburn: true
+    AlwaysShowName: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Skills:
+  - skill{s=cultHealing} ~onTimer:50
+  
+
+  ### idea: takes constant damage but heals by dealing damage
+  
+ItemRat:
+  Type: Silverfish
+  Health: 25
+  Options:
+    MovementSpeed: 1
+  
+TestZombie:
+  Type: Zombie
+  Options:
+    Silent: true
+    NoAI: true
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Skills:
+  - skill{s=startUp} ~onSpawn
+  
+TestStartup:
+  Type: Horse
+  Options:
+    Despawn: false
+    Options:
+    Silent: true
+    NoAI: true
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  
+TestItemZombie:
+  Type: Zombie
+  Health: 100
+  Damage: 1
+  Options:
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+  Skills:
+  - skill{s=WitheringBladeStrike} @Target ~onDamaged
+  
+
+Cow:
+  Type: Cow
+  Options:
+    #MovementSpeed: .2
+    
+TestGiant:
+  Type: Zombie
+  Disguise: Giant
+  Health: 8
+  Damage: 4

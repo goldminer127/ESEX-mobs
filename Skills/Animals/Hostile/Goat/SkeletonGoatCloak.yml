@@ -1,0 +1,9 @@
+SkeletonGoatCloak:
+  Cooldown: 30
+  Skills:
+  - skill{s=ApplyPotion;cooldown=0;potionType=INVISIBILITY;duration=200;level=1} @self
+  - signal{s=CLOAK} @MobsInRadius{r=25;t=CloakedSkeletonGoat}
+  
+SkeletonGoatCloakTriggered:
+  Skills:
+  - skill{s=ApplyPotion;cooldown=0;potionType=INVISIBILITY;duration=200;level=1} @self

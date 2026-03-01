@@ -1,0 +1,9 @@
+MiraSignalMob:
+  Type: SILVERFISH
+  Options:
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  Skills:
+  - skill{s=SpawnMiraTriggerDelay} ~onSpawn

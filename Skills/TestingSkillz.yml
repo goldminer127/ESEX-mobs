@@ -1,0 +1,56 @@
+commandSkill:
+  Skills:
+  - command{c="give HayPrime minecraft:cooked_beef 64"}
+  - command{c="give HayPrime minecraft:enchanted_golden_apple 64"}
+  - command{c="mm i give HayPrime dh"}
+  - command{c="mm i give HayPrime dc"}
+  - command{c="mm i give HayPrime dl"}
+  - command{c="mm i give HayPrime db"}
+  - suicide
+  - remove @self
+
+magicSux:
+  Skills:
+  - speak{m="magic is cringe"}
+  
+magicCringeTestSpell:
+  Skills:
+  - signal{s=mageSuxSig} @MIR{r=64;types=mageCringe}
+  
+NWSvenomBite:
+  Conditions:
+  - offgcd
+  Skills:
+  - damage{a=5}
+  - randomskill{skills=NWSPois1,NWSPois2,NWSPois3}
+  - gcd{ticks=900}
+NWSPois1:
+  Skills:
+  - potion{type=POISON;duration=600;level=0}
+NWSPois2:
+  Skills:
+  - potion{type=POISON;duration=300;level=1}
+NWSPois3:
+  Skills:
+  - potion{type=POISON;duration=175;level=2}
+  
+NWSWebShot:
+  Skills:
+  - projectile{v=12.5;
+               bulletType=BLOCK;material=COBWEB;
+               onTick=NWSWebShot-Tick;
+               onHit=NWSWebShot-Hit}
+NWSWebShot-Tick:
+  Skills:
+  - effect:particles{p=cloud;amount=2;speed=0;hS=0.2;vS=0.2;y=.4} @origin
+NWSWebShot-Hit:
+  Skills:
+  - delay 10 #this delay is so you fall to the ground if you were jumping, trsut me, its worth it
+  - stun{d=100;f=true}
+  - summon{t=NWSCobweb}
+  
+NWSCobwebSkill:
+  Skills:
+  - delay 110
+  - remove @self
+  - suicide
