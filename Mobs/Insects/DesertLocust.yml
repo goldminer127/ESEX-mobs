@@ -1,0 +1,35 @@
+DesertLocust:
+  Type: BEE
+  Health: 10
+  Damage: 1.5
+  Armor: 2
+  Display: Desert Locust
+  Faction: Wilderness
+  AITargetSelectors:
+  - clear
+  - players
+  - OtherFactionMonsters
+  Options:
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=ScorpionAttackHandler} @target ~onAttack
+  - cancelevent{sync=true} ~onAttack
+  - dismount ~onTimer:10
+  # Name: Desert Locusts
+  # Description: A Locust that has adapted to the Desert Biome.Locusts live in swarms and feast on whatever available to survive
+  # Spawns in the day and night
+  # Mob Type: Insect
+  # Mob Difficulty/Classification: Lesser Minion
+  # Other: Spawns in 10 or more
+  # Health: 10
+  # Armor: 2
+  # Equipment:
+  # Hostility: Hostile
+  # Tamable: No
+  # Targets: Players & Animals
+  # Base Attack:
+  # Skills:
+  # Bite
+  # Damage: 1.5 Generic, 1.5 Physical
+  # Passive Effects:
+  # Loot Drops: Locust Leg
