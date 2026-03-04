@@ -3,6 +3,9 @@ DesertLocust:
   Health: 10
   Damage: 1.5
   Armor: 2
+  Spawns_in: 10
+  MovementSpeed: 0.3
+  Tamable: false
   Display: Desert Locust
   Faction: Wilderness
   AITargetSelectors:
@@ -12,20 +15,21 @@ DesertLocust:
   Options:
     PreventOtherDrops: true
   Skills:
-  - skill{s=ScorpionAttackHandler} @target ~onAttack
+  - skill{s=LocustAttackHandler} @target ~onAttack # The bite of 87
   - cancelevent{sync=true} ~onAttack
   - dismount ~onTimer:10
+  
   # Name: Desert Locusts
   # Description: A Locust that has adapted to the Desert Biome.Locusts live in swarms and feast on whatever available to survive
   # Spawns in the day and night
-  # Mob Type: Insect
-  # Mob Difficulty/Classification: Lesser Minion
+  # Mob Type: Insect -- check
+  # Mob Difficulty/Classification: Lesser Minion 
   # Other: Spawns in 10 or more
-  # Health: 10
-  # Armor: 2
-  # Equipment:
-  # Hostility: Hostile
-  # Tamable: No
+  # Health: 10 -- check
+  # Armor: 2 -- check
+  # Equipment:-- check I guess
+  # Hostility: Hostile -- 
+  # Tamable: No 
   # Targets: Players & Animals
   # Base Attack:
   # Skills:

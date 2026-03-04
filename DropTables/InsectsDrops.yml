@@ -1,0 +1,6 @@
+LocustDrops:
+  Conditions:
+  Drops:
+  - mmoitems{type=MATERIAL;id=LOCUSTLEG} 1to3 0.35 # Not entirely sure how to work this
+  - experience 1
+  - heroesexp 1
