@@ -1,8 +1,0 @@
-LocustAttackHandler:
-  Conditions:
-  - stance{s=default} true
-  - skillOnCooldown{skill=GrabAndSting} orElseCast GrabAndSting
-  - skillOnCooldown{skill=ScorpionSting} orElseCast ScorpionSting
-  - skillOnCooldown{skill=DoubleClawPinch} orElseCast DoubleClawPinch
-  Skills:
-  - skill{s=LocustBite}

@@ -1,5 +1,4 @@
 LocustBite:
-  Cooldown: 3
   Skills:
   - damage{amount=1.5;element=GENERIC;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}
   - damage{amount=1.5;element=PHYSICAL;ignoreinvulnerability=true;preventimmunity=true;preventknockback=true}

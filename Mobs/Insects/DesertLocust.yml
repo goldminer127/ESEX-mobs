@@ -15,7 +15,7 @@ DesertLocust:
   Options:
     PreventOtherDrops: true
   Skills:
-  - skill{s=LocustAttackHandler} @target ~onAttack # The bite of 87
+  - skill{s=LocustBite} @target ~onAttack # The bite of 87
   - cancelevent{sync=true} ~onAttack
   - dismount ~onTimer:10
   
