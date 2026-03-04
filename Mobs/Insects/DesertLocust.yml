@@ -17,7 +17,7 @@ DesertLocust:
   - skill{s=LocustBite} @target ~onAttack # The bite of 87
   - cancelevent{sync=true} ~onAttack
   - dismount ~onTimer:10
-  - summon{type=DesertLocustHive;amount=9;radius=4}
+  - summon{type=DesertLocustHive;amount=9;radius=4} @Self ~onSpawn
 
 DesertLocustHive:
   Type: BEE
