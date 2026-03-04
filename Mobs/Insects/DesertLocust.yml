@@ -3,7 +3,6 @@ DesertLocust:
   Health: 10
   Damage: 1.5
   Armor: 2
-  Spawns_in: 10
   MovementSpeed: 0.3
   Tamable: false
   Display: Desert Locust
@@ -16,6 +15,27 @@ DesertLocust:
     PreventOtherDrops: true
   Skills:
   - skill{s=LocustBite} @target ~onAttack # The bite of 87
+  - cancelevent{sync=true} ~onAttack
+  - dismount ~onTimer:10
+  - summon{type=DesertLocustHive;amount=9;radius=4}
+
+DesertLocustHive:
+  Type: BEE
+  Health: 10
+  Damage: 1.5
+  Armor: 2
+  MovementSpeed: 0.3
+  Tamable: false
+  Display: Desert Locust
+  Faction: Wilderness
+  AITargetSelectors:
+  - clear
+  - players
+  - OtherFactionMonsters
+  Options:
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=LocustBite} @target ~onAttack
   - cancelevent{sync=true} ~onAttack
   - dismount ~onTimer:10
   
